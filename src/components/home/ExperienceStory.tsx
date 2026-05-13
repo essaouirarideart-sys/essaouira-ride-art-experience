@@ -6,9 +6,9 @@ import { motion, useInView } from "framer-motion";
 import type { Locale } from "@/i18n/config";
 
 const IMAGES = [
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",
-  "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=1200&q=80",
-  "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=1200&q=80",
+  "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/21_alocv8.jpg",
+  "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
+  "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/6_o2zvcq.jpg",
 ];
 
 export function ExperienceStory({ locale }: { locale: Locale }) {

@@ -23,7 +23,7 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
  * Option 3: Vimeo
  *   Use: `https://player.vimeo.com/video/VIDEO_ID?background=1&autoplay=1&loop=1&muted=1`
  */
-const HERO_VIDEO_ID = ""; // TODO: Replace with your YouTube video ID
+const HERO_VIDEO_ID = "t2qTFxZn4Y4"; // TODO: Replace with your YouTube video ID
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80&auto=format";
 
 export function HeroVideo({

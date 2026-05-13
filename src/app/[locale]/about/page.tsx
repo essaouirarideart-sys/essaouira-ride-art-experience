@@ -14,10 +14,9 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 const ICONS = [Heart, ShieldCheck, Sparkles, Leaf, Award, Users] as const;
 
 // Cloudinary about page images - TODO: Replace with your actual Cloudinary public IDs
-const CLOUD_NAME = "demo";
-const ABOUT_IMG = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/w_2000,q_auto,f_auto/samples/landscapes/nature-mountains`;
-const ABOUT_IMG_2 = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/w_1200,q_auto,f_auto/samples/landscapes/beach-boat`;
-const ABOUT_IMG_3 = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/w_1200,q_auto,f_auto/samples/animals/three-dogs`;
+const ABOUT_IMG = `https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/11_ehyrc0.jpg`;
+const ABOUT_IMG_2 = `https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/16_ojynt2.jpg`;
+const ABOUT_IMG_3 = `https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/15_vfgiwf.jpg`;
 
 export async function generateMetadata({
   params,

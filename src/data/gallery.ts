@@ -20,7 +20,7 @@ export interface GalleryItem {
 
 // Ambient/Essaouira gallery placeholder URLs
 const AMBIENT_PLACEHOLDERS = {
-  sunset: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
+  sunset: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/13_y5khnk.jpg",
   medina: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
   dunes: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/landscape-panorama",
   palms: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
@@ -82,5 +82,5 @@ export const galleryCategories: Array<{
   { key: "quad", label: { fr: "Quad", en: "Quad" } },
   { key: "camel", label: { fr: "Dromadaire", en: "Camel" } },
   { key: "art", label: { fr: "Art", en: "Art" } },
-  { key: "essaouira", label: { fr: "Essaouira", en: "Essaouira" } },
+  // { key: "essaouira", label: { fr: "Essaouira", en: "Essaouira" } },
 ];

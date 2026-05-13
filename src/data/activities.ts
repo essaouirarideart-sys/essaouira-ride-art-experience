@@ -68,40 +68,40 @@ export interface Activity {
 // Replace these with your actual uploaded Cloudinary URLs
 const PLACEHOLDERS = {
   // Horse riding
-  horseHero: "https://res.cloudinary.com/dysaghamv/image/upload/q_auto/f_auto/v1777601608/cd344b0f-ac75-4c2f-996c-230f70abb6db_brkucc.jpg",
-  horseGallery1: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
-  horseGallery2: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  horseGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/three-dogs",
-  horseGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
-  horseGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  horseGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/three-dogs",
+  horseHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/15_vfgiwf.jpg",
+  horseGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/9_zovolb.jpg",
+  horseGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/10_gxkhzp.jpg",
+  horseGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/5_xom00w.jpg",
+  horseGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/8_cxiiuw.jpg",
+  horseGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/6_o2zvcq.jpg",
+  horseGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/17_chbp0e.jpg",
   
   // Quad
-  quadHero: "https://res.cloudinary.com/dysaghamv/image/upload/q_auto/f_auto/v1777601627/d8db3039-d68e-4fd7-b9a0-4cfb91041cf8_dn8qt5.jpg",
-  quadGallery1: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/landscape-panorama",
-  quadGallery2: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  quadGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
-  quadGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/landscape-panorama",
-  quadGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  quadGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
+  quadHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
+  quadGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/3_bpzvwv.jpg",
+  quadGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/2_vhnsj1.jpg",
+  quadGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/1_ogxigs.jpg",
+  quadGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/16_ojynt2.jpg",
+  quadGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
+  quadGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/12_ww4ya2.jpg",
   
   // Camel
-  camelHero: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  camelGallery1: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  camelGallery2: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
-  camelGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  camelGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  camelGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  camelGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
+  camelHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600154/28_h0pkn1.jpg",
+  camelGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/26_u6qd85.jpg",
+  camelGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/27_nhdxee.jpg",
+  // camelGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
+  // camelGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
+  // camelGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
+  // camelGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
   
   // Art
-  artHero: "https://res.cloudinary.com/dysaghamv/image/upload/q_auto/f_auto/v1777601637/23652914-6433-4c9e-bc4c-ba660804175e_b9vf1o.jpg",
-  artGallery1: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/food/spices",
-  artGallery2: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/food/pot-mussels",
-  artGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/food/spices",
-  artGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/food/pot-mussels",
-  artGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/food/spices",
-  artGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/food/pot-mussels",
+  artHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/24_hinlho.jpg",
+  artGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/25_iug3oh.jpg",
+  artGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/21_alocv8.jpg",
+  artGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/19_to2pcz.jpg",
+  artGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/22_vlku4f.jpg",
+  artGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/17_chbp0e.jpg",
+  artGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/18_rl32io.jpg",
 };
 
 export const activities: Activity[] = [
