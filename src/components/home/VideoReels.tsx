@@ -76,14 +76,16 @@ function VideoCard({
         <>
           {/* Autoplaying muted YouTube embed */}
           <iframe
-            src={`https://www.youtube.com/embed/${reel.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${reel.youtubeId}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`}
-            className="absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] scale-110"
+            src={`https://www.youtube.com/embed/${reel.youtubeId}?autoplay=1&muted=1&mute=1&loop=1&playlist=${reel.youtubeId}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&disablekb=1&fs=0&iv_load_policy=3&vq=hd1080&hd=1`}
+            className="absolute inset-0 h-[140%] w-[140%] -translate-x-[20%] -translate-y-[20%]"
             style={{ border: "none" }}
             allow="autoplay; encrypted-media"
             title={reel.title[locale]}
           />
+          {/* Full overlay to block YouTube controls and make video non-interactive */}
+          <div className="absolute inset-0 z-[5]" />
           {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-[6] bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
         </>
       ) : (
         <>

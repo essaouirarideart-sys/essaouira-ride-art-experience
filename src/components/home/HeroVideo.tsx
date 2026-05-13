@@ -37,14 +37,20 @@ export function HeroVideo({
   const hasVideo = HERO_VIDEO_ID.length > 0;
 
   return (
-    <section className="relative -mt-16 min-h-[85svh] overflow-hidden sm:-mt-20 sm:min-h-[100svh]">
+    <section className="relative h-screen w-screen overflow-hidden">
       {/* Video / Image Background */}
       <div className="absolute inset-0">
         {hasVideo ? (
           <iframe
-            src={`https://www.youtube.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${HERO_VIDEO_ID}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`}
-            className="pointer-events-none absolute inset-0 h-[120%] w-[120%] -translate-x-[10%] -translate-y-[10%] scale-110 object-cover"
-            style={{ border: "none" }}
+            src={`https://www.youtube.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${HERO_VIDEO_ID}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&vq=hd1080&hd=1`}
+            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{
+              border: "none",
+              width: "100vw",
+              height: "56.25vw", /* 16:9 aspect ratio */
+              minHeight: "100vh",
+              minWidth: "177.78vh", /* 16:9 aspect ratio inverse */
+            }}
             allow="autoplay; encrypted-media"
             onLoad={() => setVideoLoaded(true)}
             title="Hero background video"
@@ -64,7 +70,7 @@ export function HeroVideo({
       </div>
 
       {/* Content */}
-      <div className="container-page relative flex min-h-[85svh] flex-col justify-center pt-24 pb-16 sm:min-h-[100svh] sm:pt-32 sm:pb-20">
+      <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

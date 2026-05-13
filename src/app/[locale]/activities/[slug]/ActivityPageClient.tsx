@@ -23,6 +23,7 @@ import { ActivityCard } from "@/components/ui/ActivityCard";
 import { ActivityIcon } from "@/components/ui/ActivityIcon";
 import { ActivityBookingSection } from "@/components/ui/ActivityBookingSection";
 import { InlineBookingForm } from "@/components/ui/InlineBookingForm";
+import { ActivityVideoReel } from "@/components/ui/ActivityVideoReel";
 import type { Activity, PricingTier, PricingOption } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
@@ -272,6 +273,29 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
           </div>
         </Container>
       </section>
+
+      {/* VIDEO REELS */}
+      {activity.videoReels && activity.videoReels.length > 0 && (
+        <section className="border-t border-border py-12 sm:py-20 lg:py-24">
+          <Container>
+            <SectionHeading
+              eyebrow={locale === "fr" ? "Vidéos" : "Videos"}
+              title={
+                locale === "fr"
+                  ? "Vivez l'expérience en vidéo"
+                  : "Experience it in video"
+              }
+            />
+            <div className="mt-8 sm:mt-12 flex justify-center gap-4 sm:gap-6">
+              {activity.videoReels.map((reel, index) => (
+                <div key={index} className="w-40 sm:w-48 lg:w-56">
+                  <ActivityVideoReel reel={reel} locale={locale} />
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* BOOKING SECTION */}
       <ActivityBookingSection

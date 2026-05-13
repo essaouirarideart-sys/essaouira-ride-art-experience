@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFloat } from "@/components/ui/WhatsAppFloat";
+import { WhatsAppChatWidget } from "@/components/ui/WhatsAppChatWidget";
 import { StickyContactBar } from "@/components/ui/StickyContactBar";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { organizationJsonLd } from "@/lib/seo";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -43,8 +42,7 @@ export default async function LocaleLayout({
         {children}
       </main>
       <Footer locale={typedLocale} dict={dict} />
-      {/* <WhatsAppFloat locale={typedLocale} /> */}
-      <WhatsAppButton locale={typedLocale} />
+      <WhatsAppChatWidget locale={typedLocale} />
       <StickyContactBar locale={typedLocale} dict={dict} />
       {/* Bottom padding for mobile sticky bar */}
       <div className="h-14 sm:hidden" aria-hidden />

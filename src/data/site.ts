@@ -7,7 +7,7 @@ export const site = {
     phone: "+212624852856",
     phoneDisplay: "+212 624 852 856",
     whatsapp: "212624852856",
-    email: "essaouira.ride.art@proton.me",
+    email: "essaouira.ride.art@gmail.com",
     address: {
       street: "Diabat",
       city: "Essaouira",

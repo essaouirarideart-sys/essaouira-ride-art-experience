@@ -35,7 +35,7 @@ export function Testimonials({
           />
           <div className="flex items-center gap-4">
             <div className="text-sm text-ink-muted">
-              <span className="font-display text-2xl text-gold">{happyClientsCount.toLocaleString()}+</span>
+              <span className="font-display text-2xl text-gold">{happyClientsCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}+</span>
               <span className="ml-2">{locale === "fr" ? "clients satisfaits" : "happy clients"}</span>
             </div>
             <div className="hidden sm:flex items-center gap-2">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -54,17 +55,74 @@ export async function generateMetadata({
 }
 
 /**
- * Render simple inline markdown bold (**text**) to <strong>.
+ * Render inline markdown: **bold**, [links](/path), and basic formatting.
  * Keeps blog body authoring lightweight without an MD parser dep.
  */
-function renderInlineBold(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={i}>{part.slice(2, -2)}</strong>;
+function renderInlineMarkdown(text: string): React.ReactNode[] {
+  // First handle links [text](url)
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const boldRegex = /\*\*([^*]+)\*\*/g;
+  
+  let result = text;
+  const elements: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let key = 0;
+
+  // Combined regex for links and bold
+  const combinedRegex = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*)/g;
+  let match;
+
+  while ((match = combinedRegex.exec(text)) !== null) {
+    // Add text before match
+    if (match.index > lastIndex) {
+      elements.push(<span key={key++}>{text.slice(lastIndex, match.index)}</span>);
     }
-    return <span key={i}>{part}</span>;
-  });
+
+    if (match[2] && match[3]) {
+      // It's a link [text](url)
+      elements.push(
+        <Link key={key++} href={match[3]} className="text-gold hover:underline">
+          {match[2]}
+        </Link>
+      );
+    } else if (match[4]) {
+      // It's bold **text**
+      elements.push(<strong key={key++}>{match[4]}</strong>);
+    }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    elements.push(<span key={key++}>{text.slice(lastIndex)}</span>);
+  }
+
+  return elements.length > 0 ? elements : [<span key={0}>{text}</span>];
+}
+
+/**
+ * Render a paragraph, detecting if it's a heading (## or ###)
+ */
+function renderParagraph(para: string, index: number): React.ReactNode {
+  // Check for H2 heading
+  if (para.startsWith("## ")) {
+    return (
+      <h2 key={index} className="font-display text-xl text-ink mt-8 mb-4 first:mt-0">
+        {para.slice(3)}
+      </h2>
+    );
+  }
+  // Check for H3 heading
+  if (para.startsWith("### ")) {
+    return (
+      <h3 key={index} className="font-display text-lg text-ink mt-6 mb-3">
+        {para.slice(4)}
+      </h3>
+    );
+  }
+  // Regular paragraph with inline formatting
+  return <p key={index}>{renderInlineMarkdown(para)}</p>;
 }
 
 export default async function BlogPostPage({
@@ -161,9 +219,7 @@ export default async function BlogPostPage({
               </p>
 
               <div className="mt-7 space-y-4 text-sm leading-relaxed text-ink/90 sm:mt-10 sm:space-y-5 sm:text-base lg:text-lg">
-                {post.body[typedLocale].map((para, i) => (
-                  <p key={i}>{renderInlineBold(para)}</p>
-                ))}
+                {post.body[typedLocale].map((para, i) => renderParagraph(para, i))}
               </div>
             </div>
           </Reveal>

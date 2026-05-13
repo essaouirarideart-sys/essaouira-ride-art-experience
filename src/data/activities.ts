@@ -18,11 +18,17 @@ export interface PricingTier {
   highlighted?: boolean;
   options: PricingOption[];
   features?: { fr: string[]; en: string[] };
+  image?: string;
 }
 
 export interface FAQItem {
   question: { fr: string; en: string };
   answer: { fr: string; en: string };
+}
+
+export interface VideoReel {
+  youtubeId: string;
+  title: { fr: string; en: string };
 }
 
 export interface Activity {
@@ -38,6 +44,7 @@ export interface Activity {
   heroImage: string;
   heroImageAlt: { fr: string; en: string };
   gallery: Array<{ src: string; alt: { fr: string; en: string } }>;
+  videoReels?: VideoReel[];
   duration: { fr: string; en: string };
   difficulty: Difficulty;
   minAge: number;
@@ -187,6 +194,16 @@ export const activities: Activity[] = [
         },
       },
     ],
+    videoReels: [
+      {
+        youtubeId: "9zWJt-xE2eA",
+        title: { fr: "Galop au coucher du soleil", en: "Sunset gallop on the beach" },
+      },
+      {
+        youtubeId: "HsuI-AMHVb0",
+        title: { fr: "Balade sur la plage", en: "Beach ride experience" },
+      },
+    ],
     duration: { fr: "1h à 3h", en: "1h to 3h" },
     difficulty: "easy",
     minAge: 6,
@@ -214,6 +231,7 @@ export const activities: Activity[] = [
         id: "day-1h",
         name: { fr: "Balade Journée", en: "Day Ride" },
         duration: { fr: "1 heure", en: "1 hour" },
+        image: PLACEHOLDERS.horseGallery1,
         options: [
           { type: "group", label: { fr: "Groupe", en: "Group" }, price: 20 },
           { type: "private", label: { fr: "Privé", en: "Private" }, price: 35 },
@@ -227,6 +245,7 @@ export const activities: Activity[] = [
         id: "day-2h",
         name: { fr: "Balade Journée", en: "Day Ride" },
         duration: { fr: "2 heures", en: "2 hours" },
+        image: PLACEHOLDERS.horseGallery2,
         options: [
           { type: "group", label: { fr: "Groupe", en: "Group" }, price: 35 },
           { type: "private", label: { fr: "Privé", en: "Private" }, price: 65 },
@@ -240,6 +259,7 @@ export const activities: Activity[] = [
         id: "sunset-1h",
         name: { fr: "Coucher de soleil", en: "Sunset Ride" },
         duration: { fr: "1 heure", en: "1 hour" },
+        image: PLACEHOLDERS.horseGallery3,
         options: [
           { type: "group", label: { fr: "Groupe", en: "Group" }, price: 25 },
           { type: "private", label: { fr: "Privé", en: "Private" }, price: 40 },
@@ -254,6 +274,7 @@ export const activities: Activity[] = [
         name: { fr: "Coucher de soleil", en: "Sunset Ride" },
         duration: { fr: "2 heures", en: "2 hours" },
         highlighted: true,
+        image: PLACEHOLDERS.horseGallery4,
         options: [
           { type: "group", label: { fr: "Groupe", en: "Group" }, price: 40 },
           { type: "private", label: { fr: "Privé", en: "Private" }, price: 70 },
@@ -419,6 +440,16 @@ export const activities: Activity[] = [
         alt: { fr: "Plage de Sidi Kaouki", en: "Sidi Kaouki beach" },
       },
     ],
+    videoReels: [
+      {
+        youtubeId: "tkkUeHMF9iI",
+        title: { fr: "Aventure quad dans les dunes", en: "Quad adventure in the dunes" },
+      },
+      {
+        youtubeId: "dItdB50RPvA",
+        title: { fr: "Circuit Cap Sim", en: "Cap Sim circuit" },
+      },
+    ],
     duration: { fr: "1h à 3h", en: "1h to 3h" },
     difficulty: "moderate",
     minAge: 16,
@@ -447,6 +478,7 @@ export const activities: Activity[] = [
         name: { fr: "Circuit Diabat", en: "Diabat Circuit" },
         description: { fr: "Diabat, Dar Soltan, plage, forêt, dunes", en: "Diabat, Dar Soltan, beach, forest, dunes" },
         duration: { fr: "1 heure", en: "1 hour" },
+        image: PLACEHOLDERS.quadGallery1,
         options: [
           { type: "simple", label: { fr: "Simple", en: "Single" }, price: 30 },
           { type: "double", label: { fr: "Double", en: "Double" }, price: 45 },
@@ -462,6 +494,7 @@ export const activities: Activity[] = [
         description: { fr: "Diabat, plage, forêt, dunes sauvages, source d'eau douce et dunes Cap Sim", en: "Diabat, beach, forest, wild dunes, freshwater spring and Cap Sim dunes" },
         duration: { fr: "2 heures", en: "2 hours" },
         highlighted: true,
+        image: PLACEHOLDERS.quadGallery2,
         options: [
           { type: "simple", label: { fr: "Simple", en: "Single" }, price: 50 },
           { type: "double", label: { fr: "Double", en: "Double" }, price: 70 },
@@ -476,6 +509,7 @@ export const activities: Activity[] = [
         name: { fr: "Circuit Grotte", en: "Cave Circuit" },
         description: { fr: "Diabat, plage, forêt, source d'eau douce, Cap Sim et la grotte", en: "Diabat, beach, forest, freshwater spring, Cap Sim and the cave" },
         duration: { fr: "3 heures", en: "3 hours" },
+        image: PLACEHOLDERS.quadGallery3,
         options: [
           { type: "simple", label: { fr: "Simple", en: "Single" }, price: 65 },
           { type: "double", label: { fr: "Double", en: "Double" }, price: 90 },
@@ -490,6 +524,7 @@ export const activities: Activity[] = [
         name: { fr: "Demi-journée", en: "Half Day" },
         description: { fr: "Diabat, plage, forêt, source d'eau douce, Cap Sim, Taguenza, petit port et village berbère", en: "Diabat, beach, forest, freshwater spring, Cap Sim, Taguenza, small port and Berber village" },
         duration: { fr: "Demi-journée", en: "Half Day" },
+        image: PLACEHOLDERS.quadGallery4,
         options: [
           { type: "simple", label: { fr: "Simple", en: "Single" }, price: 90 },
           { type: "double", label: { fr: "Double", en: "Double" }, price: 110 },
@@ -504,6 +539,7 @@ export const activities: Activity[] = [
         name: { fr: "Journée Sidi Kaouki", en: "Sidi Kaouki Day" },
         description: { fr: "Plage sauvage et dunes au bord de la plage, déjeuner inclus", en: "Wild beach and dunes by the beach, lunch included" },
         duration: { fr: "1 journée", en: "1 Day" },
+        image: PLACEHOLDERS.quadGallery5,
         options: [
           { type: "simple", label: { fr: "Simple", en: "Single" }, price: 110 },
           { type: "double", label: { fr: "Double", en: "Double" }, price: 140 },
@@ -517,6 +553,7 @@ export const activities: Activity[] = [
         id: "circuit-sidi-mbarek",
         name: { fr: "Journée Sidi M'barek", en: "Sidi M'barek Day" },
         description: { fr: "Cascade de Sidi M'barek, plage sauvage et dunes au bord de la plage, déjeuner inclus", en: "Sidi M'barek waterfall, wild beach and dunes by the beach, lunch included" },
+        image: PLACEHOLDERS.quadGallery6,
         duration: { fr: "1 journée", en: "1 Day" },
         options: [
           { type: "simple", label: { fr: "Simple", en: "Single" }, price: 140 },
@@ -684,6 +721,12 @@ export const activities: Activity[] = [
         alt: { fr: "Lumière dorée Essaouira", en: "Essaouira golden light" },
       },
     ],
+    videoReels: [
+      {
+        youtubeId: "HsuI-AMHVb0",
+        title: { fr: "Caravane face à l'océan", en: "Camel caravan facing the ocean" },
+      },
+    ],
     duration: { fr: "30min à 2h", en: "30min to 2h" },
     difficulty: "easy",
     minAge: 4,
@@ -711,6 +754,7 @@ export const activities: Activity[] = [
         id: "camel-1h",
         name: { fr: "Balade 1H", en: "1H Ride" },
         duration: { fr: "1 heure", en: "1 hour" },
+        image: PLACEHOLDERS.camelGallery1,
         options: [
           { type: "standard", label: { fr: "Par personne", en: "Per person" }, price: 20 },
         ],
@@ -724,6 +768,7 @@ export const activities: Activity[] = [
         name: { fr: "Balade 2H", en: "2H Ride" },
         duration: { fr: "2 heures", en: "2 hours" },
         highlighted: true,
+        image: PLACEHOLDERS.camelGallery2,
         options: [
           { type: "standard", label: { fr: "Par personne", en: "Per person" }, price: 30 },
         ],
@@ -736,6 +781,7 @@ export const activities: Activity[] = [
         id: "camel-half-day",
         name: { fr: "Demi-journée", en: "Half Day" },
         duration: { fr: "3 heures", en: "3 hours" },
+        image: PLACEHOLDERS.camelHero,
         options: [
           { type: "standard", label: { fr: "Par personne", en: "Per person" }, price: 40 },
         ],
@@ -748,6 +794,7 @@ export const activities: Activity[] = [
         id: "camel-day",
         name: { fr: "Journée avec pique-nique", en: "Day with Picnic" },
         duration: { fr: "Journée", en: "Full Day" },
+        image: PLACEHOLDERS.camelGallery1,
         options: [
           { type: "standard", label: { fr: "Par personne", en: "Per person" }, price: 75 },
         ],
@@ -913,6 +960,12 @@ export const activities: Activity[] = [
         alt: { fr: "Vue océan Essaouira", en: "Essaouira ocean view" },
       },
     ],
+    videoReels: [
+      {
+        youtubeId: "dItdB50RPvA",
+        title: { fr: "Atelier créatif face à l'océan", en: "Creative workshop facing the ocean" },
+      },
+    ],
     duration: { fr: "1h30 à 2h", en: "1h30 to 2h" },
     difficulty: "easy",
     minAge: 8,
@@ -940,6 +993,7 @@ export const activities: Activity[] = [
         id: "basic-session",
         name: { fr: "Session Basique", en: "Basic Session" },
         duration: { fr: "1h30", en: "1h30" },
+        image: PLACEHOLDERS.artGallery1,
         options: [
           { type: "group", label: { fr: "Groupe / personne", en: "Group / person" }, price: 12 },
           { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 30 },
@@ -955,6 +1009,7 @@ export const activities: Activity[] = [
         name: { fr: "Snacks + Boissons", en: "Snacks + Drinks" },
         duration: { fr: "1h30", en: "1h30" },
         highlighted: true,
+        image: PLACEHOLDERS.artGallery2,
         options: [
           { type: "group", label: { fr: "Groupe / personne", en: "Group / person" }, price: 15 },
           { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 35 },
@@ -969,6 +1024,7 @@ export const activities: Activity[] = [
         id: "sunset-experience",
         name: { fr: "Sunset Experience", en: "Sunset Experience" },
         duration: { fr: "2h", en: "2h" },
+        image: PLACEHOLDERS.artGallery3,
         options: [
           { type: "group", label: { fr: "Groupe / personne", en: "Group / person" }, price: 18 },
           { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 40 },

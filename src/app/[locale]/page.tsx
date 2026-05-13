@@ -108,7 +108,7 @@ export default async function HomePage({
       <FinalCTA locale={typedLocale} />
 
       {/* Persistent CTAs */}
-      <StickyBookingCTA locale={typedLocale} />
+      {/* <StickyBookingCTA locale={typedLocale} /> */}
       {/* <WhatsAppButton locale={typedLocale} /> */}
     </>
   );

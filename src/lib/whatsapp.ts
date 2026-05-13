@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/config";
 interface BuildMessageOptions {
   activityTitle?: string;
   locale: Locale;
+  customMessage?: string;
 }
 
 const TEMPLATES = {
@@ -21,7 +22,11 @@ const TEMPLATES = {
 
 export function buildWhatsAppUrl(opts: BuildMessageOptions): string {
   const tpl = TEMPLATES[opts.locale];
-  const text = opts.activityTitle ? tpl.activity(opts.activityTitle) : tpl.generic;
+  const text = opts.customMessage 
+    ? opts.customMessage 
+    : opts.activityTitle 
+      ? tpl.activity(opts.activityTitle) 
+      : tpl.generic;
   return `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
