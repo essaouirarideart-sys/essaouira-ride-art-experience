@@ -89,10 +89,10 @@ const PLACEHOLDERS = {
   camelHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600154/28_h0pkn1.jpg",
   camelGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/26_u6qd85.jpg",
   camelGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/27_nhdxee.jpg",
-  // camelGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  // camelGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  // camelGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  // camelGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
+  camelGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
+  camelGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
+  camelGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
+  camelGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
   
   // Art
   artHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/24_hinlho.jpg",
