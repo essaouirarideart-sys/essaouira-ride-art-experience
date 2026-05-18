@@ -76,30 +76,30 @@ export interface Activity {
 const PLACEHOLDERS = {
   // Horse riding
   horseHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/15_vfgiwf.jpg",
-  horseGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/9_zovolb.jpg",
-  horseGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/10_gxkhzp.jpg",
+  horseGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/5_t6sbn9.png",
+  horseGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/4_vhy9ng.png",
   horseGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/5_xom00w.jpg",
-  horseGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/8_cxiiuw.jpg",
+  horseGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/8_zsk5tv.png",
   horseGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/6_o2zvcq.jpg",
-  horseGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/17_chbp0e.jpg",
+  horseGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/3_ywchmf.png",
   
   // Quad
   quadHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
-  quadGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/3_bpzvwv.jpg",
-  quadGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/2_vhnsj1.jpg",
-  quadGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/1_ogxigs.jpg",
-  quadGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/16_ojynt2.jpg",
-  quadGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
-  quadGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/12_ww4ya2.jpg",
+  quadGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/5_lf7ed9.png",
+  quadGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976878/4_pcypep.png",
+  quadGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/6_jarktc.png",
+  quadGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976878/3_rdtntg.png",
+  quadGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976878/2_yf6a60.png",
+  quadGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/8_n4ylet.png",
   
   // Camel
   camelHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600154/28_h0pkn1.jpg",
   camelGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/26_u6qd85.jpg",
   camelGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/27_nhdxee.jpg",
-  camelGallery3: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  camelGallery4: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  camelGallery5: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/animals/cat",
-  camelGallery6: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
+  camelGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779122049/palma-quad-camel-sunset-tour-9_zwvmaf.jpg",
+  camelGallery4: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600154/28_h0pkn1.jpg",
+  camelGallery5: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779122049/palma-quad-camel-sunset-tour-11_kuqnos.jpg",
+  camelGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779122049/palma-quad-camel-sunset-tour-5_gky6dt.jpg",
   
   // Art
   artHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/24_hinlho.jpg",
@@ -196,13 +196,10 @@ export const activities: Activity[] = [
     ],
     videoReels: [
       {
-        youtubeId: "9zWJt-xE2eA",
+        youtubeId: "TiIAYCIxmKc",
         title: { fr: "Galop au coucher du soleil", en: "Sunset gallop on the beach" },
       },
-      {
-        youtubeId: "HsuI-AMHVb0",
-        title: { fr: "Balade sur la plage", en: "Beach ride experience" },
-      },
+     
     ],
     duration: { fr: "1h à 3h", en: "1h to 3h" },
     difficulty: "easy",
@@ -442,11 +439,15 @@ export const activities: Activity[] = [
     ],
     videoReels: [
       {
-        youtubeId: "tkkUeHMF9iI",
+        youtubeId: "8KoYGQ9S9Nc",
         title: { fr: "Aventure quad dans les dunes", en: "Quad adventure in the dunes" },
       },
       {
-        youtubeId: "dItdB50RPvA",
+        youtubeId: "HsuI-AMHVb0",
+        title: { fr: "Circuit Cap Sim", en: "Cap Sim circuit" },
+      },
+      {
+        youtubeId: "bBp5BrlqF7o",
         title: { fr: "Circuit Cap Sim", en: "Cap Sim circuit" },
       },
     ],
@@ -723,7 +724,7 @@ export const activities: Activity[] = [
     ],
     videoReels: [
       {
-        youtubeId: "HsuI-AMHVb0",
+        youtubeId: "9zWJt-xE2eA",
         title: { fr: "Caravane face à l'océan", en: "Camel caravan facing the ocean" },
       },
     ],

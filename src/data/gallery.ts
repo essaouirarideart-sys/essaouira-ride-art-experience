@@ -20,10 +20,10 @@ export interface GalleryItem {
 
 // Ambient/Essaouira gallery placeholder URLs
 const AMBIENT_PLACEHOLDERS = {
-  sunset: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/13_y5khnk.jpg",
-  medina: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/nature-mountains",
-  dunes: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/landscape-panorama",
-  palms: "https://res.cloudinary.com/demo/image/upload/q_auto/f_auto/samples/landscapes/beach-boat",
+  sunset: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/5_t6sbn9.png",
+  medina: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/6_h0xqnq.png",
+  dunes: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/7_hmejjy.png",
+  palms: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/2_o85ghn.png",
 };
 
 const ambient: GalleryItem[] = [

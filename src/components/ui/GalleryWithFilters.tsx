@@ -72,7 +72,7 @@ export function GalleryWithFilters({ locale }: { locale: Locale }) {
         <AnimatePresence mode="popLayout">
           {filteredImages.map((img, i) => (
             <motion.button
-              key={img.src}
+              key={`${img.src}-${i}`}
               layout
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}

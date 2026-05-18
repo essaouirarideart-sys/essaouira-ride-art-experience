@@ -15,6 +15,15 @@ import type { Locale } from "@/i18n/config";
  */
 const REELS = [
   {
+    id: "reel-0",
+    youtubeId: "8KoYGQ9S9Nc", // TODO: Replace with YouTube video ID
+    thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    title: {
+      fr: "Galop au coucher du soleil",
+      en: "Sunset gallop on the beach",
+    },
+  },
+    {
     id: "reel-1",
     youtubeId: "9zWJt-xE2eA", // TODO: Replace with YouTube video ID
     thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
@@ -25,7 +34,7 @@ const REELS = [
   },
   {
     id: "reel-2",
-    youtubeId: "tkkUeHMF9iI", // TODO: Replace with YouTube video ID
+    youtubeId: "7T2HiMqy4jQ", // TODO: Replace with YouTube video ID
     thumbnail: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80",
     title: {
       fr: "Aventure quad dans les dunes",
@@ -34,6 +43,15 @@ const REELS = [
   },
   {
     id: "reel-3",
+    youtubeId: "tkkUeHMF9iI", // TODO: Replace with YouTube video ID
+    thumbnail: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80",
+    title: {
+      fr: "Aventure quad dans les dunes",
+      en: "Quad adventure in the dunes",
+    },
+  },
+  {
+    id: "reel-4",
     youtubeId: "HsuI-AMHVb0", // TODO: Replace with YouTube video ID
     thumbnail: "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=800&q=80",
     title: {
@@ -42,7 +60,16 @@ const REELS = [
     },
   },
   {
-    id: "reel-4",
+    id: "reel-5",
+    youtubeId: "TiIAYCIxmKc", // TODO: Replace with YouTube video ID
+    thumbnail: "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=800&q=80",
+    title: {
+      fr: "Caravane face à l'ocean",
+      en: "Camel caravan facing the ocean",
+    },
+  },
+  {
+    id: "reel-6",
     youtubeId: "dItdB50RPvA", // TODO: Replace with YouTube video ID
     thumbnail: "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=800&q=80",
     title: {

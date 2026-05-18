@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Instagram, Facebook, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
-import { Logo } from "./Logo";
 import { activities } from "@/data/activities";
 import { site } from "@/data/site";
 import { localizedPath } from "@/lib/paths";
 import { buildWhatsAppUrl, mailtoLink, telLink } from "@/lib/whatsapp";
+import Image from "next/image";
 
 export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
@@ -15,7 +15,16 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
       <div className="container-page grid gap-8 py-10 sm:gap-12 sm:py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
-          <Logo locale={locale} />
+           <Link href={localizedPath(locale)} className="flex items-center gap-2 transition-opacity duration-300 hover:opacity-80">
+            <Image
+              src="/logo.svg"
+              alt="Essaouira Ride & Art Experience"
+              width={56}
+              height={56}
+              className="h-16 w-16"
+              priority
+            />
+          </Link>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-muted">
             {dict.meta.tagline}.
           </p>
