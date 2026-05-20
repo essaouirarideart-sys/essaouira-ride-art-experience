@@ -51,10 +51,10 @@ export function ActivitiesPremium({ locale }: { locale: Locale }) {
               >
                 <Link
                   href={localizedPath(locale, "activities", activity.slug[locale])}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all duration-500 hover:border-gold/40 hover:shadow-2xl"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-bg-card transition-all duration-500 hover:border-gold/40 hover:shadow-2xl"
                 >
                   {/* Image */}
-                  <div className="relative aspect-[3/4] overflow-hidden sm:aspect-[4/5]">
+                  <div className="relative h-48 overflow-hidden sm:h-56 lg:h-64">
                     <Image
                       src={activity.heroImage}
                       alt={activity.heroImageAlt[locale]}
@@ -74,13 +74,15 @@ export function ActivitiesPremium({ locale }: { locale: Locale }) {
                   </div>
 
                   {/* Content */}
-                  <div className="relative -mt-10 p-4 pt-0 sm:-mt-12 sm:p-6 sm:pt-0">
-                    <h3 className="font-display text-base text-ink leading-tight group-hover:text-gold transition-colors duration-300 sm:text-xl">
-                      {activity.title[locale]}
-                    </h3>
-                    <p className="mt-2 hidden text-sm text-ink-muted leading-relaxed line-clamp-2 sm:block">
-                      {activity.description[locale]}
-                    </p>
+                  <div className="flex flex-1 flex-col justify-between p-4 sm:p-6">
+                    <div>
+                      <h3 className="font-display text-base text-ink leading-tight group-hover:text-gold transition-colors duration-300 sm:text-xl">
+                        {activity.title[locale]}
+                      </h3>
+                      <p className="mt-2 hidden text-sm text-ink-muted leading-relaxed line-clamp-2 sm:block">
+                        {activity.description[locale]}
+                      </p>
+                    </div>
                     <div className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-gold sm:mt-5 sm:text-xs">
                       {locale === "fr" ? "Découvrir" : "Explore"}
                       <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1 sm:h-3.5 sm:w-3.5" />
