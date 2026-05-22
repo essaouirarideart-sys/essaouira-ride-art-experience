@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { Activity, PricingTier, PricingOption } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
@@ -10,47 +11,70 @@ interface Props {
   activity: Activity;
   locale: Locale;
   dict: Dictionary;
-  onSelectPackage: (tier: PricingTier, option: PricingOption) => void;
+  selectedPackageKey: string | null;
+  onReserveWhatsApp: (tier: PricingTier, option: PricingOption) => void;
+  onReserveForm: (tier: PricingTier, option: PricingOption) => void;
 }
 
-export function ActivityBookingSection({ activity, locale, dict, onSelectPackage }: Props) {
-  const handleSelectPackage = (tier: PricingTier, option: PricingOption) => {
-    onSelectPackage(tier, option);
-  };
-
-
+export function ActivityBookingSection({
+  activity,
+  locale,
+  dict,
+  selectedPackageKey,
+  onReserveWhatsApp,
+  onReserveForm,
+}: Props) {
   return (
-    <section className="py-10 sm:py-16 lg:py-20 border-t border-border" id="booking">
+    <section
+      id="pricing"
+      className="scroll-mt-24 border-t border-border py-10 sm:py-16 lg:py-20 sm:scroll-mt-28"
+    >
       <div className="container-page">
-        <div className="mb-7 sm:mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-7 sm:mb-10"
+        >
           <span className="eyebrow">
-            {locale === "fr" ? "Réservation" : "Booking"}
+            {locale === "fr" ? "Tarifs & formules" : "Pricing & packages"}
           </span>
           <h2 className="heading-section mt-4 text-ink">
-            {locale === "fr" ? "Choisissez votre forfait" : "Choose your package"}
+            {locale === "fr" ? "Choisissez votre formule" : "Choose your package"}
           </h2>
-          <p className="mt-3 text-ink-muted max-w-2xl">
+          <p className="mt-3 max-w-2xl text-ink-muted">
             {locale === "fr"
-              ? "Sélectionnez un forfait et réservez directement via WhatsApp. Transfert hôtel gratuit inclus."
-              : "Select a package and book directly via WhatsApp. Free hotel pick-up included."}
+              ? "Comparez les offres, puis confirmez par WhatsApp ou via le formulaire — transfert hôtel gratuit inclus."
+              : "Compare packages, then confirm via WhatsApp or the form — free hotel pick-up included."}
           </p>
-        </div>
+        </motion.div>
 
-        {/* Pricing Cards Grid */}
         <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {activity.pricing.map((tier) => (
-            <PricingCardNew
+          {activity.pricing.map((tier, index) => (
+            <motion.div
               key={tier.id}
-              tier={tier}
-              locale={locale}
-              dict={dict}
-              activityTitle={activity.title[locale]}
-              onBook={handleSelectPackage}
-            />
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 0.45,
+                delay: index * 0.06,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              <PricingCardNew
+                tier={tier}
+                locale={locale}
+                dict={dict}
+                selectedPackageKey={selectedPackageKey}
+                onReserveWhatsApp={onReserveWhatsApp}
+                onReserveForm={onReserveForm}
+              />
+            </motion.div>
           ))}
         </div>
 
-        {/* Free Hotel Pick-up Banner */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-gold/30 bg-bg-card/50 p-4 text-center sm:mt-8 sm:gap-6 sm:p-5">
           <div className="flex items-center gap-2 text-sm text-ink">
             <Check className="h-4 w-4 text-gold" />
@@ -62,11 +86,10 @@ export function ActivityBookingSection({ activity, locale, dict, onSelectPackage
           </div>
           <div className="flex items-center gap-2 text-sm text-ink">
             <Check className="h-4 w-4 text-gold" />
-            <span>{locale === "fr" ? "Confirmation WhatsApp" : "WhatsApp confirmation"}</span>
+            <span>{locale === "fr" ? "Confirmation rapide" : "Fast confirmation"}</span>
           </div>
         </div>
       </div>
-
     </section>
   );
 }

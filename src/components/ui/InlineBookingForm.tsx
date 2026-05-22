@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, Check, AlertCircle, Loader2 } from "lucide-react";
+import { Send, Check, AlertCircle, Loader2, MessageCircle } from "lucide-react";
 import type { Activity, PricingTier, PricingOption } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
+import { buildPackageWhatsAppUrl } from "@/lib/whatsapp";
 
 interface Props {
   activity: Activity;
@@ -179,6 +180,24 @@ export function InlineBookingForm({ activity, locale, prefilledData }: Props) {
                   </span>
                 </div>
               </div>
+              <a
+                href={buildPackageWhatsAppUrl({
+                  locale,
+                  activityTitle: activity.title[locale],
+                  packageName: prefilledData.tier.name[locale],
+                  duration: prefilledData.tier.duration[locale],
+                  optionLabel: prefilledData.option.label[locale],
+                  price: prefilledData.option.price,
+                })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#25D366] bg-[#25D366] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#128C7E] sm:text-sm"
+              >
+                <MessageCircle className="h-4 w-4" />
+                {locale === "fr"
+                  ? "Confirmer sur WhatsApp"
+                  : "Confirm on WhatsApp"}
+              </a>
             </motion.div>
           )}
 

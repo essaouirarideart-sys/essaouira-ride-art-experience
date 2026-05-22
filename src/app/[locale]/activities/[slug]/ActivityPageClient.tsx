@@ -28,7 +28,13 @@ import type { Activity, PricingTier, PricingOption } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localizedPath } from "@/lib/paths";
-import { buildWhatsAppUrl, telLink } from "@/lib/whatsapp";
+import { scrollToSection } from "@/lib/scroll";
+import {
+  buildPackageWhatsAppUrl,
+  buildWhatsAppUrl,
+  telLink,
+} from "@/lib/whatsapp";
+import { packageSelectionKey } from "@/components/ui/PricingCardNew";
 
 interface Props {
   activity: Activity;
@@ -43,14 +49,38 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
     tier: PricingTier;
     option: PricingOption;
   } | null>(null);
+  const [selectedPackageKey, setSelectedPackageKey] = useState<string | null>(null);
 
-  const wa = buildWhatsAppUrl({
-    locale: locale,
+  const waGeneric = buildWhatsAppUrl({
+    locale,
     activityTitle: activity.title[locale],
   });
 
-  const handleSelectPackage = (tier: PricingTier, option: PricingOption) => {
+  const selectPackage = (tier: PricingTier, option: PricingOption) => {
     setSelectedPackage({ tier, option });
+    setSelectedPackageKey(packageSelectionKey(tier.id, option.type));
+  };
+
+  const handleReserveWhatsApp = (tier: PricingTier, option: PricingOption) => {
+    selectPackage(tier, option);
+    const url = buildPackageWhatsAppUrl({
+      locale,
+      activityTitle: activity.title[locale],
+      packageName: tier.name[locale],
+      duration: tier.duration[locale],
+      optionLabel: option.label[locale],
+      price: option.price,
+    });
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const handleReserveForm = (tier: PricingTier, option: PricingOption) => {
+    selectPackage(tier, option);
+    requestAnimationFrame(() => scrollToSection("booking-form"));
+  };
+
+  const scrollToPricing = () => {
+    scrollToSection("pricing");
   };
 
   return (
@@ -119,17 +149,16 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-2 sm:mt-8 sm:gap-3">
-            <a
-              href={wa}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={scrollToPricing}
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-3 text-xs font-bold uppercase tracking-widest2 text-bg-primary shadow-lg transition-all duration-300 hover:-translate-y-[2px] hover:shadow-gold sm:px-8 sm:py-4 sm:text-sm"
             >
               {locale === "fr" ? "Réserver" : "Book Now"}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4" />
-            </a>
+            </button>
             <a
-              href={wa}
+              href={waGeneric}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border-2 border-[#25D366] bg-[#25D366] px-4 py-3 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#128C7E] hover:border-[#128C7E] sm:px-6 sm:py-4 sm:text-sm"
@@ -302,7 +331,9 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
         activity={activity}
         locale={locale}
         dict={dict}
-        onSelectPackage={handleSelectPackage}
+        selectedPackageKey={selectedPackageKey}
+        onReserveWhatsApp={handleReserveWhatsApp}
+        onReserveForm={handleReserveForm}
       />
 
       {/* INLINE BOOKING FORM */}

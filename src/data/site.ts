@@ -5,7 +5,7 @@ export const site = {
   defaultOgImage: "/og/default.jpg",
   contact: {
     phone: "+212768170147",
-    phoneDisplay: "+212 624 852 856",
+    phoneDisplay: "+212 768 170 147",
     whatsapp: "212768170147",
     email: "essaouira.ride.art@gmail.com",
     address: {

@@ -7,6 +7,47 @@ interface BuildMessageOptions {
   customMessage?: string;
 }
 
+export interface PackageBookingDetails {
+  activityTitle: string;
+  packageName: string;
+  duration: string;
+  optionLabel: string;
+  price: number;
+  locale: Locale;
+}
+
+export function buildPackageBookingMessage(details: PackageBookingDetails): string {
+  const language = details.locale === "fr" ? "Français" : "English";
+  const formula = `${details.packageName} — ${details.duration}`;
+
+  if (details.locale === "fr") {
+    return [
+      "Bonjour, je souhaite réserver:",
+      `Activité: ${details.activityTitle}`,
+      `Formule: ${formula}`,
+      `Option: ${details.optionLabel} (${details.price}€)`,
+      `Langue: ${language}`,
+      "Nombre de personnes: ?",
+    ].join("\n");
+  }
+
+  return [
+    "Hello, I would like to book:",
+    `Activity: ${details.activityTitle}`,
+    `Package: ${formula}`,
+    `Option: ${details.optionLabel} (${details.price}€)`,
+    `Language: ${language}`,
+    "Number of people: ?",
+  ].join("\n");
+}
+
+export function buildPackageWhatsAppUrl(details: PackageBookingDetails): string {
+  return buildWhatsAppUrl({
+    locale: details.locale,
+    customMessage: buildPackageBookingMessage(details),
+  });
+}
+
 const TEMPLATES = {
   fr: {
     generic: "Bonjour, je suis intéressé(e) par vos expériences à Essaouira.",
