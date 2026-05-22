@@ -75,7 +75,7 @@ export interface Activity {
 // Replace these with your actual uploaded Cloudinary URLs
 const PLACEHOLDERS = {
   // Horse riding
-  horseHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/15_vfgiwf.jpg",
+  horseHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/5_t6sbn9.png",
   horseGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/5_t6sbn9.png",
   horseGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/4_vhy9ng.png",
   horseGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/5_xom00w.jpg",
@@ -84,7 +84,7 @@ const PLACEHOLDERS = {
   horseGallery6: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/3_ywchmf.png",
   
   // Quad
-  quadHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
+  quadHero: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/5_lf7ed9.png",
   quadGallery1: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/5_lf7ed9.png",
   quadGallery2: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976878/4_pcypep.png",
   quadGallery3: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/6_jarktc.png",

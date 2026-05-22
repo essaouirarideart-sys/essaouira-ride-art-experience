@@ -105,9 +105,16 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
               {/* Message Bubble */}
               <div className="flex items-start gap-2">
                 <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-[#075E54]">
-                  <div className="flex h-full w-full items-center justify-center text-white text-sm font-bold">
-                    EA
-                  </div>
+                <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-black ">
+
+                <Image
+    src="/logo.svg"
+    alt={AGENT_NAME}
+    fill
+    className="object-cover"
+    sizes="40px"
+  />
+  </div>
                 </div>
                 <div className="relative max-w-[75%] rounded-lg rounded-tl-none bg-white px-3 py-2 shadow-sm">
                   <p className="text-sm text-gray-800">{welcomeMessage}</p>

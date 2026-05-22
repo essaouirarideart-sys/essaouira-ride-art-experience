@@ -34,7 +34,7 @@ const REELS = [
   },
   {
     id: "reel-2",
-    youtubeId: "7T2HiMqy4jQ", // TODO: Replace with YouTube video ID
+    youtubeId: "fcKWdQawV_Y", // TODO: Replace with YouTube video ID
     thumbnail: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80",
     title: {
       fr: "Aventure quad dans les dunes",
@@ -43,7 +43,7 @@ const REELS = [
   },
   {
     id: "reel-3",
-    youtubeId: "tkkUeHMF9iI", // TODO: Replace with YouTube video ID
+    youtubeId: "Z6aT2T9gklQ", // TODO: Replace with YouTube video ID
     thumbnail: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80",
     title: {
       fr: "Aventure quad dans les dunes",

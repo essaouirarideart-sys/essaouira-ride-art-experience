@@ -4,9 +4,9 @@ export const site = {
   url: "https://essaouira-ride-art.com",
   defaultOgImage: "/og/default.jpg",
   contact: {
-    phone: "+212624852856",
+    phone: "+212768170147",
     phoneDisplay: "+212 624 852 856",
-    whatsapp: "212624852856",
+    whatsapp: "212768170147",
     email: "essaouira.ride.art@gmail.com",
     address: {
       street: "Diabat",

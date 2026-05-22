@@ -54,7 +54,7 @@ export function BookingForm({ locale, dict, preselectedActivity }: Props) {
           ];
 
     const text = lines.filter(Boolean).join("\n");
-    const url = `https://wa.me/212624852856?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/212768170147?text=${encodeURIComponent(text)}`;
     setSent(true);
     setTimeout(() => window.open(url, "_blank"), 600);
   };
