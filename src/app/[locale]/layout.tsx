@@ -39,7 +39,7 @@ export default async function LocaleLayout({
         {dict.common.skipToContent}
       </a>
       <Header locale={typedLocale} dict={dict} />
-      <main id="main" className="pt-16 sm:pt-20">
+      <main id="main" className="overflow-x-clip pt-16 sm:pt-20">
         {children}
       </main>
       <Footer locale={typedLocale} dict={dict} />

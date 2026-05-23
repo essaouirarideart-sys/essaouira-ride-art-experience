@@ -151,7 +151,7 @@ export function VideoReels({ locale }: { locale: Locale }) {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative py-14 sm:py-24 lg:py-32 overflow-hidden">
+    <section ref={ref} className="relative overflow-x-clip py-14 sm:py-24 lg:py-32">
       <div className="container-page">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -170,7 +170,7 @@ export function VideoReels({ locale }: { locale: Locale }) {
         </motion.div>
 
         <div className="relative -mx-5 px-5 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0">
-          <div className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 scrollbar-hide">
+          <div className="flex gap-4 overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory pb-4 scrollbar-hide">
             {REELS.map((reel, i) => (
               <VideoCard
                 key={reel.id}

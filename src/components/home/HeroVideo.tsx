@@ -37,19 +37,16 @@ export function HeroVideo({
   const hasVideo = HERO_VIDEO_ID.length > 0;
 
   return (
-    <section className="relative h-screen w-screen overflow-hidden">
+    <section className="relative h-[100svh] w-full max-w-full overflow-hidden">
       {/* Video / Image Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         {hasVideo ? (
           <iframe
             src={`https://www.youtube.com/embed/${HERO_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${HERO_VIDEO_ID}&controls=0&showinfo=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`}
-            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-0"
             style={{
-              border: "none",
-              width: "100vw",
-              height: "56.25vw", /* 16:9 aspect ratio */
-              minHeight: "100vh",
-              minWidth: "177.78vh", /* 16:9 aspect ratio inverse */
+              width: "max(100%, 177.78vh)",
+              height: "max(100%, 56.25vw)",
             }}
             allow="autoplay; encrypted-media"
             onLoad={() => setVideoLoaded(true)}

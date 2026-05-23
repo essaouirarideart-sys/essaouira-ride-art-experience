@@ -67,8 +67,7 @@ export function ActivityStickyActionBar({
           transition={{ duration: 0.35, ease: EASE }}
           className={cn(
             "pointer-events-none fixed inset-x-0 z-[45]",
-            "top-[4.25rem] sm:top-20",
-            "max-sm:top-auto max-sm:bottom-[3.75rem]"
+            "top-[4.25rem] sm:top-20"
           )}
         >
           <motion.div
