@@ -1,5 +1,6 @@
 import { site } from "@/data/site";
 import type { Locale } from "@/i18n/config";
+import { formatEur } from "@/lib/formatPrice";
 
 interface BuildMessageOptions {
   activityTitle?: string;
@@ -13,19 +14,30 @@ export interface PackageBookingDetails {
   duration: string;
   optionLabel: string;
   price: number;
+  categoryLabel?: string;
   locale: Locale;
+}
+
+function formatPrice(details: PackageBookingDetails): string {
+  return formatEur(details.price);
 }
 
 export function buildPackageBookingMessage(details: PackageBookingDetails): string {
   const language = details.locale === "fr" ? "Français" : "English";
-  const formula = `${details.packageName} — ${details.duration}`;
+  const priceStr = formatPrice(details);
+  const formula = details.categoryLabel
+    ? `${details.categoryLabel} — ${details.optionLabel}`
+    : `${details.packageName} — ${details.duration}`;
 
   if (details.locale === "fr") {
     return [
       "Bonjour, je souhaite réserver:",
       `Activité: ${details.activityTitle}`,
       `Formule: ${formula}`,
-      `Option: ${details.optionLabel} (${details.price}€)`,
+      ...(details.categoryLabel
+        ? [`Catégorie: ${details.packageName}`]
+        : [`Option: ${details.optionLabel}`]),
+      `Tarif: ${priceStr}`,
       `Langue: ${language}`,
       "Nombre de personnes: ?",
     ].join("\n");
@@ -35,7 +47,10 @@ export function buildPackageBookingMessage(details: PackageBookingDetails): stri
     "Hello, I would like to book:",
     `Activity: ${details.activityTitle}`,
     `Package: ${formula}`,
-    `Option: ${details.optionLabel} (${details.price}€)`,
+    ...(details.categoryLabel
+      ? [`Category: ${details.packageName}`]
+      : [`Option: ${details.optionLabel}`]),
+    `Price: ${priceStr}`,
     `Language: ${language}`,
     "Number of people: ?",
   ].join("\n");

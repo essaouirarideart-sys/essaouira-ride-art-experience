@@ -76,6 +76,19 @@
     @apply font-display text-[2rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl;
   }
 
+  /* Hero video — luxury clamp: compact mobile, capped desktop (no xl:text-8xl blow-up) */
+  .heading-hero {
+    font-size: clamp(1.625rem, 1.2rem + 1.45vw, 2.75rem);
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    @apply font-display font-semibold;
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1.0625rem);
+    @apply font-sans font-light tracking-[0.12em] uppercase;
+  }
+
   .heading-section {
     @apply font-display text-[1.625rem] leading-[1.15] sm:text-4xl md:text-5xl;
   }

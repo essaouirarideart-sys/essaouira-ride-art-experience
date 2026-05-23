@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/data/site";
-import { locales, type SegmentKey } from "@/i18n/config";
-import { localizedPath } from "@/lib/paths";
+import { site, absoluteUrl } from "@/data/site";
+import { locales, type Locale, type SegmentKey } from "@/i18n/config";
+import { localizedPath, hreflangLanguages } from "@/lib/paths";
 import { activities } from "@/data/activities";
 import { blogPosts } from "@/data/blog";
 
@@ -15,82 +15,74 @@ const STATIC_SEGMENTS: SegmentKey[] = [
   "blog",
 ];
 
+function sitemapAlternates(
+  segment?: SegmentKey,
+  slugByLocale?: Partial<Record<Locale, string>>
+) {
+  const langs = hreflangLanguages(segment, slugByLocale);
+  return { languages: langs };
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
-  // Locale homepages
   for (const locale of locales) {
     entries.push({
-      url: `${site.url}${localizedPath(locale)}`,
+      url: absoluteUrl(localizedPath(locale)),
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1.0,
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((l) => [l, `${site.url}${localizedPath(l)}`])
-        ),
-      },
+      alternates: sitemapAlternates(),
+      images: [absoluteUrl(site.defaultOgImage)],
     });
   }
 
-  // Static segments
   for (const seg of STATIC_SEGMENTS) {
     for (const locale of locales) {
       entries.push({
-        url: `${site.url}${localizedPath(locale, seg)}`,
+        url: absoluteUrl(localizedPath(locale, seg)),
         lastModified: now,
-        changeFrequency: "monthly",
-        priority: seg === "activities" ? 0.9 : 0.7,
-        alternates: {
-          languages: Object.fromEntries(
-            locales.map((l) => [l, `${site.url}${localizedPath(l, seg)}`])
-          ),
-        },
+        changeFrequency: seg === "blog" ? "weekly" : "monthly",
+        priority: seg === "activities" ? 0.9 : seg === "booking" ? 0.85 : 0.7,
+        alternates: sitemapAlternates(seg),
       });
     }
   }
 
-  // Activity detail pages
   for (const activity of activities) {
+    const slugByLocale = activity.slug;
+    const galleryImages = activity.gallery
+      .slice(0, 6)
+      .map((g) => g.src)
+      .filter(Boolean);
+
     for (const locale of locales) {
       entries.push({
-        url: `${site.url}${localizedPath(
-          locale,
-          "activities",
-          activity.slug[locale]
-        )}`,
+        url: absoluteUrl(
+          localizedPath(locale, "activities", slugByLocale[locale])
+        ),
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.95,
-        alternates: {
-          languages: Object.fromEntries(
-            locales.map((l) => [
-              l,
-              `${site.url}${localizedPath(l, "activities", activity.slug[l])}`,
-            ])
-          ),
-        },
+        alternates: sitemapAlternates("activities", slugByLocale),
+        images: [activity.heroImage, ...galleryImages],
       });
     }
   }
 
-  // Blog posts
   for (const post of blogPosts) {
+    const slugByLocale = post.slug;
+    const modified = new Date(post.publishedAt);
+
     for (const locale of locales) {
       entries.push({
-        url: `${site.url}${localizedPath(locale, "blog", post.slug[locale])}`,
-        lastModified: new Date(post.publishedAt),
+        url: absoluteUrl(localizedPath(locale, "blog", slugByLocale[locale])),
+        lastModified: modified,
         changeFrequency: "monthly",
-        priority: 0.6,
-        alternates: {
-          languages: Object.fromEntries(
-            locales.map((l) => [
-              l,
-              `${site.url}${localizedPath(l, "blog", post.slug[l])}`,
-            ])
-          ),
-        },
+        priority: post.featured ? 0.75 : 0.6,
+        alternates: sitemapAlternates("blog", slugByLocale),
+        images: [post.cover],
       });
     }
   }

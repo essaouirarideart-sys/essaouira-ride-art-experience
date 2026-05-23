@@ -12,6 +12,7 @@ import {
   activityJsonLd,
   faqJsonLd,
   breadcrumbJsonLd,
+  premiumPackagesJsonLd,
 } from "@/lib/seo";
 import { localizedPath } from "@/lib/paths";
 import { site } from "@/data/site";
@@ -40,6 +41,7 @@ export async function generateMetadata({
     locale,
     segment: "activities",
     slug: activity.slug[locale],
+    slugByLocale: activity.slug,
     title: activity.seo.title[locale],
     description: activity.seo.description[locale],
     keywords: activity.seo.keywords[locale],
@@ -86,6 +88,7 @@ export default async function ActivityPage({
     slug: activity.slug[typedLocale],
     priceFrom: lowestPrice,
     currency: "EUR",
+    duration: activity.duration[typedLocale],
   });
 
   const faqLd = faqJsonLd(
@@ -94,6 +97,20 @@ export default async function ActivityPage({
       answer: q.answer[typedLocale],
     }))
   );
+
+  const activityPageUrl = `${site.url}${localizedPath(typedLocale, "activities", activity.slug[typedLocale])}`;
+  const premiumLd = activity.premiumPricing
+    ? premiumPackagesJsonLd({
+        activityName: activity.title[typedLocale],
+        pageUrl: activityPageUrl,
+        packages: activity.premiumPricing.groups.flatMap((group) =>
+          group.packages.map((pkg) => ({
+            name: `${group.title[typedLocale]} — ${pkg.name[typedLocale]}`,
+            priceEur: pkg.priceEur,
+          }))
+        ),
+      })
+    : null;
 
   return (
     <>
@@ -109,6 +126,12 @@ export default async function ActivityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
+      {premiumLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(premiumLd) }}
+        />
+      )}
 
       <ActivityPageClient
         activity={activity}

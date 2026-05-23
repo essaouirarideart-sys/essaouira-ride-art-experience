@@ -27,6 +27,7 @@ export async function generateMetadata({
   const dict = getDictionary(locale);
   return buildMetadata({
     locale,
+    image: "/og-image.jpg",
     title:
       locale === "fr"
         ? "Activités Essaouira | Horse Riding, Quad, Camel Ride & Art Experience"

@@ -98,9 +98,9 @@ export function GalleryWithFilters({ locale }: { locale: Locale }) {
                   <ZoomIn className="h-5 w-5" />
                 </div>
               </div>
-              <div className="absolute bottom-3 left-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              {/* <div className="absolute bottom-3 left-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <p className="text-xs font-medium text-ink truncate">{img.alt[locale]}</p>
-              </div>
+              </div> */}
             </motion.button>
           ))}
         </AnimatePresence>

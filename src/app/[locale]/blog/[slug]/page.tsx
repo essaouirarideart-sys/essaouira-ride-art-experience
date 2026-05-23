@@ -13,10 +13,12 @@ import {
 } from "@/data/blog";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
+import { BlogShareBar } from "@/components/blog/BlogShareBar";
 import {
   buildMetadata,
   articleJsonLd,
   breadcrumbJsonLd,
+  faqJsonLd,
 } from "@/lib/seo";
 import { localizedPath } from "@/lib/paths";
 import { formatDate } from "@/lib/utils";
@@ -46,11 +48,18 @@ export async function generateMetadata({
     locale,
     segment: "blog",
     slug: post.slug[locale],
+    slugByLocale: post.slug,
     title: post.title[locale],
     description: post.seo.description[locale],
     keywords: post.seo.keywords[locale],
     image: post.cover,
     type: "article",
+    article: {
+      publishedTime: post.publishedAt,
+      modifiedTime: post.publishedAt,
+      authors: [post.author],
+      section: post.category[locale],
+    },
   });
 }
 
@@ -136,7 +145,7 @@ export default async function BlogPostPage({
   const post = getBlogPostBySlug(slug, typedLocale);
   if (!post) notFound();
   const dict = getDictionary(typedLocale);
-  const related = getRelatedBlogPosts(post.slug.fr);
+  const related = getRelatedBlogPosts(post.slug.fr, 3, post.category.fr);
 
   const url = `${site.url}${localizedPath(typedLocale, "blog", post.slug[typedLocale])}`;
 
@@ -156,10 +165,27 @@ export default async function BlogPostPage({
     url,
     publishedAt: post.publishedAt,
     author: post.author,
+    readingMinutes: post.readingMinutes,
+    keywords: post.seo.keywords[typedLocale],
   });
+
+  const faqLd =
+    post.faq && post.faq.length > 0
+      ? faqJsonLd(
+          post.faq.map((item) => ({
+            question: item.question[typedLocale],
+            answer: item.answer[typedLocale],
+          }))
+        )
+      : null;
 
   return (
     <>
+      <BlogShareBar
+        url={url}
+        title={post.title[typedLocale]}
+        locale={typedLocale}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
@@ -168,6 +194,12 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
 
       {/* HERO */}
       <section className="relative -mt-16 sm:-mt-20">
@@ -221,6 +253,28 @@ export default async function BlogPostPage({
               <div className="mt-7 space-y-4 text-sm leading-relaxed text-ink/90 sm:mt-10 sm:space-y-5 sm:text-base lg:text-lg">
                 {post.body[typedLocale].map((para, i) => renderParagraph(para, i))}
               </div>
+
+              {post.faq && post.faq.length > 0 && (
+                <div className="mt-10 border-t border-border pt-8 sm:mt-12">
+                  <h2 className="font-display text-xl text-ink sm:text-2xl">
+                    {typedLocale === "fr"
+                      ? "Questions fréquentes"
+                      : "Frequently asked questions"}
+                  </h2>
+                  <dl className="mt-6 space-y-6">
+                    {post.faq.map((item, i) => (
+                      <div key={i}>
+                        <dt className="font-medium text-ink">
+                          {item.question[typedLocale]}
+                        </dt>
+                        <dd className="mt-2 text-sm leading-relaxed text-ink-muted sm:text-base">
+                          {item.answer[typedLocale]}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              )}
             </div>
           </Reveal>
         </Container>
@@ -238,7 +292,7 @@ export default async function BlogPostPage({
                   : "Continue reading"}
               </h2>
             </Reveal>
-            <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 sm:grid-cols-2">
+            <div className="mt-8 grid auto-rows-fr gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {related.map((p) => (
                 <Link
                   key={p.slug.fr}
@@ -302,7 +356,9 @@ export default async function BlogPostPage({
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#128C7E] sm:px-6 sm:py-4 sm:text-sm"
                 >
-                  <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                   <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
                   WhatsApp
                 </a>
               </div>

@@ -34,9 +34,9 @@ export function ActivitiesGrid({
           </Link>
         </div>
 
-        <RevealStagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-6">
+        <RevealStagger className="mt-12 grid auto-rows-fr items-stretch gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-6">
           {activities.map((activity, i) => (
-            <RevealItem key={activity.id}>
+            <RevealItem key={activity.id} className="h-full">
               <ActivityCard
                 activity={activity}
                 locale={locale}

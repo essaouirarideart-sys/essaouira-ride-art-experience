@@ -2,9 +2,16 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import type { Activity, PricingTier, PricingOption } from "@/data/activities";
+import type {
+  Activity,
+  PremiumPackage,
+  PremiumPricingGroup,
+  PricingTier,
+  PricingOption,
+} from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
+import { PremiumHorsePricingSection } from "./PremiumHorsePricingSection";
 import { PricingCardNew } from "./PricingCardNew";
 
 interface Props {
@@ -14,6 +21,14 @@ interface Props {
   selectedPackageKey: string | null;
   onReserveWhatsApp: (tier: PricingTier, option: PricingOption) => void;
   onReserveForm: (tier: PricingTier, option: PricingOption) => void;
+  onPremiumReserveWhatsApp?: (
+    group: PremiumPricingGroup,
+    pkg: PremiumPackage
+  ) => void;
+  onPremiumReserveForm?: (
+    group: PremiumPricingGroup,
+    pkg: PremiumPackage
+  ) => void;
 }
 
 export function ActivityBookingSection({
@@ -23,6 +38,8 @@ export function ActivityBookingSection({
   selectedPackageKey,
   onReserveWhatsApp,
   onReserveForm,
+  onPremiumReserveWhatsApp,
+  onPremiumReserveForm,
 }: Props) {
   return (
     <section
@@ -50,6 +67,9 @@ export function ActivityBookingSection({
           </p>
         </motion.div>
 
+        <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest2 text-ink-dim">
+          {locale === "fr" ? "Balades & sorties" : "Rides & outings"}
+        </p>
         <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {activity.pricing.map((tier, index) => (
             <motion.div
@@ -74,6 +94,19 @@ export function ActivityBookingSection({
             </motion.div>
           ))}
         </div>
+
+        {activity.premiumPricing &&
+          onPremiumReserveWhatsApp &&
+          onPremiumReserveForm && (
+            <PremiumHorsePricingSection
+              category={activity.premiumPricing}
+              locale={locale}
+              dict={dict}
+              selectedPackageKey={selectedPackageKey}
+              onReserveWhatsApp={onPremiumReserveWhatsApp}
+              onReserveForm={onPremiumReserveForm}
+            />
+          )}
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-gold/30 bg-bg-card/50 p-4 text-center sm:mt-8 sm:gap-6 sm:p-5">
           <div className="flex items-center gap-2 text-sm text-ink">

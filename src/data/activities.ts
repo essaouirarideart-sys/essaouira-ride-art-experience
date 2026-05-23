@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { HORSE_TREK_PRICES_EUR } from "@/data/horseTrekPrices";
 
 export type Difficulty = "easy" | "moderate" | "adventurous";
 
@@ -19,6 +20,34 @@ export interface PricingTier {
   options: PricingOption[];
   features?: { fr: string[]; en: string[] };
   image?: string;
+}
+
+export type PremiumPackageIcon = "photography" | "sunrise" | "trek" | "luxury";
+
+export interface PremiumPackage {
+  id: string;
+  name: { fr: string; en: string };
+  tagline?: { fr: string; en: string };
+  duration?: { fr: string; en: string };
+  priceEur: number;
+  icon: PremiumPackageIcon;
+  image?: string;
+  highlighted?: boolean;
+}
+
+export interface PremiumPricingGroup {
+  id: string;
+  title: { fr: string; en: string };
+  subtitle?: { fr: string; en: string };
+  icon: PremiumPackageIcon;
+  backgroundImage?: string;
+  packages: PremiumPackage[];
+}
+
+export interface PremiumPricingCategory {
+  title: { fr: string; en: string };
+  intro: { fr: string; en: string };
+  groups: PremiumPricingGroup[];
 }
 
 export interface FAQItem {
@@ -51,6 +80,7 @@ export interface Activity {
   groupSize: { fr: string; en: string };
   includes: { fr: string[]; en: string[] };
   pricing: PricingTier[];
+  premiumPricing?: PremiumPricingCategory;
   faq: FAQItem[];
   seo: {
     title: { fr: string; en: string };
@@ -282,6 +312,114 @@ export const activities: Activity[] = [
         },
       },
     ],
+    premiumPricing: {
+      title: {
+        fr: "Shooting & Trek Experience",
+        en: "Shooting & Trek Experience",
+      },
+      intro: {
+        fr: "Au-delà des balades classiques, vivez une expérience équestre d'exception à Essaouira : shooting cinématographique sur la plage, galop au lever du soleil avec nos chevaux libres, ou un trek équestre multi-jours (dès €300 jusqu'à €900). Une invitation à l'aventure premium — horse riding Essaouira réinventé en voyage de luxe.",
+        en: "Beyond classic rides, discover an exceptional equestrian journey in Essaouira: cinematic horse shooting on the beach, sunrise gallop with our freedom horses, or a multi-day luxury horse trek from €300 to €900 along Morocco's coast. Premium horseback riding on Essaouira beach, elevated to a high-end travel experience.",
+      },
+      groups: [
+        {
+          id: "shooting",
+          title: { fr: "Shooting Experience", en: "Shooting Experience" },
+          subtitle: {
+            fr: "Cinematic horse shooting & golden hour on the beach",
+            en: "Cinematic horse shooting & golden hour on the beach",
+          },
+          icon: "photography",
+          backgroundImage: PLACEHOLDERS.horseGallery3,
+          packages: [
+            {
+              id: "photos-videos",
+              name: { fr: "Photos & Vidéos", en: "Photos & Videos" },
+              tagline: {
+                fr: "Séance photo & vidéo professionnelle à cheval",
+                en: "Professional on-horse photo & video session",
+              },
+              duration: { fr: "Séance dédiée", en: "Dedicated session" },
+              priceEur: 100,
+              icon: "photography",
+              image: PLACEHOLDERS.horseGallery1,
+            },
+            {
+              id: "sunrise-gallop",
+              name: {
+                fr: "Galop au lever du soleil — Chevaux libres sur la plage",
+                en: "Sunrise Gallop With Freedom Horses On The Beach",
+              },
+              tagline: {
+                fr: "Sunrise horse riding — lumière dorée & émotion pure",
+                en: "Sunrise horse riding — golden light & pure emotion",
+              },
+              duration: { fr: "Lever du soleil", en: "Sunrise" },
+              priceEur: 150,
+              icon: "sunrise",
+              image: PLACEHOLDERS.horseGallery3,
+              highlighted: true,
+            },
+          ],
+        },
+        {
+          id: "multi-day-trek",
+          title: { fr: "Multi-Day Trek", en: "Multi-Day Trek" },
+          subtitle: {
+            fr: "Trek équestre 2 à 6 jours — €300 · €450 · €600 · €750 · €900",
+            en: "Multi-day horse trek Morocco — €300 · €450 · €600 · €750 · €900",
+          },
+          icon: "trek",
+          backgroundImage: PLACEHOLDERS.horseGallery5,
+          packages: [
+            {
+              id: "trek-2d",
+              name: { fr: "2 Jours", en: "2 Days" },
+              tagline: {
+                fr: "Première immersion trek équestre",
+                en: "First multi-day horseback adventure",
+              },
+              duration: { fr: "2 jours", en: "2 days" },
+              priceEur: HORSE_TREK_PRICES_EUR["2d"],
+              icon: "trek",
+            },
+            {
+              id: "trek-3d",
+              name: { fr: "3 Jours", en: "3 Days" },
+              duration: { fr: "3 jours", en: "3 days" },
+              priceEur: HORSE_TREK_PRICES_EUR["3d"],
+              icon: "trek",
+            },
+            {
+              id: "trek-4d",
+              name: { fr: "4 Jours", en: "4 Days" },
+              duration: { fr: "4 jours", en: "4 days" },
+              priceEur: HORSE_TREK_PRICES_EUR["4d"],
+              icon: "trek",
+            },
+            {
+              id: "trek-5d",
+              name: { fr: "5 Jours", en: "5 Days" },
+              duration: { fr: "5 jours", en: "5 days" },
+              priceEur: HORSE_TREK_PRICES_EUR["5d"],
+              icon: "trek",
+            },
+            {
+              id: "trek-6d",
+              name: { fr: "6 Jours", en: "6 Days" },
+              tagline: {
+                fr: "L'expérience trek ultime — désert & océan",
+                en: "The ultimate trek — desert & ocean",
+              },
+              duration: { fr: "6 jours", en: "6 days" },
+              priceEur: HORSE_TREK_PRICES_EUR["6d"],
+              icon: "luxury",
+              highlighted: true,
+            },
+          ],
+        },
+      ],
+    },
     faq: [
       {
         question: {
@@ -356,6 +494,8 @@ export const activities: Activity[] = [
           "équitation essaouira",
           "randonnée cheval essaouira",
           "cheval plage essaouira",
+          "trek cheval maroc",
+          "shooting cheval essaouira",
           "activité essaouira",
           "que faire essaouira",
         ],
@@ -365,6 +505,8 @@ export const activities: Activity[] = [
           "essaouira sunset ride",
           "diabat horse",
           "essaouira beach ride",
+          "luxury horse trek morocco",
+          "sunrise horse riding essaouira",
         ],
       },
     },
@@ -997,7 +1139,7 @@ export const activities: Activity[] = [
         image: PLACEHOLDERS.artGallery1,
         options: [
           { type: "group", label: { fr: "Groupe / personne", en: "Group / person" }, price: 12 },
-          { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 30 },
+          { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 22 },
           { type: "private", label: { fr: "Privé exclusif", en: "Private exclusive" }, price: 25 },
         ],
         features: {
@@ -1013,8 +1155,8 @@ export const activities: Activity[] = [
         image: PLACEHOLDERS.artGallery2,
         options: [
           { type: "group", label: { fr: "Groupe / personne", en: "Group / person" }, price: 15 },
-          { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 35 },
-          { type: "private", label: { fr: "Privé exclusif", en: "Private exclusive" }, price: 28 },
+          { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 28 },
+          { type: "private", label: { fr: "Privé exclusif", en: "Private exclusive" }, price: 30 },
         ],
         features: {
           fr: ["Tout matériel inclus", "Snacks & boissons", "Vue océan"],
@@ -1028,8 +1170,8 @@ export const activities: Activity[] = [
         image: PLACEHOLDERS.artGallery3,
         options: [
           { type: "group", label: { fr: "Groupe / personne", en: "Group / person" }, price: 18 },
-          { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 40 },
-          { type: "private", label: { fr: "Privé exclusif", en: "Private exclusive" }, price: 30 },
+          { type: "couple", label: { fr: "Couple (2 pers.)", en: "Couple (2 people)" }, price: 34 },
+          { type: "private", label: { fr: "Privé exclusif", en: "Private exclusive" }, price: 40 },
         ],
         features: {
           fr: ["Tout matériel inclus", "Snacks & boissons", "Vue coucher de soleil", "Ambiance magique"],

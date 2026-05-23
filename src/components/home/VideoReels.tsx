@@ -16,29 +16,32 @@ import type { Locale } from "@/i18n/config";
 const REELS = [
   {
     id: "reel-0",
-    youtubeId: "8KoYGQ9S9Nc", // TODO: Replace with YouTube video ID
-    thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    youtubeId: "8KoYGQ9S9Nc", // TODO: Replace with your quad excursion YouTube video ID
+    thumbnail:
+      "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/5_lf7ed9.png",
     title: {
-      fr: "Galop au coucher du soleil",
-      en: "Sunset gallop on the beach",
+      fr: "Excursion quad en groupe",
+      en: "Group quad excursion",
     },
   },
-    {
+  {
     id: "reel-1",
-    youtubeId: "9zWJt-xE2eA", // TODO: Replace with YouTube video ID
-    thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    youtubeId: "9zWJt-xE2eA", // TODO: Replace with your sunset camel ride YouTube video ID
+    thumbnail:
+      "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779122049/palma-quad-camel-sunset-tour-9_zwvmaf.jpg",
     title: {
-      fr: "Galop au coucher du soleil",
-      en: "Sunset gallop on the beach",
+      fr: "Excursion dromadaire au coucher du soleil",
+      en: "Sunset camel ride excursion",
     },
   },
   {
     id: "reel-2",
-    youtubeId: "fcKWdQawV_Y", // TODO: Replace with YouTube video ID
-    thumbnail: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80",
+    youtubeId: "fcKWdQawV_Y", // TODO: Replace with your quad briefing / prep YouTube video ID
+    thumbnail:
+      "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/6_jarktc.png",
     title: {
-      fr: "Aventure quad dans les dunes",
-      en: "Quad adventure in the dunes",
+      fr: "Organisation & préparation de l'excursion quad",
+      en: "Quad excursion briefing & prep",
     },
   },
   {
@@ -52,29 +55,32 @@ const REELS = [
   },
   {
     id: "reel-4",
-    youtubeId: "HsuI-AMHVb0", // TODO: Replace with YouTube video ID
-    thumbnail: "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=800&q=80",
+    youtubeId: "HsuI-AMHVb0", // TODO: Replace with your quad YouTube video ID
+    thumbnail:
+      "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976878/4_pcypep.png",
     title: {
-      fr: "Caravane face à l'ocean",
-      en: "Camel caravan facing the ocean",
+      fr: "Quad en action",
+      en: "Quad in action",
     },
   },
   {
     id: "reel-5",
-    youtubeId: "TiIAYCIxmKc", // TODO: Replace with YouTube video ID
-    thumbnail: "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=800&q=80",
+    youtubeId: "TiIAYCIxmKc", // TODO: Replace with your horse riding YouTube video ID
+    thumbnail:
+      "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/5_t6sbn9.png",
     title: {
-      fr: "Caravane face à l'ocean",
-      en: "Camel caravan facing the ocean",
+      fr: "Balade à cheval sur la plage",
+      en: "Horse ride on the beach",
     },
   },
   {
     id: "reel-6",
-    youtubeId: "dItdB50RPvA", // TODO: Replace with YouTube video ID
-    thumbnail: "https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=800&q=80",
+    youtubeId: "dItdB50RPvA", // TODO: Replace with your Art Experience pack YouTube video ID
+    thumbnail:
+      "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/24_hinlho.jpg",
     title: {
-      fr: "Caravane face à l'ocean",
-      en: "Camel caravan facing the ocean",
+      fr: "Pack Art Experience",
+      en: "Art Experience pack",
     },
   },
 ];

@@ -1,4 +1,13 @@
 import type { Locale } from "@/i18n/config";
+import { BLOG_PLACEHOLDERS } from "./blogPlaceholders";
+import { premiumBlogPosts } from "./blogPostsPremium";
+
+export { BLOG_PLACEHOLDERS } from "./blogPlaceholders";
+
+export interface BlogFaqItem {
+  question: { fr: string; en: string };
+  answer: { fr: string; en: string };
+}
 
 export interface BlogPost {
   slug: { fr: string; en: string };
@@ -11,39 +20,16 @@ export interface BlogPost {
   readingMinutes: number;
   author: string;
   body: { fr: string[]; en: string[] };
+  faq?: BlogFaqItem[];
+  featured?: boolean;
+  trending?: boolean;
   seo: {
     description: { fr: string; en: string };
     keywords: { fr: string[]; en: string[] };
   };
 }
 
-/**
- * Direct Cloudinary URLs for blog
- * 
- * TO REPLACE IMAGES:
- * 1. Upload your images to Cloudinary
- * 2. Copy the full Cloudinary URL
- * 3. Paste directly into the image fields below
- * 
- * Example URL format:
- * https://res.cloudinary.com/your-cloud-name/image/upload/q_auto/f_auto/v1234567890/your-image-id.jpg
- */
-
-// Blog cover placeholder URLs
-const BLOG_PLACEHOLDERS = {
-  thingsToDo: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600152/9_zovolb.jpg",
-  bestTime: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976878/4_pcypep.png",
-  sunsetSpots: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/16_ojynt2.jpg",
-  horseRiding: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600151/15_vfgiwf.jpg",
-  quadBiking: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/23_uztexk.jpg",
-  camelRide: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600154/28_h0pkn1.jpg",
-  familyActivities: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778976879/5_lf7ed9.png",
-  romanticEssaouira: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117111/6_h0xqnq.png",
-  hiddenGems: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600150/3_bpzvwv.jpg",
-  beachAdventures: "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779117110/8_zsk5tv.png",
-};
-
-export const blogPosts: BlogPost[] = [
+const legacyBlogPosts: BlogPost[] = [
   {
     slug: {
       fr: "que-faire-a-essaouira",
@@ -923,6 +909,8 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+export const blogPosts: BlogPost[] = [...legacyBlogPosts, ...premiumBlogPosts];
+
 export function getBlogPostBySlug(
   slug: string,
   locale: Locale
@@ -936,6 +924,30 @@ export function getRecentBlogPosts(count = 3): BlogPost[] {
     .slice(0, count);
 }
 
-export function getRelatedBlogPosts(currentSlugFr: string, count = 2): BlogPost[] {
-  return blogPosts.filter((p) => p.slug.fr !== currentSlugFr).slice(0, count);
+export function getRelatedBlogPosts(
+  currentSlugFr: string,
+  count = 3,
+  categoryFr?: string
+): BlogPost[] {
+  const others = blogPosts.filter((p) => p.slug.fr !== currentSlugFr);
+  const sameCategory = categoryFr
+    ? others.filter((p) => p.category.fr === categoryFr)
+    : [];
+  const rest = others.filter((p) => p.category.fr !== categoryFr);
+  return [...sameCategory, ...rest].slice(0, count);
+}
+
+export function getFeaturedBlogPost(): BlogPost | undefined {
+  return blogPosts.find((p) => p.featured);
+}
+
+export function getBlogCategories(locale: Locale): string[] {
+  const cats = new Set(blogPosts.map((p) => p.category[locale]));
+  return Array.from(cats).sort();
+}
+
+export function sortBlogPostsByDate(posts: BlogPost[]): BlogPost[] {
+  return [...posts].sort((a, b) =>
+    a.publishedAt < b.publishedAt ? 1 : -1
+  );
 }

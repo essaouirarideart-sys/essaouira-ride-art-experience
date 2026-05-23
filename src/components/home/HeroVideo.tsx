@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Star, Award, Users, Play } from "lucide-react";
+import { ArrowRight, Star, Award, Users } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localizedPath } from "@/lib/paths";
@@ -70,25 +70,25 @@ export function HeroVideo({
       </div>
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <div className="container-page absolute inset-0 flex flex-col justify-center py-14 sm:py-16 lg:py-20">
+        <div className="max-w-2xl sm:max-w-3xl lg:max-w-[40rem]">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-bg-primary/40 px-4 py-2 backdrop-blur-sm"
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-bg-primary/40 px-3.5 py-1.5 backdrop-blur-sm sm:px-4 sm:py-2"
         >
-          <span className="h-2 w-2 rounded-full bg-gold animate-pulse" />
-          <span className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse sm:h-2 sm:w-2" />
+          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-gold sm:text-xs">
             {locale === "fr" ? "Essaouira, Maroc" : "Essaouira, Morocco"}
           </span>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-5 max-w-5xl text-balance font-display text-[1.75rem] font-bold leading-[1.1] tracking-tight text-ink sm:mt-8 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-          style={{ textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}
+          transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+          className="heading-hero text-shadow-cinema mt-4 text-balance text-ink sm:mt-5"
         >
           {locale === "fr" ? (
             <>
@@ -104,10 +104,10 @@ export function HeroVideo({
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="mt-4 max-w-2xl text-base leading-relaxed text-ink/80 sm:mt-6 sm:text-xl"
+          transition={{ duration: 0.7, delay: 0.28 }}
+          className="hero-tagline mt-3 max-w-md text-ink/70 sm:mt-4 sm:max-w-lg"
         >
           {locale === "fr"
             ? "Aventure · Coucher de soleil · Plage · Liberté"
@@ -116,10 +116,10 @@ export function HeroVideo({
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-6 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4"
+          transition={{ duration: 0.65, delay: 0.42 }}
+          className="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-7 sm:gap-3"
         >
           <Link
             href={localizedPath(locale, "booking")}
@@ -141,8 +141,8 @@ export function HeroVideo({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.85 }}
-          className="mt-6 flex flex-wrap items-center gap-4 sm:mt-10 sm:gap-6"
+          transition={{ duration: 0.75, delay: 0.62 }}
+          className="mt-5 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-5"
         >
           <div className="flex items-center gap-2">
             <div className="flex">
@@ -163,6 +163,7 @@ export function HeroVideo({
             {locale === "fr" ? "Guides locaux certifiés" : "Certified local guides"}
           </div>
         </motion.div>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div

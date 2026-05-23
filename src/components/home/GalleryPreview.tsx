@@ -103,9 +103,9 @@ export function GalleryPreview({ locale }: { locale: Locale }) {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0 flex flex-col justify-end p-4"
                     >
-                      <p className="text-sm font-medium text-white drop-shadow-lg line-clamp-2">
+                      {/* <p className="text-sm font-medium text-white drop-shadow-lg line-clamp-2">
                         {item.alt[locale]}
-                      </p>
+                      </p> */}
                       {item.category && (
                         <span className="mt-1 text-xs text-gold font-semibold uppercase tracking-wider">
                           {item.category}

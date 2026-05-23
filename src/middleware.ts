@@ -22,6 +22,7 @@ export function middleware(req: NextRequest) {
     pathname === "/favicon.ico" ||
     pathname === "/robots.txt" ||
     pathname === "/sitemap.xml" ||
+    pathname === "/manifest.webmanifest" ||
     PUBLIC_FILE.test(pathname)
   ) {
     return NextResponse.next();
@@ -34,7 +35,9 @@ export function middleware(req: NextRequest) {
   if (parts.length === 0) {
     const url = req.nextUrl.clone();
     url.pathname = `/${defaultLocale}`;
-    return NextResponse.redirect(url);
+    const res = NextResponse.redirect(url);
+    res.headers.set("x-locale", defaultLocale);
+    return res;
   }
 
   // Missing/invalid locale → prepend default locale
@@ -58,12 +61,18 @@ export function middleware(req: NextRequest) {
         newParts[1] = enSeg;
         url.pathname = "/" + newParts.join("/");
         url.search = search;
-        return NextResponse.rewrite(url);
+        const res = NextResponse.rewrite(url);
+        res.headers.set("x-locale", maybeLocale);
+        return res;
       }
     }
   }
 
-  return NextResponse.next();
+  const res = NextResponse.next();
+  if (isLocale(maybeLocale)) {
+    res.headers.set("x-locale", maybeLocale);
+  }
+  return res;
 }
 
 function negotiateLocale(req: NextRequest): string {

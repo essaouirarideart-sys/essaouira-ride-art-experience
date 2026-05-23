@@ -1,6 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { defaultLocale } from "@/i18n/config";
 import { fr } from "@/i18n/dictionaries/fr";
+import { site } from "@/data/site";
+
+export const metadata: Metadata = {
+  title: "404 — Page introuvable",
+  description: "La page demandée n'existe pas. Retournez aux activités Essaouira.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+  alternates: {
+    canonical: `${site.url}/${defaultLocale}`,
+  },
+};
 
 export default function NotFound() {
   return (

@@ -138,7 +138,7 @@ export function ImageGallery({
                 priority
               />
               <p className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-bg-card/80 px-4 py-1.5 text-xs text-ink-muted backdrop-blur">
-                {images[active].alt} · {active + 1} / {images.length}
+                {active + 1} / {images.length}
               </p>
             </motion.div>
           </motion.div>

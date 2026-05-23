@@ -127,7 +127,7 @@ export function PricingCardNew({
         )}
         <button
           type="button"
-          onClick={handleWhatsApp}
+          onClick={handleForm}
           className={cn(
             "w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 sm:px-6 sm:py-4 sm:text-sm",
             tier.highlighted
@@ -135,16 +135,8 @@ export function PricingCardNew({
               : "border-2 border-gold/50 text-ink hover:border-gold hover:bg-gold/10 hover:-translate-y-[1px]"
           )}
         >
-          <MessageCircle className="h-4 w-4" />
+          {/* <MessageCircle className="h-4 w-4" /> */}
           {primaryLabel}
-        </button>
-        <button
-          type="button"
-          onClick={handleForm}
-          className="mt-3 w-full inline-flex items-center justify-center gap-2 rounded-full border border-border px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-ink-muted transition-all duration-300 hover:border-gold/40 hover:text-gold"
-        >
-          <FileText className="h-3.5 w-3.5" />
-          {locale === "fr" ? "Formulaire en ligne" : "Online form"}
         </button>
         <div className="mt-3 text-center text-xs text-ink-muted">
           {selectedOption.price}€ · {tier.duration[locale]}

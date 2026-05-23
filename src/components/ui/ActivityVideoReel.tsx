@@ -40,11 +40,11 @@ export function ActivityVideoReel({ reel, locale }: Props) {
         </div>
 
         {/* Title */}
-        <div className="absolute inset-x-0 bottom-0 p-4">
+        {/* <div className="absolute inset-x-0 bottom-0 p-4">
           <p className="text-sm font-semibold text-white drop-shadow-lg">
             {reel.title[locale]}
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Video Modal */}
