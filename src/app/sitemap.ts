@@ -1,9 +1,13 @@
 import type { MetadataRoute } from "next";
-import { site, absoluteUrl } from "@/data/site";
-import { locales, type Locale, type SegmentKey } from "@/i18n/config";
-import { localizedPath, hreflangLanguages } from "@/lib/paths";
+import { headers } from "next/headers";
+import { getSiteUrl } from "@/data/site";
+import { defaultLocale, type Locale, type SegmentKey } from "@/i18n/config";
+import { localizedPath, sitemapHreflangLanguages } from "@/lib/paths";
 import { activities } from "@/data/activities";
 import { blogPosts } from "@/data/blog";
+
+/** Regenerate on each request so URLs always match the live host (fixes GSC domain mismatches). */
+export const dynamic = "force-dynamic";
 
 const STATIC_SEGMENTS: SegmentKey[] = [
   "activities",
@@ -15,76 +19,82 @@ const STATIC_SEGMENTS: SegmentKey[] = [
   "blog",
 ];
 
+async function resolveBaseUrl(): Promise<string> {
+  try {
+    const h = await headers();
+    const host = (h.get("x-forwarded-host") ?? h.get("host") ?? "")
+      .split(",")[0]
+      .trim();
+    const proto = h.get("x-forwarded-proto")?.split(",")[0]?.trim() ?? "https";
+
+    if (host && !host.includes("localhost") && !host.includes("127.0.0.1")) {
+      return `${proto}://${host}`;
+    }
+  } catch {
+    // Static generation fallback
+  }
+  return getSiteUrl();
+}
+
+function pageUrl(baseUrl: string, segment?: SegmentKey, slug?: string): string {
+  return `${baseUrl}${localizedPath(defaultLocale, segment, slug)}`;
+}
+
 function sitemapAlternates(
+  baseUrl: string,
   segment?: SegmentKey,
   slugByLocale?: Partial<Record<Locale, string>>
 ) {
-  const langs = hreflangLanguages(segment, slugByLocale);
-  return { languages: langs };
+  return {
+    languages: sitemapHreflangLanguages(baseUrl, segment, slugByLocale),
+  };
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = await resolveBaseUrl();
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const locale of locales) {
+  // Homepage — one entry (FR canonical) with hreflang alternates
+  entries.push({
+    url: pageUrl(baseUrl),
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 1.0,
+    alternates: sitemapAlternates(baseUrl),
+  });
+
+  // Static sections — one entry each (FR path as loc)
+  for (const seg of STATIC_SEGMENTS) {
     entries.push({
-      url: absoluteUrl(localizedPath(locale)),
+      url: pageUrl(baseUrl, seg),
       lastModified: now,
-      changeFrequency: "weekly",
-      priority: 1.0,
-      alternates: sitemapAlternates(),
-      images: [absoluteUrl(site.defaultOgImage)],
+      changeFrequency: seg === "blog" ? "weekly" : "monthly",
+      priority: seg === "activities" ? 0.9 : seg === "booking" ? 0.85 : 0.7,
+      alternates: sitemapAlternates(baseUrl, seg),
     });
   }
 
-  for (const seg of STATIC_SEGMENTS) {
-    for (const locale of locales) {
-      entries.push({
-        url: absoluteUrl(localizedPath(locale, seg)),
-        lastModified: now,
-        changeFrequency: seg === "blog" ? "weekly" : "monthly",
-        priority: seg === "activities" ? 0.9 : seg === "booking" ? 0.85 : 0.7,
-        alternates: sitemapAlternates(seg),
-      });
-    }
-  }
-
+  // Activity detail — one entry per activity (not per locale)
   for (const activity of activities) {
-    const slugByLocale = activity.slug;
-    const galleryImages = activity.gallery
-      .slice(0, 6)
-      .map((g) => g.src)
-      .filter(Boolean);
-
-    for (const locale of locales) {
-      entries.push({
-        url: absoluteUrl(
-          localizedPath(locale, "activities", slugByLocale[locale])
-        ),
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.95,
-        alternates: sitemapAlternates("activities", slugByLocale),
-        images: [activity.heroImage, ...galleryImages],
-      });
-    }
+    entries.push({
+      url: pageUrl(baseUrl, "activities", activity.slug.fr),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.95,
+      alternates: sitemapAlternates(baseUrl, "activities", activity.slug),
+    });
   }
 
+  // Blog posts — one entry per post
   for (const post of blogPosts) {
-    const slugByLocale = post.slug;
-    const modified = new Date(post.publishedAt);
-
-    for (const locale of locales) {
-      entries.push({
-        url: absoluteUrl(localizedPath(locale, "blog", slugByLocale[locale])),
-        lastModified: modified,
-        changeFrequency: "monthly",
-        priority: post.featured ? 0.75 : 0.6,
-        alternates: sitemapAlternates("blog", slugByLocale),
-        images: [post.cover],
-      });
-    }
+    entries.push({
+      url: pageUrl(baseUrl, "blog", post.slug.fr),
+      lastModified: new Date(post.publishedAt),
+      changeFrequency: "monthly",
+      priority: post.featured ? 0.75 : 0.6,
+      alternates: sitemapAlternates(baseUrl, "blog", post.slug),
+    });
   }
 
   return entries;

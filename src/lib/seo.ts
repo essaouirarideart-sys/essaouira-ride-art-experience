@@ -10,7 +10,7 @@ interface BuildMetadataOptions {
   slug?: string;
   /** Per-locale slugs for activities & blog — fixes cross-language alternates. */
   slugByLocale?: Partial<Record<Locale, string>>;
-  title: string;
+  title: Metadata["title"];
   description: string;
   image?: string;
   keywords?: string[];
@@ -29,6 +29,15 @@ interface BuildMetadataOptions {
 function resolveOgImage(image?: string): string {
   if (!image) return absoluteUrl(site.defaultOgImage);
   return image.startsWith("http") ? image : absoluteUrl(image);
+}
+
+function resolveTitleString(title: Metadata["title"]): string {
+  if (typeof title === "string") return title;
+  if (title && typeof title === "object") {
+    if ("absolute" in title && title.absolute) return title.absolute;
+    if ("default" in title && title.default) return title.default;
+  }
+  return site.name;
 }
 
 /**
@@ -61,6 +70,14 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
   const canonical = absoluteUrl(path);
   const languages = hreflangLanguages(segment, effectiveSlugByLocale);
   const ogImage = resolveOgImage(image);
+  const titleString = resolveTitleString(title);
+  const ogImageEntry = {
+    url: ogImage,
+    width: 1200,
+    height: 630,
+    alt: site.name,
+    type: "image/jpeg" as const,
+  };
 
   return {
     title,
@@ -72,21 +89,14 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
       languages,
     },
     openGraph: {
-      title,
+      title: titleString,
       description,
       url: canonical,
       siteName: site.name,
       locale: locale === "fr" ? "fr_FR" : "en_US",
       alternateLocale: locale === "fr" ? ["en_US"] : ["fr_FR"],
       type: type ?? "website",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      images: [ogImageEntry],
       ...(type === "article" && article
         ? {
             publishedTime: article.publishedTime,
@@ -98,7 +108,7 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: titleString,
       description,
       images: [ogImage],
     },

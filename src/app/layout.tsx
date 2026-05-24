@@ -45,19 +45,9 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "fr_FR",
     alternateLocale: ["en_US"],
-    images: [
-      {
-        url: absoluteUrl(site.defaultOgImage),
-        width: 1200,
-        height: 630,
-        alt: site.name,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: site.name,
-    images: [absoluteUrl(site.defaultOgImage)],
   },
   robots: {
     index: true,

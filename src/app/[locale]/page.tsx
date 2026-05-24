@@ -15,6 +15,7 @@ import { StickyBookingCTA } from "@/components/ui/StickyBookingCTA";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
+import { site } from "@/data/site";
 import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -24,14 +25,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const dict = getDictionary(locale);
+  const homeTitle =
+    locale === "fr"
+      ? "Activités Essaouira | Horse Riding, Quad, Camel Ride & Art Experience"
+      : "Things to Do Essaouira | Horse Riding, Quad Biking, Camel Ride & Art";
+
   return buildMetadata({
     locale,
-    image: "/og-image.jpg",
-    title:
-      locale === "fr"
-        ? "Activités Essaouira | Horse Riding, Quad, Camel Ride & Art Experience"
-        : "Things to Do Essaouira | Horse Riding, Quad Biking, Camel Ride & Art",
+    image: site.defaultOgImage,
+    title: { absolute: homeTitle },
     description: 
       locale === "fr"
         ? "Découvrez les meilleures activités à Essaouira : balade à cheval sur la plage, quad dans les dunes, camel ride au coucher du soleil. Réservation en ligne, guides locaux."

@@ -25,7 +25,7 @@ export function alternatePath(
 }
 
 /**
- * hreflang alternate URLs — use per-locale slugs for activities/blog.
+ * hreflang alternates for page metadata (includes x-default).
  */
 export function hreflangLanguages(
   segment?: SegmentKey,
@@ -39,6 +39,23 @@ export function hreflangLanguages(
   languages["x-default"] = absoluteUrl(
     localizedPath("fr", segment, slugByLocale?.fr)
   );
+  return languages;
+}
+
+/**
+ * hreflang alternates for sitemap.xml — ISO codes only (no x-default).
+ * Google Search Console rejects x-default in sitemap alternate entries.
+ */
+export function sitemapHreflangLanguages(
+  baseUrl: string,
+  segment?: SegmentKey,
+  slugByLocale?: Partial<Record<Locale, string>>
+): Record<string, string> {
+  const languages: Record<string, string> = {};
+  for (const l of locales) {
+    const slug = slugByLocale?.[l];
+    languages[l] = absoluteUrl(localizedPath(l, segment, slug), baseUrl);
+  }
   return languages;
 }
 

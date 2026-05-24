@@ -1,15 +1,23 @@
 /**
  * Site-wide config — canonical URL, contact, SEO assets.
- * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://essaouira-ride-art.com).
+ * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://essaouirarideart.com).
  */
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://essaouira-ride-art.com";
+export function getSiteUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  if (
+    fromEnv &&
+    !fromEnv.includes("localhost") &&
+    !fromEnv.includes("127.0.0.1")
+  ) {
+    return fromEnv;
+  }
+  return "https://essaouirarideart.com";
+}
 
 export const site = {
   name: "Essaouira Ride & Art Experience",
   shortName: "Essaouira Ride & Art",
-  url: SITE_URL,
+  url: getSiteUrl(),
   defaultOgImage: "/og-image.jpg",
   logo: "/og-image.jpg",
   contact: {
@@ -61,9 +69,9 @@ export const site = {
 export type SiteConfig = typeof site;
 
 /** Absolute URL for public assets or external images. */
-export function absoluteUrl(path: string): string {
+export function absoluteUrl(path: string, baseUrl: string = site.url): string {
   if (path.startsWith("http://") || path.startsWith("https://")) {
     return path;
   }
-  return `${site.url}${path.startsWith("/") ? path : `/${path}`}`;
+  return `${baseUrl}${path.startsWith("/") ? path : `/${path}`}`;
 }
