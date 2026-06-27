@@ -1,4 +1,4 @@
-# Cloudinary Image System - New Workflow Guide
+# Cloudinary Image System - New Workflow Guide 
 
 ## Overview
 The Cloudinary image system has been refactored to use direct full Cloudinary URLs instead of generating URLs from cloud name and public ID.
