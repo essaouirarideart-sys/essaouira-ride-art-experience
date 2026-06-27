@@ -182,7 +182,7 @@ export const fr = {
   },
   footer: {
     rights: "Tous droits réservés.",
-    builtWith: "Conçu avec passion à Essaouira.",
+    builtWith: "Développé avec excellence et passion par Mehdi Codes",
     quickLinks: "Liens rapides",
     contact: "Contact",
     follow: "Nous suivre",

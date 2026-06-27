@@ -149,7 +149,18 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <p className="text-xs text-ink-dim">
             © {new Date().getFullYear()} {site.name}. {dict.footer.rights}
           </p>
-          <p className="text-xs text-ink-dim">{dict.footer.builtWith}</p>
+          <p className="text-center text-xs text-ink-dim sm:text-right">
+            {dict.footer.builtWith.split("Mehdi Codes")[0]}
+            <a
+              href="https://mehdicodes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-gold transition-colors duration-300 hover:text-gold/80"
+            >
+              Mehdi Codes
+            </a>
+            {dict.footer.builtWith.split("Mehdi Codes")[1] ?? ""}
+          </p>
         </div>
       </div>
     </footer>

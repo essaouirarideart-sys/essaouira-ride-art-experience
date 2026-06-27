@@ -184,7 +184,7 @@ export const en: Dictionary = {
   },
   footer: {
     rights: "All rights reserved.",
-    builtWith: "Crafted with passion in Essaouira.",
+    builtWith: "Developed with excellence and passion by Mehdi Codes",
     quickLinks: "Quick links",
     contact: "Contact",
     follow: "Follow us",
