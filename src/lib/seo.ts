@@ -79,8 +79,12 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
     type: "image/jpeg" as const,
   };
 
+  // Absolute titles avoid double-branding from root layout template `%s | ${site.name}`
+  const resolvedTitle =
+    typeof title === "string" ? { absolute: title } : title;
+
   return {
-    title,
+    title: resolvedTitle,
     description,
     keywords: keywords?.join(", "),
     metadataBase: new URL(site.url),
@@ -96,7 +100,7 @@ export function buildMetadata(opts: BuildMetadataOptions): Metadata {
       locale: locale === "fr" ? "fr_FR" : "en_US",
       alternateLocale: locale === "fr" ? ["en_US"] : ["fr_FR"],
       type: type ?? "website",
-      images: [ogImageEntry],
+      images: [{ ...ogImageEntry, alt: titleString }],
       ...(type === "article" && article
         ? {
             publishedTime: article.publishedTime,
@@ -146,18 +150,18 @@ export function websiteJsonLd() {
     url: site.url,
     name: site.name,
     description:
-      "Premium outdoor activities in Essaouira, Morocco — horse riding, quad biking, camel rides and art experiences on the Atlantic coast.",
+      "Activités outdoor à Essaouira, Maroc — balade à cheval, quad, dromadaire et art experience sur la côte atlantique.",
     publisher: { "@id": `${site.url}/#organization` },
     inLanguage: ["fr-FR", "en-US"],
   };
 }
 
 /**
- * LocalBusiness — matches on-page trust signals (rating, reviews).
+ * LocalBusiness — only verifiable business facts (no invented ratings).
  */
 export function organizationJsonLd() {
   return {
-    "@type": ["LocalBusiness", "TouristInformationCenter"],
+    "@type": "LocalBusiness",
     "@id": `${site.url}/#organization`,
     name: site.name,
     alternateName: site.shortName,
@@ -193,13 +197,6 @@ export function organizationJsonLd() {
       { "@type": "Country", name: "Morocco" },
     ],
     openingHoursSpecification: site.openingHoursSpecification,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "2500",
-      bestRating: "5",
-      worstRating: "1",
-    },
     sameAs: [site.social.instagram.url, site.social.facebook.url],
     contactPoint: {
       "@type": "ContactPoint",
@@ -220,10 +217,32 @@ export function activityJsonLd(opts: {
   priceFrom: number;
   currency: string;
   duration?: string;
+  /** All visible package offers (real prices only). */
+  offers?: Array<{ name: string; price: number; url?: string }>;
 }) {
   const pageUrl = absoluteUrl(
     localizedPath(opts.locale, "activities", opts.slug)
   );
+  const offerList =
+    opts.offers && opts.offers.length > 0
+      ? opts.offers.map((o) => ({
+          "@type": "Offer" as const,
+          name: o.name,
+          price: o.price,
+          priceCurrency: opts.currency,
+          availability: "https://schema.org/InStock",
+          url: o.url ?? pageUrl,
+        }))
+      : [
+          {
+            "@type": "Offer" as const,
+            price: opts.priceFrom,
+            priceCurrency: opts.currency,
+            availability: "https://schema.org/InStock",
+            url: pageUrl,
+          },
+        ];
+
   return {
     "@context": "https://schema.org",
     "@type": ["TouristAttraction", "Service"],
@@ -237,20 +256,34 @@ export function activityJsonLd(opts: {
     },
     url: pageUrl,
     provider: { "@id": `${site.url}/#organization` },
-    areaServed: {
-      "@type": "City",
-      name: "Essaouira",
-    },
+    areaServed: [
+      { "@type": "City", name: "Essaouira" },
+      { "@type": "Place", name: "Diabat" },
+      { "@type": "Place", name: "Cap Sim" },
+      { "@type": "Place", name: "Sidi Kaouki" },
+    ],
     touristType: ["Adventure", "Family", "Couples"],
-    offers: {
-      "@type": "Offer",
-      price: opts.priceFrom,
-      priceCurrency: opts.currency,
-      availability: "https://schema.org/InStock",
-      url: pageUrl,
-      validFrom: new Date().toISOString().split("T")[0],
-    },
-    ...(opts.duration ? { duration: opts.duration } : {}),
+    offers: offerList.length === 1 ? offerList[0] : offerList,
+  };
+}
+
+/** WebPage JSON-LD for static section pages. */
+export function webPageJsonLd(opts: {
+  locale: Locale;
+  name: string;
+  description: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${opts.url}#webpage`,
+    name: opts.name,
+    description: opts.description,
+    url: opts.url,
+    inLanguage: opts.locale === "fr" ? "fr-FR" : "en-US",
+    isPartOf: { "@id": `${site.url}/#website` },
+    about: { "@id": `${site.url}/#organization` },
   };
 }
 

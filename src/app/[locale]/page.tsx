@@ -27,40 +27,35 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const homeTitle =
     locale === "fr"
-      ? "Activités Essaouira | Horse Riding, Quad, Camel Ride & Art Experience"
-      : "Things to Do Essaouira | Horse Riding, Quad Biking, Camel Ride & Art";
+      ? "Activités Essaouira | Quad, Cheval, Dromadaire — Dès 20€"
+      : "Essaouira Activities | Horse, Quad, Camel Tours — From €20";
 
   return buildMetadata({
     locale,
     image: site.defaultOgImage,
     title: { absolute: homeTitle },
-    description: 
+    description:
       locale === "fr"
-        ? "Découvrez les meilleures activités à Essaouira : balade à cheval sur la plage, quad dans les dunes, camel ride au coucher du soleil. Réservation en ligne, guides locaux."
-        : "Discover the best things to do in Essaouira: beach horse riding, quad biking in dunes, sunset camel ride. Book online with local guides.",
+        ? "Que faire à Essaouira ? Quad dès 30€, cheval sur la plage dès 20€, dromadaire sunset dès 20€. Guides locaux à Diabat, transfert gratuit. Réservez vos tours."
+        : "Things to do in Essaouira: quad from €30, beach horse riding from €20, sunset camel from €20. Local guides in Diabat, free pick-up. Book Essaouira tours.",
     keywords:
       locale === "fr"
         ? [
             "activités essaouira",
-            "que faire essaouira",
-            "horse riding essaouira",
-            "balade cheval essaouira",
-            "quad biking essaouira",
+            "activités à essaouira",
+            "que faire à essaouira",
+            "excursions essaouira",
             "quad essaouira",
-            "camel ride essaouira",
+            "balade à cheval essaouira",
             "dromadaire essaouira",
-            "things to do essaouira",
-            "excursion essaouira",
           ]
         : [
-            "things to do essaouira",
             "essaouira activities",
-            "horse riding essaouira",
-            "quad biking essaouira",
-            "camel ride essaouira",
+            "activities essaouira",
+            "things to do in essaouira",
             "essaouira tours",
-            "best activities essaouira",
-            "essaouira excursions",
+            "best activities in essaouira",
+            "outdoor activities essaouira",
           ],
   });
 }

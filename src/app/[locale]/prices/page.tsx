@@ -8,9 +8,11 @@ import { Reveal, RevealStagger, RevealItem } from "@/components/ui/Reveal";
 import { activities } from "@/data/activities";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { localizedPath } from "@/lib/paths";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { site } from "@/data/site";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -25,16 +27,27 @@ export async function generateMetadata({
     segment: "prices",
     title:
       locale === "fr"
-        ? "Tarifs Activités Essaouira | Cheval, Quad, Dromadaire — Prix 2025"
-        : "Essaouira Activities Prices | Horse Riding, Quad, Camel — 2025 Rates",
+        ? "Prix Quad, Cheval & Dromadaire Essaouira | Tarifs"
+        : "Quad, Horse & Camel Ride Essaouira Prices | Rates",
     description:
       locale === "fr"
-        ? "Découvrez nos tarifs pour toutes les activités à Essaouira. Balade à cheval dès 25€, quad dès 35€, dromadaire dès 20€. Transfert hôtel gratuit inclus."
-        : "Discover our prices for all activities in Essaouira. Horse riding from 25€, quad biking from 35€, camel ride from 20€. Free hotel pick-up included.",
+        ? "Prix activités Essaouira : quad dès 30€, balade à cheval dès 20€, dromadaire dès 20€. Tarifs clairs, transfert hôtel gratuit. Réservation en ligne."
+        : "Essaouira prices: quad from €30, horse riding from €20, camel ride from €20. Clear rates, free hotel pick-up. Book online.",
     keywords:
       locale === "fr"
-        ? ["prix activités essaouira", "tarif cheval essaouira", "prix quad essaouira", "tarif dromadaire essaouira"]
-        : ["essaouira activities prices", "horse riding essaouira price", "quad biking essaouira cost", "camel ride essaouira price"],
+        ? [
+            "quad essaouira prix",
+            "prix quad essaouira",
+            "prix balade cheval essaouira",
+            "prix dromadaire essaouira",
+            "tarifs activités essaouira",
+          ]
+        : [
+            "quad essaouira price",
+            "camel ride essaouira price",
+            "horse riding essaouira price",
+            "essaouira activities prices",
+          ],
   });
 }
 
@@ -48,11 +61,62 @@ export default async function PricesPage({
   const typedLocale = locale as Locale;
   const dict = getDictionary(typedLocale);
 
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: dict.nav.home, url: `${site.url}${localizedPath(typedLocale)}` },
+    {
+      name: dict.nav.prices,
+      url: `${site.url}${localizedPath(typedLocale, "prices")}`,
+    },
+  ]);
+
+  const pricesListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name:
+      typedLocale === "fr"
+        ? "Prix des activités à Essaouira"
+        : "Essaouira activity prices",
+    itemListElement: activities.map((activity, index) => {
+      const from = Math.min(
+        ...activity.pricing.flatMap((t) => t.options.map((o) => o.price))
+      );
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Product",
+          name: activity.title[typedLocale],
+          url: `${site.url}${localizedPath(typedLocale, "activities", activity.slug[typedLocale])}`,
+          offers: {
+            "@type": "Offer",
+            price: from,
+            priceCurrency: "EUR",
+            availability: "https://schema.org/InStock",
+          },
+        },
+      };
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pricesListLd) }}
+      />
       <section className="border-b border-border bg-bg-card/40 py-12 sm:py-20 lg:py-28">
         <Container>
           <Reveal>
+            <Breadcrumbs
+              items={[
+                { name: dict.nav.home, href: localizedPath(typedLocale) },
+                { name: dict.nav.prices },
+              ]}
+            />
             <span className="eyebrow">{dict.prices.title}</span>
             <h1 className="heading-display mt-5 max-w-3xl text-balance text-ink">
               {dict.prices.title}
@@ -75,7 +139,17 @@ export default async function PricesPage({
                       {activity.shortTitle[typedLocale]}
                     </span>
                     <h2 className="heading-section text-ink">
-                      {activity.title[typedLocale]}
+                      <Link
+                        href={localizedPath(
+                          typedLocale,
+                          "activities",
+                          activity.slug[typedLocale]
+                        )}
+                        className="transition-colors hover:text-gold"
+                      >
+                        {activity.pricingHeading?.[typedLocale] ??
+                          activity.title[typedLocale]}
+                      </Link>
                     </h2>
                   </div>
                 </Reveal>

@@ -43,8 +43,8 @@ export function PricingPreview({ locale }: { locale: Locale }) {
           </span>
           <h2 className="heading-section mt-4 text-ink">
             {locale === "fr"
-              ? "Des prix accessibles, des souvenirs inestimables"
-              : "Affordable prices, priceless memories"}
+              ? "Prix activités Essaouira — quad, cheval, dromadaire"
+              : "Essaouira activity prices — quad, horse, camel"}
           </h2>
           <p className="mt-4 text-ink-muted max-w-xl mx-auto">
             {locale === "fr"

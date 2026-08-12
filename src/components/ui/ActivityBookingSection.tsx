@@ -11,8 +11,10 @@ import type {
 } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
+import { localizedPath } from "@/lib/paths";
 import { PremiumHorsePricingSection } from "./PremiumHorsePricingSection";
 import { PricingCardNew } from "./PricingCardNew";
+import Link from "next/link";
 
 interface Props {
   activity: Activity;
@@ -58,13 +60,24 @@ export function ActivityBookingSection({
             {locale === "fr" ? "Tarifs & formules" : "Pricing & packages"}
           </span>
           <h2 className="heading-section mt-4 text-ink">
-            {locale === "fr" ? "Choisissez votre formule" : "Choose your package"}
+            {activity.pricingHeading?.[locale] ??
+              (locale === "fr"
+                ? "Choisissez votre formule"
+                : "Choose your package")}
           </h2>
           <p className="mt-3 max-w-2xl text-ink-muted">
             {locale === "fr"
               ? "Comparez les offres, puis confirmez par WhatsApp ou via le formulaire — transfert hôtel gratuit inclus."
               : "Compare packages, then confirm via WhatsApp or the form — free hotel pick-up included."}
           </p>
+          <Link
+            href={localizedPath(locale, "prices")}
+            className="mt-3 inline-block text-sm font-medium text-gold hover:underline"
+          >
+            {locale === "fr"
+              ? "Voir tous les tarifs activités Essaouira"
+              : "See all Essaouira activity prices"}
+          </Link>
         </motion.div>
 
         <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest2 text-ink-dim">

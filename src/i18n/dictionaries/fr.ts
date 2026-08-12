@@ -63,7 +63,7 @@ export const fr = {
       "Une équipe disponible 7j/7 pour construire votre expérience sur mesure.",
   },
   activities: {
-    listTitle: "Nos activités à Essaouira",
+    listTitle: "Activités à Essaouira",
     listSubtitle:
       "Cheval, quad, dromadaire, art : choisissez votre façon de ressentir la côte atlantique du Maroc.",
     duration: "Durée",
@@ -84,9 +84,9 @@ export const fr = {
     },
   },
   prices: {
-    title: "Tarifs & forfaits",
+    title: "Prix des activités à Essaouira",
     subtitle:
-      "Des formules transparentes, sans frais cachés. Réductions famille et groupe sur demande.",
+      "Tarifs clairs pour quad, cheval et dromadaire. Transfert hôtel gratuit inclus. Réservez en ligne ou WhatsApp.",
     note: "Les prix sont indiqués par personne. Réductions disponibles à partir de 4 participants. Forfaits combinés sur demande.",
     popular: "Plus populaire",
   },

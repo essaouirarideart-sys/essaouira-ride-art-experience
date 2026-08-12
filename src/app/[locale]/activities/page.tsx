@@ -12,6 +12,7 @@ import { buildMetadata, activitiesListJsonLd, breadcrumbJsonLd } from "@/lib/seo
 import { localizedPath } from "@/lib/paths";
 import { site } from "@/data/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 export async function generateMetadata({
   params,
@@ -26,16 +27,29 @@ export async function generateMetadata({
     segment: "activities",
     title:
       locale === "fr"
-        ? "Activités Essaouira | Cheval, Quad, Dromadaire & Art — Réservez"
-        : "Essaouira Activities | Horse Riding, Quad, Camel & Art — Book Now",
+        ? "Activités à Essaouira | Quad, Cheval, Dromadaire — Réservez"
+        : "Things to Do in Essaouira | Activities, Tours & Excursions",
     description:
       locale === "fr"
-        ? "Toutes nos activités à Essaouira : balade à cheval sur la plage, quad dans les dunes, dromadaire au coucher du soleil, art experience. Guides locaux, transfert gratuit."
-        : "All our activities in Essaouira: beach horse riding, quad biking in dunes, sunset camel ride, art experience. Local guides, free hotel pick-up.",
+        ? "Toutes les activités à Essaouira : quad (dès 30€), cheval sur la plage (dès 20€), dromadaire sunset (dès 20€). Guides Diabat, transfert gratuit."
+        : "All Essaouira activities: quad (from €30), beach horse riding (from €20), sunset camel (from €20). Diabat guides, free hotel pick-up. Book tours.",
     keywords:
       locale === "fr"
-        ? ["activités essaouira", "que faire essaouira", "cheval essaouira", "quad essaouira", "dromadaire essaouira"]
-        : ["essaouira activities", "things to do essaouira", "horse riding essaouira", "quad biking essaouira", "camel ride essaouira"],
+        ? [
+            "activités essaouira",
+            "activités à essaouira",
+            "que faire à essaouira",
+            "excursions essaouira",
+            "quad essaouira",
+            "cheval essaouira",
+          ]
+        : [
+            "essaouira activities",
+            "things to do in essaouira",
+            "essaouira tours",
+            "activities essaouira",
+            "best activities in essaouira",
+          ],
   });
 }
 
@@ -78,6 +92,12 @@ export default async function ActivitiesPage({
       <section className="border-b border-border bg-bg-card/40 py-12 sm:py-20 lg:py-28">
         <Container>
           <Reveal>
+            <Breadcrumbs
+              items={[
+                { name: dict.nav.home, href: localizedPath(typedLocale) },
+                { name: dict.nav.activities },
+              ]}
+            />
             <span className="eyebrow">{dict.nav.activities}</span>
             <h1 className="heading-display mt-5 max-w-3xl text-balance text-ink">
               {dict.activities.listTitle}
@@ -128,6 +148,13 @@ export default async function ActivitiesPage({
                 >
                   {typedLocale === "fr" ? "Réserver maintenant" : "Book Now"}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href={localizedPath(typedLocale, "blog")}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-card/40 px-6 py-4 text-sm font-semibold text-ink transition-all duration-300 hover:border-gold hover:text-gold"
+                >
+                  {typedLocale === "fr" ? "Guides & conseils" : "Guides & tips"}
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
                   href={buildWhatsAppUrl({ locale: typedLocale })}

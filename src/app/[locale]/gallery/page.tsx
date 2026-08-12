@@ -24,16 +24,26 @@ export async function generateMetadata({
     segment: "gallery",
     title:
       locale === "fr"
-        ? "Galerie Photos | Cheval, Quad & Dromadaire à Essaouira"
-        : "Photo Gallery | Horse Riding, Quad & Camel in Essaouira",
+        ? "Galerie Photos | Activités à Essaouira — Cheval, Quad, Dromadaire"
+        : "Photo Gallery | Essaouira Activities — Horse, Quad, Camel",
     description:
       locale === "fr"
-        ? "Découvrez nos plus belles photos d'activités à Essaouira : balade à cheval sur la plage, quad dans les dunes, dromadaire au coucher du soleil."
-        : "Discover our best activity photos in Essaouira: beach horse riding, quad biking in dunes, sunset camel rides.",
+        ? "Photos de nos activités à Essaouira : balade à cheval sur la plage de Diabat, quad dans les dunes, dromadaire au coucher du soleil."
+        : "Photos of our Essaouira activities: horse riding on Diabat beach, quad biking in the dunes, sunset camel rides.",
     keywords:
       locale === "fr"
-        ? ["photos essaouira", "galerie activités essaouira", "cheval plage essaouira", "quad dunes essaouira"]
-        : ["essaouira photos", "essaouira activities gallery", "horse riding beach essaouira", "quad dunes essaouira"],
+        ? [
+            "photos essaouira",
+            "galerie activités essaouira",
+            "cheval plage essaouira",
+            "quad dunes essaouira",
+          ]
+        : [
+            "essaouira photos",
+            "essaouira activities gallery",
+            "horse riding beach essaouira",
+            "quad dunes essaouira",
+          ],
   });
 }
 
@@ -87,6 +97,13 @@ export default async function GalleryPage({
                   : "Book your activity and create your own memories."}
               </p>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                <Link
+                  href={localizedPath(typedLocale, "activities")}
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-bg-card/40 px-6 py-4 text-sm font-semibold text-ink transition-all duration-300 hover:border-gold hover:text-gold"
+                >
+                  {typedLocale === "fr" ? "Voir les activités" : "View activities"}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
                 <Link
                   href={localizedPath(typedLocale, "booking")}
                   className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 text-sm font-bold uppercase tracking-widest2 text-bg-primary shadow-lg transition-all duration-300 hover:-translate-y-[2px] hover:shadow-gold"

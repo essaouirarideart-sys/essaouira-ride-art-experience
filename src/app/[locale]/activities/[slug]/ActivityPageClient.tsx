@@ -9,10 +9,8 @@ import {
   Users,
   Baby,
   Check,
-  ArrowLeft,
   ArrowRight,
   Phone,
-  MessageCircle,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -41,16 +39,26 @@ import {
   premiumPackageToBookingSelection,
 } from "@/lib/premiumBooking";
 import type { PremiumPackage, PremiumPricingGroup } from "@/data/activities";
+import type { BlogPost } from "@/data/blog";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface Props {
   activity: Activity;
   locale: Locale;
   dict: Dictionary;
   related: Activity[];
+  relatedPosts?: BlogPost[];
   galleryImages: Array<{ src: string; alt: string }>;
 }
 
-export function ActivityPageClient({ activity, locale, dict, related, galleryImages }: Props) {
+export function ActivityPageClient({
+  activity,
+  locale,
+  dict,
+  related,
+  relatedPosts = [],
+  galleryImages,
+}: Props) {
   const [selectedPackage, setSelectedPackage] = useState<{
     tier: PricingTier;
     option: PricingOption;
@@ -154,15 +162,18 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
         </div>
 
         <div className="container-page relative flex min-h-[65svh] flex-col justify-end pt-24 pb-10 sm:min-h-[80svh] sm:pt-40 sm:pb-16">
-          <Link
-            href={localizedPath(locale, "activities")}
-            className="inline-flex w-fit items-center gap-2 text-xs font-medium uppercase tracking-widest2 text-ink/70 hover:text-gold"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            {dict.nav.activities}
-          </Link>
+          <Breadcrumbs
+            items={[
+              { name: dict.nav.home, href: localizedPath(locale) },
+              {
+                name: dict.nav.activities,
+                href: localizedPath(locale, "activities"),
+              },
+              { name: activity.title[locale] },
+            ]}
+          />
 
-          <div className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-bg-primary/50 px-3 py-1.5 backdrop-blur">
+          <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-bg-primary/50 px-3 py-1.5 backdrop-blur">
             <ActivityIcon
               icon={activity.icon}
               className="h-3.5 w-3.5 text-gold"
@@ -177,6 +188,14 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink/80 sm:mt-4 sm:text-lg">
             {activity.tagline[locale]}
+          </p>
+          <p className="mt-2 text-sm font-semibold text-gold sm:text-base">
+            {locale === "fr" ? "À partir de" : "From"}{" "}
+            {Math.min(
+              ...activity.pricing.flatMap((t) => t.options.map((o) => o.price))
+            )}
+            €
+            {locale === "fr" ? " · Transfert hôtel gratuit" : " · Free hotel pick-up"}
           </p>
 
           {/* Trust indicators */}
@@ -244,13 +263,90 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
                 {locale === "fr" ? "L'expérience" : "The experience"}
               </span>
               <h2 className="heading-section mt-5 text-balance text-ink">
-                {activity.tagline[locale]}
+                {activity.overviewHeading[locale]}
               </h2>
               <div className="mt-5 space-y-4 text-sm text-ink-muted leading-relaxed sm:mt-8 sm:space-y-5 sm:text-lg">
                 {activity.longDescription[locale].map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
+
+              {activity.itinerary && (
+                <div className="mt-8 sm:mt-10">
+                  <h3 className="font-display text-lg text-ink sm:text-xl">
+                    {locale === "fr" ? "Déroulement" : "How it works"}
+                  </h3>
+                  <ol className="mt-4 space-y-3">
+                    {activity.itinerary[locale].map((step, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-sm text-ink-muted sm:text-base"
+                      >
+                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gold/40 text-[11px] font-semibold text-gold">
+                          {i + 1}
+                        </span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {activity.meetingPoint && (
+                <div className="mt-8 sm:mt-10">
+                  <h3 className="font-display text-lg text-ink sm:text-xl">
+                    {locale === "fr"
+                      ? "Point de rendez-vous"
+                      : "Meeting point"}
+                  </h3>
+                  <p className="mt-3 text-sm text-ink-muted sm:text-base">
+                    {activity.meetingPoint[locale]}
+                  </p>
+                </div>
+              )}
+
+              {activity.suitableFor && (
+                <div className="mt-8 sm:mt-10">
+                  <h3 className="font-display text-lg text-ink sm:text-xl">
+                    {locale === "fr" ? "Pour qui ?" : "Who is it for?"}
+                  </h3>
+                  <ul className="mt-4 space-y-2">
+                    {activity.suitableFor[locale].map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2.5 text-sm text-ink-muted sm:text-base"
+                      >
+                        <Check
+                          className="mt-0.5 h-4 w-4 shrink-0 text-gold"
+                          strokeWidth={2.5}
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {activity.bookingSteps && (
+                <div className="mt-8 sm:mt-10">
+                  <h3 className="font-display text-lg text-ink sm:text-xl">
+                    {locale === "fr" ? "Comment réserver" : "How to book"}
+                  </h3>
+                  <ol className="mt-4 space-y-3">
+                    {activity.bookingSteps[locale].map((step, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 text-sm text-ink-muted sm:text-base"
+                      >
+                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gold/40 text-[11px] font-semibold text-gold">
+                          {i + 1}
+                        </span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
             </Reveal>
 
             <Reveal delay={0.1}>
@@ -299,9 +395,9 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
                 </ul>
 
                 <div className="mt-8 border-t border-border pt-6">
-                  <h4 className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
+                  <h3 className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
                     {dict.activities.includes}
-                  </h4>
+                  </h3>
                   <ul className="mt-4 space-y-2.5">
                     {activity.includes[locale].map((inc, i) => (
                       <li
@@ -317,6 +413,24 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
                     ))}
                   </ul>
                 </div>
+
+                {activity.notIncluded && (
+                  <div className="mt-6 border-t border-border pt-6">
+                    <h3 className="text-[11px] font-semibold uppercase tracking-widest2 text-ink-dim">
+                      {locale === "fr" ? "Non inclus" : "Not included"}
+                    </h3>
+                    <ul className="mt-4 space-y-2.5">
+                      {activity.notIncluded[locale].map((item, i) => (
+                        <li
+                          key={i}
+                          className="text-sm text-ink-muted"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </Reveal>
           </div>
@@ -329,10 +443,10 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
           <Container>
             <div className="prose prose-invert max-w-4xl mx-auto">
               <h2 className="heading-section text-ink mb-8">
-                {locale === "fr" 
-                  ? `Tout savoir sur ${activity.title[locale].toLowerCase()}`
-                  : `Everything about ${activity.title[locale].toLowerCase()}`
-                }
+                {activity.seoHeading?.[locale] ??
+                  (locale === "fr"
+                    ? `Guide pratique : ${activity.title[locale]}`
+                    : `Practical guide: ${activity.title[locale]}`)}
               </h2>
               <div className="space-y-6 text-base leading-relaxed text-ink-muted">
                 {activity.seoContent[locale].map((paragraph, i) => (
@@ -351,8 +465,8 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
             eyebrow={dict.activities.galleryTitle}
             title={
               locale === "fr"
-                ? "Des images, pas des promesses."
-                : "Real images, not promises."
+                ? `Photos : ${activity.shortTitle[locale]} à Essaouira`
+                : `Photos: ${activity.shortTitle[locale]} in Essaouira`
             }
           />
           <div className="mt-8 sm:mt-12">
@@ -369,8 +483,8 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
               eyebrow={locale === "fr" ? "Vidéos" : "Videos"}
               title={
                 locale === "fr"
-                  ? "Vivez l'expérience en vidéo"
-                  : "Experience it in video"
+                  ? `Vidéos : ${activity.shortTitle[locale]} à Essaouira`
+                  : `Videos: ${activity.shortTitle[locale]} in Essaouira`
               }
             />
             <div className="mt-8 sm:mt-12 flex justify-center gap-4 sm:gap-6">
@@ -434,8 +548,8 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
               eyebrow={dict.activities.relatedTitle}
               title={
                 locale === "fr"
-                  ? "Découvrez aussi"
-                  : "Discover also"
+                  ? "Autres activités à Essaouira"
+                  : "Other activities in Essaouira"
               }
             />
             <div className="mt-8 grid auto-rows-fr items-stretch gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
@@ -449,6 +563,62 @@ export function ActivityPageClient({ activity, locale, dict, related, galleryIma
                   />
                 </div>
               ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* RELATED BLOG GUIDES */}
+      {relatedPosts.length > 0 && (
+        <section className="border-t border-border bg-bg-card/40 py-12 sm:py-20 lg:py-24">
+          <Container>
+            <SectionHeading
+              eyebrow={dict.nav.blog}
+              title={
+                locale === "fr"
+                  ? "Guides & conseils associés"
+                  : "Related guides & tips"
+              }
+            />
+            <div className="mt-8 grid auto-rows-fr gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+              {relatedPosts.map((p) => (
+                <Link
+                  key={p.slug.fr}
+                  href={localizedPath(locale, "blog", p.slug[locale])}
+                  className="group flex gap-5 overflow-hidden rounded-2xl border border-border bg-bg-card p-4 transition-all duration-500 hover:border-gold/40"
+                >
+                  <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl">
+                    <Image
+                      src={p.cover}
+                      alt={p.coverAlt[locale]}
+                      fill
+                      sizes="112px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[10px] uppercase tracking-widest2 text-gold">
+                      {p.category[locale]}
+                    </span>
+                    <h3 className="mt-1 font-display text-base leading-snug text-ink sm:text-lg">
+                      {p.title[locale]}
+                    </h3>
+                    <span className="mt-2 inline-flex items-center gap-1 text-[11px] uppercase tracking-widest2 text-ink-muted group-hover:text-gold">
+                      {dict.blog.readMore}
+                      <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-8 text-center">
+              <Link
+                href={localizedPath(locale, "blog")}
+                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest2 text-gold hover:underline"
+              >
+                {locale === "fr" ? "Voir tous les articles" : "View all articles"}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </div>
           </Container>
         </section>

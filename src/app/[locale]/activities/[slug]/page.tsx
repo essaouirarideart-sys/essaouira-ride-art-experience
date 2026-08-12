@@ -5,6 +5,7 @@ import {
   getActivityBySlug,
   getRelatedActivities,
 } from "@/data/activities";
+import { getBlogPostsForActivity } from "@/data/blog";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import {
@@ -61,6 +62,7 @@ export default async function ActivityPage({
   if (!activity) notFound();
   const dict = getDictionary(typedLocale);
   const related = getRelatedActivities(activity.id);
+  const relatedPosts = getBlogPostsForActivity(activity.id, 3);
 
   const galleryImages = activity.gallery.map((g) => ({
     src: g.src,
@@ -80,6 +82,7 @@ export default async function ActivityPage({
   ]);
 
   const lowestPrice = Math.min(...activity.pricing.flatMap(t => t.options.map(o => o.price)));
+  const activityPageUrl = `${site.url}${localizedPath(typedLocale, "activities", activity.slug[typedLocale])}`;
   const activityLd = activityJsonLd({
     locale: typedLocale,
     name: activity.title[typedLocale],
@@ -88,7 +91,13 @@ export default async function ActivityPage({
     slug: activity.slug[typedLocale],
     priceFrom: lowestPrice,
     currency: "EUR",
-    duration: activity.duration[typedLocale],
+    offers: activity.pricing.flatMap((tier) =>
+      tier.options.map((option) => ({
+        name: `${tier.name[typedLocale]} — ${option.label[typedLocale]} (${tier.duration[typedLocale]})`,
+        price: option.price,
+        url: `${activityPageUrl}#pricing`,
+      }))
+    ),
   });
 
   const faqLd = faqJsonLd(
@@ -98,7 +107,6 @@ export default async function ActivityPage({
     }))
   );
 
-  const activityPageUrl = `${site.url}${localizedPath(typedLocale, "activities", activity.slug[typedLocale])}`;
   const premiumLd = activity.premiumPricing
     ? premiumPackagesJsonLd({
         activityName: activity.title[typedLocale],
@@ -138,6 +146,7 @@ export default async function ActivityPage({
         locale={typedLocale}
         dict={dict}
         related={related}
+        relatedPosts={relatedPosts}
         galleryImages={galleryImages}
       />
     </>

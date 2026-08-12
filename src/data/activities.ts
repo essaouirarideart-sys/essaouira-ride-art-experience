@@ -67,9 +67,21 @@ export interface Activity {
   title: { fr: string; en: string };
   shortTitle: { fr: string; en: string };
   tagline: { fr: string; en: string };
+  /** Intent-focused H2 under the experience section (not the marketing tagline). */
+  overviewHeading: { fr: string; en: string };
+  /** H2 for the pricing section — targets prix / price queries. */
+  pricingHeading?: { fr: string; en: string };
   description: { fr: string; en: string };
   longDescription: { fr: string[]; en: string[] };
-  seoContent?: { fr: string[]; en: string[] }; // Long-form SEO content (300-600 words)
+  seoContent?: { fr: string[]; en: string[] };
+  /** H2 for the seoContent block. */
+  seoHeading?: { fr: string; en: string };
+  /** Step-by-step experience outline from real package info. */
+  itinerary?: { fr: string[]; en: string[] };
+  meetingPoint?: { fr: string; en: string };
+  suitableFor?: { fr: string[]; en: string[] };
+  notIncluded?: { fr: string[]; en: string[] };
+  bookingSteps?: { fr: string[]; en: string[] };
   heroImage: string;
   heroImageAlt: { fr: string; en: string };
   gallery: Array<{ src: string; alt: { fr: string; en: string } }>;
@@ -151,13 +163,21 @@ export const activities: Activity[] = [
     },
     icon: "horse",
     title: {
-      fr: "Balade à cheval à Essaouira",
-      en: "Horse Riding in Essaouira",
+      fr: "Balade à cheval sur la plage à Essaouira",
+      en: "Horse Riding on the Beach in Essaouira",
     },
     shortTitle: { fr: "Cheval", en: "Horse" },
     tagline: {
       fr: "Galoper face à l'océan, au coucher du soleil.",
       en: "Gallop along the ocean, into the sunset.",
+    },
+    overviewHeading: {
+      fr: "Cheval sur la plage à Essaouira — Diabat & coucher de soleil",
+      en: "Beach horse riding in Essaouira — Diabat & sunset",
+    },
+    pricingHeading: {
+      fr: "Prix balade à cheval Essaouira — tarifs & formules",
+      en: "Horse riding Essaouira prices — packages & rates",
     },
     description: {
       fr: "Une balade équestre cinématographique sur la plage de Diabat et les dunes d'Essaouira. Chevaux soignés, guides expérimentés, lumière dorée garantie.",
@@ -243,6 +263,7 @@ export const activities: Activity[] = [
         "Briefing complet avant le départ",
         "Bouteille d'eau",
         "Photos souvenir offertes",
+        "Transfert hôtel gratuit (centre d'Essaouira)",
       ],
       en: [
         "Horse adapted to your level",
@@ -251,6 +272,59 @@ export const activities: Activity[] = [
         "Full pre-ride briefing",
         "Water bottle",
         "Souvenir photos included",
+        "Free hotel pick-up (central Essaouira)",
+      ],
+    },
+    notIncluded: {
+      fr: ["Vêtements et chaussures personnels (pantalon long, chaussures fermées)"],
+      en: ["Personal clothing and footwear (long pants, closed shoes)"],
+    },
+    meetingPoint: {
+      fr: "Écuries de Diabat, à environ 5 minutes du centre d'Essaouira (anciennement Mogador).",
+      en: "Diabat stables, about 5 minutes from Essaouira city center (formerly Mogador).",
+    },
+    suitableFor: {
+      fr: [
+        "Débutants et cavaliers confirmés",
+        "Familles avec enfants dès 6 ans (accompagnés)",
+        "Couples (surtout au coucher du soleil)",
+        "Photographes et petits groupes",
+      ],
+      en: [
+        "Beginners and experienced riders",
+        "Families with children from 6 (accompanied)",
+        "Couples (especially at sunset)",
+        "Photographers and small groups",
+      ],
+    },
+    itinerary: {
+      fr: [
+        "Accueil aux écuries de Diabat et présentation des chevaux",
+        "Briefing sécurité, casque et attribution d'un cheval adapté à votre niveau",
+        "Départ vers la plage de Diabat, les dunes et (selon formule) la forêt",
+        "Pour les formules sunset : timing calculé pour le coucher de soleil",
+        "Retour aux écuries, photos souvenir et départ",
+      ],
+      en: [
+        "Welcome at the Diabat stables and introduction to the horses",
+        "Safety briefing, helmet fitting and horse matched to your level",
+        "Ride toward Diabat beach, dunes and (depending on package) the forest",
+        "Sunset packages: timing set for golden hour on the beach",
+        "Return to the stables, souvenir photos and departure",
+      ],
+    },
+    bookingSteps: {
+      fr: [
+        "Choisissez votre durée (1h ou 2h) et jour / sunset",
+        "Réservez en ligne ou via WhatsApp",
+        "Recevez la confirmation et les détails de prise en charge",
+        "Profitez de votre balade à cheval à Essaouira",
+      ],
+      en: [
+        "Choose your duration (1h or 2h) and day / sunset package",
+        "Book online or via WhatsApp",
+        "Receive confirmation and pick-up details",
+        "Enjoy your horse ride in Essaouira",
       ],
     },
     pricing: [
@@ -457,56 +531,67 @@ export const activities: Activity[] = [
           en: "Is transport included?",
         },
         answer: {
-          fr: "Pour les hôtels du centre d'Essaouira, nous proposons un transfert aller-retour sur demande. Diabat est à 5 minutes en voiture.",
-          en: "For hotels in central Essaouira, we offer round-trip transfers on request. Diabat is a 5-minute drive away.",
+          fr: "Oui. Le transfert hôtel gratuit est inclus depuis le centre d'Essaouira. Nos écuries sont à Diabat, à environ 5 minutes en voiture.",
+          en: "Yes. Free hotel pick-up from central Essaouira is included. Our stables are in Diabat, about a 5-minute drive.",
+        },
+      },
+      {
+        question: {
+          fr: "Quel est le prix d'une balade à cheval à Essaouira ?",
+          en: "How much does horse riding in Essaouira cost?",
+        },
+        answer: {
+          fr: "À partir de 20€ par personne en groupe pour 1 heure. Les formules sunset et privées sont affichées sur cette page. Transfert hôtel gratuit inclus.",
+          en: "From €20 per person in a group for 1 hour. Sunset and private packages are listed on this page. Free hotel pick-up included.",
         },
       },
     ],
+    seoHeading: {
+      fr: "Itinéraire, Diabat et conseils pour votre balade à cheval",
+      en: "Itinerary, Diabat and tips for your horse ride",
+    },
     seoContent: {
       fr: [
-        "La balade à cheval à Essaouira est l'une des expériences les plus mémorables que vous puissiez vivre au Maroc. Notre équitation sur la plage de Diabat vous offre une aventure unique face à l'océan Atlantique, avec des couchers de soleil spectaculaires qui transforment chaque sortie en moment cinématographique.",
-        "Située à seulement 5 minutes du centre d'Essaouira, la plage de Diabat est le point de départ idéal pour une randonnée équestre inoubliable. Nos chevaux sont sélectionnés pour leur calme et leur endurance, parfaits pour les cavaliers débutants comme confirmés. Chaque balade est encadrée par des guides locaux expérimentés qui connaissent parfaitement le terrain et adaptent l'allure à votre niveau.",
-        "L'expérience de horse riding à Essaouira se distingue par sa diversité de paysages : vous galopez sur le sable mouillé de la plage, explorez les dunes ocre qui bordent l'océan, et traversez parfois la forêt d'eucalyptus qui mène à Sidi Kaouki. Le timing est crucial : nos sorties au coucher du soleil offrent les images les plus spectaculaires, avec le ciel orangé qui se reflète sur l'eau et les silhouettes des chevaux au galop.",
-        "Que vous choisissiez une balade d'une heure pour découvrir la plage ou une randonnée de trois heures pour explorer les environs, chaque formule inclut le matériel de sécurité (casque), un briefing complet avant le départ, et l'accompagnement permanent de nos guides. Le transfert depuis votre hôtel à Essaouira est disponible sur demande.",
-        "Cette activité équestre convient à tous : familles avec enfants (à partir de 6 ans), couples en quête de romantisme, ou groupes d'amis cherchant l'aventure. Les photographes apprécient particulièrement la lumière unique d'Essaouira, idéale pour capturer des souvenirs exceptionnels de leur voyage au Maroc.",
+        "La balade à cheval à Essaouira est l'une des expériences les plus mémorables de la côte atlantique marocaine. Sur la plage de Diabat, vous galopez face à l'océan avec des couchers de soleil qui transforment chaque sortie en moment cinématographique.",
+        "Située à seulement 5 minutes du centre d'Essaouira (anciennement Mogador), la plage de Diabat est le point de départ idéal. Nos chevaux sont sélectionnés pour leur calme et leur endurance, adaptés aux débutants comme aux cavaliers confirmés. Chaque balade est encadrée par des guides locaux qui connaissent le terrain et adaptent l'allure.",
+        "Les paysages varient selon la formule : sable mouillé de la plage, dunes ocre, et parfois la forêt d'eucalyptus vers Sidi Kaouki. Les sorties au coucher du soleil offrent la lumière la plus spectaculaire — ciel orangé, silhouettes au galop, écume dorée.",
+        "Choisissez une balade d'une heure pour découvrir la plage, ou deux heures pour un parcours plus étendu. Chaque formule inclut casque, briefing, guide et photos souvenir. Le transfert depuis votre hôtel à Essaouira est inclus.",
+        "Cette activité convient aux familles (dès 6 ans accompagnés), aux couples et aux groupes. C'est aussi un excellent complément à une sortie quad ou dromadaire pour une journée complète d'activités outdoor à Essaouira.",
       ],
       en: [
-        "Horse riding in Essaouira is one of the most memorable experiences you can have in Morocco. Our beach horseback riding on Diabat beach offers a unique adventure facing the Atlantic Ocean, with spectacular sunsets that transform every outing into a cinematic moment.",
-        "Located just 5 minutes from Essaouira's center, Diabat beach is the perfect starting point for an unforgettable equestrian adventure. Our horses are selected for their calm temperament and endurance, perfect for both beginner and experienced riders. Each ride is supervised by experienced local guides who know the terrain perfectly and adapt the pace to your level.",
-        "The horse riding experience in Essaouira stands out for its diverse landscapes: you gallop on the wet sand of the beach, explore the ochre dunes bordering the ocean, and sometimes cross the eucalyptus forest leading to Sidi Kaouki. Timing is crucial: our sunset rides offer the most spectacular images, with the orange sky reflecting on the water and silhouettes of galloping horses.",
-        "Whether you choose a one-hour ride to discover the beach or a three-hour trek to explore the surroundings, each package includes safety equipment (helmet), a complete pre-departure briefing, and permanent supervision by our guides. Transfer from your hotel in Essaouira is available on request.",
-        "This equestrian activity suits everyone: families with children (from 6 years old), couples seeking romance, or groups of friends looking for adventure. Photographers particularly appreciate Essaouira's unique light, ideal for capturing exceptional memories of their trip to Morocco.",
+        "Horse riding in Essaouira is one of the most memorable experiences on Morocco's Atlantic coast. On Diabat beach, you gallop facing the ocean with sunsets that turn every ride into a cinematic moment.",
+        "Just 5 minutes from Essaouira's center (formerly Mogador), Diabat beach is the ideal starting point. Our horses are selected for calm and endurance, suited to beginners and experienced riders. Local guides adapt the pace to your level.",
+        "Landscapes vary by package: wet beach sand, ochre dunes, and sometimes the eucalyptus forest toward Sidi Kaouki. Sunset rides offer the most spectacular light — orange sky, galloping silhouettes, golden spray.",
+        "Choose a one-hour beach discovery or a two-hour extended ride. Every package includes helmet, briefing, guide and souvenir photos. Hotel pick-up from Essaouira is included.",
+        "This activity suits families (from age 6 accompanied), couples and groups. It also pairs well with a quad or camel ride for a full day of outdoor activities in Essaouira.",
       ],
     },
     seo: {
       title: {
-        fr: "Balade à Cheval Essaouira | Horse Riding Plage & Coucher de Soleil",
-        en: "Horse Riding Essaouira | Sunset Beach Horseback Riding Morocco",
+        fr: "Balade à Cheval Essaouira | Plage dès 20€ — Sunset Diabat",
+        en: "Horse Riding Essaouira | Beach from €20 — Sunset Rides",
       },
       description: {
-        fr: "Balade à cheval sur la plage d'Essaouira au coucher du soleil. Randonnée équestre avec guides locaux, chevaux calmes, tous niveaux. Réservation en ligne.",
-        en: "Horse riding Essaouira beach at sunset. Horseback riding tours with local guides, calm horses, all levels welcome. Book online now.",
+        fr: "Cheval sur la plage à Essaouira dès 20€. Diabat, sunset, guides locaux, tous niveaux. Transfert hôtel gratuit. Réservez votre balade en ligne.",
+        en: "Horse riding Essaouira beach from €20. Diabat sunset rides, local guides, all levels. Free hotel pick-up. Book your ride online.",
       },
       keywords: {
         fr: [
           "balade à cheval essaouira",
-          "horse riding essaouira",
+          "cheval sur la plage essaouira",
+          "cheval essaouira",
           "équitation essaouira",
-          "randonnée cheval essaouira",
           "cheval plage essaouira",
-          "trek cheval maroc",
-          "shooting cheval essaouira",
-          "activité essaouira",
-          "que faire essaouira",
+          "sunset horse riding essaouira",
+          "prix balade cheval essaouira",
         ],
         en: [
           "horse riding essaouira",
-          "horseback riding essaouira",
-          "essaouira sunset ride",
-          "diabat horse",
-          "essaouira beach ride",
-          "luxury horse trek morocco",
-          "sunrise horse riding essaouira",
+          "horse riding in essaouira",
+          "beach horse riding essaouira",
+          "sunset horse riding essaouira",
+          "horse riding essaouira price",
+          "diabat horse riding",
         ],
       },
     },
@@ -528,6 +613,14 @@ export const activities: Activity[] = [
     tagline: {
       fr: "L'aventure pure, des dunes à la forêt.",
       en: "Pure adventure, from the dunes to the forest.",
+    },
+    overviewHeading: {
+      fr: "Quad Essaouira — circuits dunes, forêt d'arganiers & Cap Sim",
+      en: "Quad Essaouira — dune, argan forest & Cap Sim tours",
+    },
+    pricingHeading: {
+      fr: "Prix quad Essaouira — tarifs des circuits",
+      en: "Quad Essaouira prices — tour rates",
     },
     description: {
       fr: "Pilotez un quad à travers les dunes, la forêt d'arganiers et les pistes côtières d'Essaouira. Sensations garanties, paysages spectaculaires.",
@@ -605,6 +698,7 @@ export const activities: Activity[] = [
         "2 guides pour le groupe",
         "Carburant inclus",
         "Bouteille d'eau",
+        "Transfert hôtel gratuit",
       ],
       en: [
         "Recent, well-maintained quad",
@@ -613,6 +707,59 @@ export const activities: Activity[] = [
         "2 guides per group",
         "Fuel included",
         "Water bottle",
+        "Free hotel pick-up",
+      ],
+    },
+    notIncluded: {
+      fr: ["Vêtements personnels (chaussures fermées recommandées)"],
+      en: ["Personal clothing (closed shoes recommended)"],
+    },
+    meetingPoint: {
+      fr: "Départ depuis Diabat, près d'Essaouira — transfert hôtel gratuit depuis le centre.",
+      en: "Departure from Diabat, near Essaouira — free hotel pick-up from the center.",
+    },
+    suitableFor: {
+      fr: [
+        "Pilotes dès 16 ans",
+        "Passagers dès 12 ans (quad biplace)",
+        "Débutants (briefing complet inclus)",
+        "Groupes en quête d'adrénaline",
+      ],
+      en: [
+        "Riders from 16 years old",
+        "Passengers from 12 (two-seater quads)",
+        "Beginners (full briefing included)",
+        "Groups looking for thrills",
+      ],
+    },
+    itinerary: {
+      fr: [
+        "Prise en charge hôtel ou rendez-vous à Diabat",
+        "Briefing sécurité, équipement et prise en main du quad",
+        "Circuit selon la formule — ex. Circuit Diabat (1h) : Dar Soltan, plage, forêt, dunes",
+        "Formules plus longues : Cap Sim, source d'eau douce, grotte, Taguenza ou cascade de Sidi M'barek",
+        "Retour, photos et transfert vers votre hébergement",
+      ],
+      en: [
+        "Hotel pick-up or meeting in Diabat",
+        "Safety briefing, gear and quad familiarization",
+        "Route by package — e.g. Diabat Circuit (1h): Dar Soltan, beach, forest, dunes",
+        "Longer tours: Cap Sim dunes, freshwater spring, cave, Taguenza or Sidi M'barek waterfall",
+        "Return, photos and transfer to your accommodation",
+      ],
+    },
+    bookingSteps: {
+      fr: [
+        "Choisissez votre circuit (1h à journée complète)",
+        "Sélectionnez simple ou double",
+        "Réservez en ligne ou WhatsApp",
+        "Partez en quad à Essaouira",
+      ],
+      en: [
+        "Choose your circuit (1h to full day)",
+        "Select single or double seating",
+        "Book online or via WhatsApp",
+        "Ride a quad in Essaouira",
       ],
     },
     pricing: [
@@ -745,53 +892,66 @@ export const activities: Activity[] = [
           en: "Is quad biking family-friendly?",
         },
         answer: {
-          fr: "Oui, à partir de 12 ans en passager et 16 ans pour piloter. Notre formule Express est parfaite pour une première découverte en famille.",
-          en: "Yes, from 12 years old as a passenger and 16 to ride. Our Express package is perfect for a first family discovery.",
+          fr: "Oui, à partir de 12 ans en passager et 16 ans pour piloter. Le circuit Diabat (1h) est idéal pour une première découverte en famille.",
+          en: "Yes, from 12 years old as a passenger and 16 to ride. The Diabat circuit (1h) is ideal for a first family discovery.",
+        },
+      },
+      {
+        question: {
+          fr: "Quel est le prix d'un quad à Essaouira ?",
+          en: "What is the price of quad Essaouira?",
+        },
+        answer: {
+          fr: "Le circuit Diabat (1h) commence à 30€ en simple et 45€ en double. Cap Sim (2h) à partir de 50€. Tous les tarifs sont listés ci-dessous, transfert inclus.",
+          en: "The Diabat circuit (1h) starts at €30 single and €45 double. Cap Sim (2h) from €50. All rates are listed below, pick-up included.",
         },
       },
     ],
+    seoHeading: {
+      fr: "Circuits quad Essaouira : Diabat, Cap Sim et dunes",
+      en: "Essaouira quad circuits: Diabat, Cap Sim and dunes",
+    },
     seoContent: {
       fr: [
-        "Le quad à Essaouira offre une aventure tout-terrain exceptionnelle à travers les paysages les plus spectaculaires de la région. Cette excursion en quad vous emmène des dunes dorées de l'Atlantique à la forêt d'arganiers, en passant par les pistes côtières qui surplombent la plage de Sidi Kaouki.",
-        "Notre centre de quad biking à Essaouira dispose de véhicules récents et parfaitement entretenus, adaptés à tous les niveaux d'expérience. Que vous soyez débutant ou pilote confirmé, nos guides locaux vous accompagnent tout au long du parcours et adaptent l'itinéraire à vos capacités. Le briefing de sécurité complet avant le départ garantit une expérience à la fois excitante et sécurisée.",
-        "L'aventure en quad dans les environs d'Essaouira se distingue par la diversité des terrains : sable fin des dunes, chemins rocailleux de la forêt, et pistes panoramiques offrant des vues imprenables sur l'océan. Le parcours de 2 heures, notre formule la plus populaire, combine parfaitement sensations fortes et découverte des paysages marocains authentiques.",
-        "Cette activité quad convient aux adultes et adolescents à partir de 16 ans pour piloter seul, ou 12 ans en passager sur nos quads biplaces. L'équipement de sécurité (casque, lunettes) est fourni, et le transfert depuis votre hôtel à Essaouira est disponible gratuitement. Les départs sont organisés matin et après-midi selon les conditions météo optimales.",
-        "Pour les groupes et familles cherchant une activité outdoor à Essaouira, le quad biking représente l'alternative parfaite aux balades à cheval ou dromadaire. L'expérience combine adrénaline, découverte de la nature marocaine, et moments de convivialité dans un cadre exceptionnel.",
+        "Le quad à Essaouira offre une aventure tout-terrain à travers dunes, forêt d'arganiers et pistes côtières vers Sidi Kaouki. C'est l'une des activités outdoor les plus demandées pour les voyageurs en quête de sensations.",
+        "Nos quads sont récents et entretenus. Débutants comme confirmés : briefing complet, deux guides par groupe, casque et lunettes fournis. Le transfert hôtel depuis Essaouira est gratuit.",
+        "Le circuit Diabat (1h) traverse Dar Soltan, plage, forêt et dunes — parfait pour découvrir. Le circuit Cap Sim (2h), le plus populaire, ajoute dunes sauvages et source d'eau douce. Les formules 3h et journée poussent jusqu'à la grotte, Taguenza ou la cascade de Sidi M'barek.",
+        "Âge minimum : 16 ans pour piloter, 12 ans en passager sur biplace. Départs matin et après-midi selon la météo.",
+        "Le quad se combine très bien avec une balade à cheval ou en dromadaire pour une journée complète d'activités à Essaouira et Diabat.",
       ],
       en: [
-        "Quad biking in Essaouira offers an exceptional off-road adventure through the region's most spectacular landscapes. This ATV tour takes you from the golden Atlantic dunes to the argan forest, passing by coastal tracks overlooking Sidi Kaouki beach.",
-        "Our quad biking center in Essaouira features recent and perfectly maintained vehicles, suitable for all experience levels. Whether you're a beginner or experienced rider, our local guides accompany you throughout the route and adapt the itinerary to your abilities. The comprehensive safety briefing before departure ensures an experience that's both exciting and secure.",
-        "The quad adventure around Essaouira stands out for its terrain diversity: fine sand dunes, rocky forest paths, and panoramic tracks offering breathtaking ocean views. The 2-hour tour, our most popular package, perfectly combines thrills with discovery of authentic Moroccan landscapes.",
-        "This quad activity is suitable for adults and teenagers from 16 years old to ride solo, or 12 years old as a passenger on our two-seater quads. Safety equipment (helmet, goggles) is provided, and free transfer from your hotel in Essaouira is available. Departures are organized morning and afternoon according to optimal weather conditions.",
-        "For groups and families looking for an outdoor activity in Essaouira, quad biking represents the perfect alternative to horse or camel rides. The experience combines adrenaline, discovery of Moroccan nature, and moments of conviviality in an exceptional setting.",
+        "Quad biking in Essaouira is an off-road adventure through dunes, argan forest and coastal tracks toward Sidi Kaouki — one of the most popular outdoor activities for thrill-seekers.",
+        "Our quads are recent and well maintained. Beginners and experienced riders get a full briefing, two guides per group, helmet and goggles. Free hotel pick-up from Essaouira is included.",
+        "The Diabat circuit (1h) covers Dar Soltan, beach, forest and dunes — ideal for a first ride. Cap Sim (2h), our most popular tour, adds wild dunes and a freshwater spring. Longer packages reach the cave, Taguenza or Sidi M'barek waterfall.",
+        "Minimum age: 16 to ride solo, 12 as passenger on a two-seater. Departures morning and afternoon depending on weather.",
+        "Quad tours pair well with horse or camel rides for a full day of activities in Essaouira and Diabat.",
       ],
     },
     seo: {
       title: {
-        fr: "Quad Essaouira | Quad Biking Dunes & Forêt d'Arganiers Morocco",
-        en: "Quad Biking Essaouira | ATV Tours Dunes & Argan Forest Morocco",
+        fr: "Quad Essaouira | Prix dès 30€ — Diabat & Cap Sim",
+        en: "Quad Essaouira | From €30 — Diabat & Cap Sim Tours",
       },
       description: {
-        fr: "Quad biking Essaouira : excursion tout-terrain dans les dunes, forêt d'arganiers et côte atlantique. Quads récents, guides experts, tous niveaux. Réservez maintenant.",
-        en: "Quad biking Essaouira: off-road adventure in dunes, argan forest and Atlantic coast. Recent ATVs, expert guides, all levels. Book now.",
+        fr: "Prix quad Essaouira dès 30€ (1h). Circuits Diabat, Cap Sim, dunes & arganiers. Guides locaux, transfert hôtel gratuit. Réservez votre excursion.",
+        en: "Quad Essaouira price from €30 (1h). Diabat & Cap Sim dune tours. Local guides, free hotel pick-up. Book your ATV excursion online.",
       },
       keywords: {
         fr: [
           "quad essaouira",
-          "quad biking essaouira",
+          "quad à essaouira",
+          "quad essaouira prix",
+          "prix quad essaouira",
           "excursion quad essaouira",
-          "activité quad maroc",
-          "dunes essaouira quad",
-          "que faire essaouira",
-          "activités essaouira",
+          "quad tour essaouira",
         ],
         en: [
+          "quad essaouira",
           "quad biking essaouira",
-          "atv essaouira",
           "quad tour essaouira",
-          "essaouira quad adventure",
-          "things to do essaouira",
-          "essaouira activities",
+          "quad essaouira price",
+          "atv essaouira",
+          "essaouira quad tour",
         ],
       },
     },
@@ -813,6 +973,14 @@ export const activities: Activity[] = [
     tagline: {
       fr: "Le rythme du désert, à deux pas de l'océan.",
       en: "The rhythm of the desert, steps away from the ocean.",
+    },
+    overviewHeading: {
+      fr: "Balade dromadaire à Essaouira — plage Diabat & coucher de soleil",
+      en: "Camel ride Essaouira — Diabat beach dunes & sunset",
+    },
+    pricingHeading: {
+      fr: "Prix balade dromadaire Essaouira — tarifs",
+      en: "Camel ride Essaouira price — rates & packages",
     },
     description: {
       fr: "Vivez la traversée des dunes d'Essaouira en dromadaire. Une expérience douce, photogénique et profondément marocaine, idéale en famille ou en couple.",
@@ -870,7 +1038,7 @@ export const activities: Activity[] = [
         title: { fr: "Caravane face à l'océan", en: "Camel caravan facing the ocean" },
       },
     ],
-    duration: { fr: "30min à 2h", en: "30min to 2h" },
+    duration: { fr: "1h à 1 journée", en: "1h to full day" },
     difficulty: "easy",
     minAge: 4,
     groupSize: { fr: "1 à 12 personnes", en: "1 to 12 people" },
@@ -882,6 +1050,7 @@ export const activities: Activity[] = [
         "Photos souvenir offertes",
         "Bouteille d'eau",
         "Possibilité thé à la menthe",
+        "Transfert hôtel gratuit",
       ],
       en: [
         "Camel & traditional equipment",
@@ -890,6 +1059,59 @@ export const activities: Activity[] = [
         "Souvenir photos included",
         "Water bottle",
         "Optional mint tea",
+        "Free hotel pick-up",
+      ],
+    },
+    notIncluded: {
+      fr: ["Vêtements personnels (chapeau et crème solaire conseillés)"],
+      en: ["Personal clothing (hat and sunscreen recommended)"],
+    },
+    meetingPoint: {
+      fr: "Plage de Diabat, à quelques minutes du centre d'Essaouira — transfert hôtel gratuit.",
+      en: "Diabat beach, minutes from Essaouira center — free hotel pick-up.",
+    },
+    suitableFor: {
+      fr: [
+        "Familles avec enfants dès 4 ans",
+        "Couples (surtout au coucher du soleil)",
+        "Tous niveaux — aucune expérience requise",
+        "Voyageurs cherchant une expérience douce et photogénique",
+      ],
+      en: [
+        "Families with children from 4 years old",
+        "Couples (especially at sunset)",
+        "All levels — no experience needed",
+        "Travelers seeking a gentle, photogenic experience",
+      ],
+    },
+    itinerary: {
+      fr: [
+        "Prise en charge et arrivée sur la plage de Diabat",
+        "Briefing et montage du dromadaire avec l'aide du guide",
+        "Traversée des dunes face à l'océan Atlantique",
+        "Pause photos (et thé à la menthe selon formule)",
+        "Retour et transfert vers votre hébergement",
+      ],
+      en: [
+        "Pick-up and arrival on Diabat beach",
+        "Briefing and mounting with guide assistance",
+        "Ride across the dunes facing the Atlantic Ocean",
+        "Photo stop (and mint tea depending on package)",
+        "Return and transfer to your accommodation",
+      ],
+    },
+    bookingSteps: {
+      fr: [
+        "Choisissez votre durée (1h, 2h, 3h ou journée)",
+        "Réservez en ligne ou WhatsApp",
+        "Confirmation et détails de prise en charge",
+        "Profitez de votre balade dromadaire à Essaouira",
+      ],
+      en: [
+        "Choose your duration (1h, 2h, 3h or full day)",
+        "Book online or via WhatsApp",
+        "Confirmation and pick-up details",
+        "Enjoy your camel ride in Essaouira",
       ],
     },
     pricing: [
@@ -988,49 +1210,60 @@ export const activities: Activity[] = [
           en: "Absolutely. Daily rest, quality feed, regular veterinary care. Animal welfare is non-negotiable for us.",
         },
       },
+      {
+        question: {
+          fr: "Quel est le prix d'une balade dromadaire à Essaouira ?",
+          en: "What is the camel ride Essaouira price?",
+        },
+        answer: {
+          fr: "À partir de 20€ par personne pour 1 heure. Formules 2h, demi-journée et journée avec pique-nique disponibles. Transfert hôtel gratuit inclus.",
+          en: "From €20 per person for 1 hour. 2h, half-day and full-day picnic packages available. Free hotel pick-up included.",
+        },
+      },
     ],
+    seoHeading: {
+      fr: "À quoi s'attendre pour une balade dromadaire à Essaouira",
+      en: "What to expect from a camel ride in Essaouira",
+    },
     seoContent: {
       fr: [
         "La balade en dromadaire à Essaouira est une expérience authentique qui vous plonge dans l'atmosphère magique du Maroc. Cette promenade à dos de chameau sur les dunes face à l'océan Atlantique offre un moment unique, particulièrement spectaculaire au coucher du soleil lorsque les couleurs du ciel se reflètent sur le sable et l'eau.",
         "Notre caravane de dromadaires part de la plage de Diabat, à quelques minutes d'Essaouira. Les animaux sont sélectionnés pour leur calme et leur docilité, parfaits pour les familles avec enfants dès 4 ans. Nos guides berbères locaux partagent leur connaissance du désert atlantique et veillent au bien-être des dromadaires avec un suivi vétérinaire régulier et des conditions de vie respectueuses.",
         "L'expérience de balade à dromadaire à Essaouira se distingue par son cadre exceptionnel : contrairement aux balades dans le désert intérieur, ici vous évoluez entre dunes dorées et océan bleu, créant des images de carte postale inoubliables. Le rythme lent et majestueux du dromadaire permet d'apprécier pleinement le paysage et de capturer des photos mémorables.",
-        "Plusieurs formules sont disponibles, de la courte balade de 30 minutes pour une première découverte, jusqu'à la randonnée de 2 heures pour explorer les environs en profondeur. Chaque sortie peut être agrémentée d'un thé à la menthe traditionnel dans les dunes. Le transfert depuis votre hébergement à Essaouira est inclus dans nos forfaits.",
+        "Plusieurs formules sont disponibles, de la balade d'une heure pour une première découverte, jusqu'à la demi-journée ou la journée complète pour explorer les environs en profondeur. Chaque sortie peut être agrémentée d'un thé à la menthe traditionnel dans les dunes. Le transfert depuis votre hébergement à Essaouira est inclus dans nos forfaits.",
         "Cette activité dromadaire convient parfaitement aux familles, couples et groupes cherchant une expérience culturelle authentique à Essaouira. C'est aussi l'occasion idéale de combiner avec nos autres activités (cheval, quad) pour une journée complète de découverte des paysages marocains.",
       ],
       en: [
         "Camel riding in Essaouira is an authentic experience that immerses you in Morocco's magical atmosphere. This camel trek on the dunes facing the Atlantic Ocean offers a unique moment, particularly spectacular at sunset when the sky's colors reflect on the sand and water.",
         "Our camel caravan departs from Diabat beach, just minutes from Essaouira. The animals are selected for their calm and docile nature, perfect for families with children from 4 years old. Our local Berber guides share their knowledge of the Atlantic desert and ensure the camels' welfare with regular veterinary care and respectful living conditions.",
         "The camel ride experience in Essaouira stands out for its exceptional setting: unlike rides in the interior desert, here you move between golden dunes and blue ocean, creating unforgettable postcard images. The slow and majestic pace of the camel allows you to fully appreciate the landscape and capture memorable photos.",
-        "Several packages are available, from a short 30-minute ride for a first discovery, to a 2-hour trek to explore the surroundings in depth. Each outing can be enhanced with traditional mint tea in the dunes. Transfer from your accommodation in Essaouira is included in our packages.",
+        "Several packages are available, from a one-hour ride for a first discovery, to a half-day or full-day trek. Each outing can be enhanced with traditional mint tea in the dunes. Transfer from your accommodation in Essaouira is included in our packages.",
         "This camel activity is perfect for families, couples and groups seeking an authentic cultural experience in Essaouira. It's also an ideal opportunity to combine with our other activities (horse, quad) for a full day discovering Moroccan landscapes.",
       ],
     },
     seo: {
       title: {
-        fr: "Balade Dromadaire Essaouira | Camel Ride Sunset Plage Morocco",
-        en: "Camel Ride Essaouira | Sunset Camel Trekking Beach Morocco",
+        fr: "Balade Dromadaire Essaouira | Dès 20€ — Plage & Sunset",
+        en: "Camel Ride Essaouira | From €20 — Beach & Sunset",
       },
       description: {
-        fr: "Balade en dromadaire Essaouira face à l'océan au coucher du soleil. Camel ride avec guides berbères, animaux bien traités, idéal familles. Réservez en ligne.",
-        en: "Camel ride Essaouira facing the ocean at sunset. Camel trekking with Berber guides, well-treated animals, family-friendly. Book online now.",
+        fr: "Balade dromadaire Essaouira dès 20€. Plage Diabat, sunset, familles dès 4 ans. Guides berbères, transfert inclus. Réservez en ligne.",
+        en: "Camel ride Essaouira from €20. Diabat beach sunset, family-friendly from age 4. Berber guides, free pick-up. Book your camel ride online.",
       },
       keywords: {
         fr: [
           "balade dromadaire essaouira",
+          "dromadaire essaouira",
           "camel ride essaouira",
+          "prix dromadaire essaouira",
           "chameau essaouira",
-          "dromadaire plage essaouira",
-          "activité dromadaire maroc",
-          "que faire essaouira",
-          "activités essaouira",
         ],
         en: [
           "camel ride essaouira",
-          "camel trekking essaouira",
+          "camel ride in essaouira",
+          "camel ride essaouira price",
+          "sunset camel ride essaouira",
           "essaouira camel tour",
-          "camel beach essaouira",
-          "things to do essaouira",
-          "essaouira activities",
         ],
       },
     },
@@ -1052,6 +1285,10 @@ export const activities: Activity[] = [
     tagline: {
       fr: "Reconnectez-vous, un trait à la fois.",
       en: "Reconnect with yourself, one stroke at a time.",
+    },
+    overviewHeading: {
+      fr: "Art experience anti-stress face à l'océan à Essaouira",
+      en: "Anti-stress art experience by the ocean in Essaouira",
     },
     description: {
       fr: "Un atelier de coloriage anti-stress et d'art-thérapie face à l'océan d'Essaouira. Une parenthèse créative, calme et profondément ressourçante.",

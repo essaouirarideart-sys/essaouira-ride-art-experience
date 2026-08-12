@@ -23,16 +23,24 @@ export async function generateMetadata({
     segment: "booking",
     title:
       locale === "fr"
-        ? "Réservation | Activités Essaouira — Cheval, Quad, Dromadaire"
+        ? "Réservation | Activités à Essaouira — Cheval, Quad, Dromadaire"
         : "Book Now | Essaouira Activities — Horse Riding, Quad, Camel",
     description:
       locale === "fr"
-        ? "Réservez vos activités à Essaouira en ligne. Balade à cheval, quad, dromadaire, art. Confirmation immédiate, transfert hôtel gratuit, annulation flexible."
-        : "Book your Essaouira activities online. Horse riding, quad biking, camel ride, art. Instant confirmation, free hotel pick-up, flexible cancellation.",
+        ? "Réservez vos activités à Essaouira en ligne : balade à cheval, quad, dromadaire, art. Confirmation rapide, transfert hôtel gratuit."
+        : "Book your Essaouira activities online: horse riding, quad biking, camel ride, art. Fast confirmation, free hotel pick-up.",
     keywords:
       locale === "fr"
-        ? ["réservation essaouira", "réserver activité essaouira", "book essaouira", "excursion essaouira"]
-        : ["book essaouira", "reserve essaouira activity", "essaouira booking", "essaouira excursion"],
+        ? [
+            "réservation essaouira",
+            "réserver activité essaouira",
+            "excursion essaouira",
+          ]
+        : [
+            "book essaouira",
+            "reserve essaouira activity",
+            "essaouira booking",
+          ],
   });
 }
 

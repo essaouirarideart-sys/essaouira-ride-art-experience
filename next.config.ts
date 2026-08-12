@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  trailingSlash: false,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -27,6 +28,17 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
+  async redirects() {
+    return [
+      // www → apex (canonical host)
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.essaouirarideart.com" }],
+        destination: "https://essaouirarideart.com/:path*",
+        permanent: true,
+      },
+    ];
   },
 };
 

@@ -55,10 +55,10 @@ const legacyBlogPosts: BlogPost[] = [
     body: {
       fr: [
         "Essaouira est l'une des villes les plus authentiques du Maroc. Ancienne Mogador, fortifiée par les Portugais, sublimée par les vents atlantiques, elle attire les voyageurs en quête de calme, de lumière et d'aventure. Voici notre guide complet des meilleures activités à Essaouira.",
-        "**1. Balade à cheval au coucher du soleil** — L'expérience signature d'Essaouira. Notre [balade à cheval sur la plage de Diabat](/fr/activities/balade-a-cheval-essaouira) vous offre des images inoubliables : silhouettes au galop, écume dorée, ciel orangé. Parfait pour tous niveaux, de 1h à 3h. Guides locaux expérimentés et chevaux calmes.",
-        "**2. Quad biking dans les dunes** — Pour les amateurs de sensations fortes, notre [excursion quad à Essaouira](/fr/activities/quad-essaouira) traverse trois univers : dunes atlantiques, forêt d'arganiers, et pistes côtières surplombant Sidi Kaouki. Équipement fourni, briefing sécurité complet.",
-        "**3. Balade en dromadaire** — La photo iconique du Maroc : [caravane de dromadaires face à l'océan](/fr/activities/balade-dromadaire-essaouira). Idéal en famille (dès 4 ans), au coucher du soleil. Guides berbères authentiques, animaux bien traités.",
-        "**4. Art-thérapie face à l'océan** — Notre [atelier de coloriage anti-stress](/fr/activities/art-experience-essaouira) surprend tous nos visiteurs. Après l'aventure, le calme. Mandala, motifs berbères, aquarelles. Vous repartez avec votre création.",
+        "**1. Balade à cheval au coucher du soleil** — L'expérience signature d'Essaouira. Notre [balade à cheval sur la plage de Diabat](/fr/activites/balade-a-cheval-essaouira) vous offre des images inoubliables : silhouettes au galop, écume dorée, ciel orangé. Parfait pour tous niveaux, de 1h à 3h. Guides locaux expérimentés et chevaux calmes.",
+        "**2. Quad biking dans les dunes** — Pour les amateurs de sensations fortes, notre [excursion quad à Essaouira](/fr/activites/quad-essaouira) traverse trois univers : dunes atlantiques, forêt d'arganiers, et pistes côtières surplombant Sidi Kaouki. Équipement fourni, briefing sécurité complet.",
+        "**3. Balade en dromadaire** — La photo iconique du Maroc : [caravane de dromadaires face à l'océan](/fr/activites/balade-dromadaire-essaouira). Idéal en famille (dès 4 ans), au coucher du soleil. Guides berbères authentiques, animaux bien traités.",
+        "**4. Art-thérapie face à l'océan** — Notre [atelier de coloriage anti-stress](/fr/activites/art-experience-essaouira) surprend tous nos visiteurs. Après l'aventure, le calme. Mandala, motifs berbères, aquarelles. Vous repartez avec votre création.",
         "**5. La médina au lever du jour** — Avant l'ouverture des boutiques, découvrez Essaouira authentique : pêcheurs préparant leurs filets, chats des remparts, lumière dorée sur les murs blancs et bleus.",
         "**6. Le port de pêche vers 11h** — Quand les bateaux bleus rentrent chargés de sardines. Dégustation de poisson grillé sur place, ambiance locale garantie.",
         "**7. La plage de Sidi Kaouki** — À 20 minutes d'Essaouira, paradis des surfeurs et kitesurfeurs. Vent constant, vagues parfaites, ambiance bohème.",
@@ -70,7 +70,7 @@ const legacyBlogPosts: BlogPost[] = [
       en: [
         "Essaouira is one of Morocco's most authentic cities. The former Mogador, fortified by the Portuguese, sublimated by Atlantic winds, attracts travelers seeking calm, light and adventure. Here's our complete guide to the best things to do in Essaouira.",
         "**1. Sunset Horse Riding** — Essaouira's signature experience. Our [horse riding on Diabat beach](/en/activities/horse-riding-essaouira) offers unforgettable images: galloping silhouettes, golden spray, orange sky. Perfect for all levels, 1h to 3h. Experienced local guides and calm horses.",
-        "**2. Quad Biking in the Dunes** — For thrill-seekers, our [quad biking tour in Essaouira](/en/activities/quad-essaouira) crosses three worlds: Atlantic dunes, argan forest, and coastal tracks overlooking Sidi Kaouki. Equipment provided, full safety briefing.",
+        "**2. Quad Biking in the Dunes** — For thrill-seekers, our [quad biking tour in Essaouira](/en/activities/quad-biking-essaouira) crosses three worlds: Atlantic dunes, argan forest, and coastal tracks overlooking Sidi Kaouki. Equipment provided, full safety briefing.",
         "**3. Camel Ride** — Morocco's iconic photo: [camel caravan facing the ocean](/en/activities/camel-ride-essaouira). Family-friendly (from 4 years), at sunset. Authentic Berber guides, well-treated animals.",
         "**4. Art Therapy Facing the Ocean** — Our [anti-stress coloring workshop](/en/activities/art-experience-essaouira) surprises all our visitors. After adventure, calm. Mandala, Berber patterns, watercolors. You leave with your creation.",
         "**5. The Medina at Dawn** — Before shops open, discover authentic Essaouira: fishermen preparing nets, rampart cats, golden light on white and blue walls.",
@@ -253,9 +253,9 @@ const legacyBlogPosts: BlogPost[] = [
         "Contrairement à d'autres spots équestres au Maroc, Essaouira offre un terrain unique : des kilomètres de plage sauvage, des dunes dorées, une forêt d'arganiers millénaires, et surtout, une lumière incomparable. La plage de Diabat, à quelques minutes du centre-ville, est notre terrain de jeu favori.",
         "Les chevaux locaux — souvent des Barbes ou des croisés Arabes — sont habitués au sable, à l'eau et aux cavaliers de tous niveaux. Nos guides, issus de familles berbères de la région, connaissent chaque dune, chaque passage secret.",
         "## Les différentes formules de balade",
-        "**Balade 1 heure** — Parfaite pour une première découverte. Vous longez la plage, entrez dans les dunes, et si le timing est bon, vous assistez au coucher du soleil. Idéal pour les familles avec enfants dès 6 ans. [Voir les tarifs](/fr/prices)",
+        "**Balade 1 heure** — Parfaite pour une première découverte. Vous longez la plage, entrez dans les dunes, et si le timing est bon, vous assistez au coucher du soleil. Idéal pour les familles avec enfants dès 6 ans. [Voir les tarifs](/fr/tarifs)",
         "**Balade 2 heures** — Notre formule signature. Plage, dunes, forêt d'arganiers, et retour par la côte. Vous avez le temps de galoper (pour ceux qui le souhaitent), de faire des pauses photo, et de vraiment vous immerger dans le paysage.",
-        "**Balade coucher de soleil** — Le must absolu. Nous partons 2 heures avant le sunset pour arriver au spot parfait au moment magique. Les photos sont cinématographiques. [Réserver maintenant](/fr/booking)",
+        "**Balade coucher de soleil** — Le must absolu. Nous partons 2 heures avant le sunset pour arriver au spot parfait au moment magique. Les photos sont cinématographiques. [Réserver maintenant](/fr/reservation)",
         "## Conseils pratiques avant votre balade",
         "**Que porter ?** Pantalon long et confortable (évitez le jean serré), chaussures fermées, et une couche pour le vent du soir. Nous fournissons les casques.",
         "**Faut-il de l'expérience ?** Non. Nos chevaux sont calmes et nos guides adaptent l'allure à chaque cavalier. Les débutants complets sont les bienvenus.",
@@ -264,12 +264,12 @@ const legacyBlogPosts: BlogPost[] = [
         "## Le meilleur moment pour réserver",
         "Septembre et octobre offrent la lumière la plus belle et moins de monde. Mais honnêtement, le coucher de soleil à Essaouira est magique toute l'année. Réservez 24 à 48 heures à l'avance en haute saison.",
         "## Ce qui est inclus dans nos balades",
-        "Cheval adapté à votre niveau, casque de sécurité, guide local expérimenté, briefing complet, bouteille d'eau, et photos souvenir offertes. Le transfert depuis votre hôtel est gratuit. [Découvrir notre page activité](/fr/activities/balade-a-cheval-essaouira)",
+        "Cheval adapté à votre niveau, casque de sécurité, guide local expérimenté, briefing complet, bouteille d'eau, et photos souvenir offertes. Le transfert depuis votre hôtel est gratuit. [Découvrir notre page activité](/fr/activites/balade-a-cheval-essaouira)",
         "## FAQ rapide",
         "**Quel est le poids maximum ?** Environ 90-95 kg pour le confort du cheval.",
         "**Peut-on réserver le jour même ?** Parfois, mais nous recommandons de réserver à l'avance, surtout pour le coucher du soleil.",
         "**Et s'il pleut ?** Nous reportons ou remboursons. La pluie est rare à Essaouira, mais ça arrive.",
-        "Prêt à vivre l'expérience ? [Contactez-nous sur WhatsApp](/fr/contact) ou [réservez directement en ligne](/fr/booking).",
+        "Prêt à vivre l'expérience ? [Contactez-nous sur WhatsApp](/fr/contact) ou [réservez directement en ligne](/fr/reservation).",
       ],
       en: [
         "There's something magical about riding on a Moroccan beach at sunset. The foam splashing against hooves, the Atlantic wind whipping your face, the golden light transforming every moment into a living painting. In Essaouira, this magic is accessible to everyone — beginners and experienced riders alike.",
@@ -349,10 +349,10 @@ const legacyBlogPosts: BlogPost[] = [
         "Essaouira offre ce que peu d'endroits au monde peuvent offrir : des dunes atlantiques qui plongent vers l'océan, une forêt d'arganiers millénaires, des pistes côtières surplombant des plages sauvages, et des villages berbères authentiques.",
         "Notre circuit signature traverse trois univers en quelques heures : les dunes de Diabat, la forêt enchantée, et les falaises de Cap Sim. Chaque virage révèle un nouveau panorama.",
         "## Les différents circuits disponibles",
-        "**Circuit Diabat (1h)** — L'initiation parfaite. Dunes, plage, forêt. Idéal pour une première expérience ou si vous avez peu de temps. [Voir les tarifs](/fr/prices)",
+        "**Circuit Diabat (1h)** — L'initiation parfaite. Dunes, plage, forêt. Idéal pour une première expérience ou si vous avez peu de temps. [Voir les tarifs](/fr/tarifs)",
         "**Circuit Cap Sim (2h)** — Notre best-seller. Vous allez plus loin, plus haut, avec des vues imprenables sur l'océan. Pause photo garantie au sommet des dunes.",
         "**Circuit Grotte (3h)** — Pour les aventuriers. Inclut une grotte secrète accessible uniquement en quad, une source d'eau douce, et des paysages lunaires.",
-        "**Demi-journée ou journée complète** — Explorez jusqu'à Sidi Kaouki ou la cascade de Sidi M'barek. Déjeuner berbère inclus. [Réserver maintenant](/fr/booking)",
+        "**Demi-journée ou journée complète** — Explorez jusqu'à Sidi Kaouki ou la cascade de Sidi M'barek. Déjeuner berbère inclus. [Réserver maintenant](/fr/reservation)",
         "## Aucune expérience requise",
         "Nos quads sont automatiques et faciles à manier. Avant le départ, vous recevez un briefing complet : accélération, freinage, virages dans le sable. En 10 minutes, vous êtes prêt.",
         "Deux guides accompagnent chaque groupe : un devant pour montrer le chemin, un derrière pour s'assurer que personne ne reste en arrière.",
@@ -361,10 +361,10 @@ const legacyBlogPosts: BlogPost[] = [
         "## Le meilleur moment pour partir",
         "Le matin offre une lumière douce et moins de vent. L'après-midi, les couleurs sont plus chaudes mais le vent peut se lever. Évitez les heures les plus chaudes en été.",
         "## Questions fréquentes",
-        "**Âge minimum ?** 16 ans pour conduire seul, 6 ans en passager avec un adulte.",
+        "**Âge minimum ?** 16 ans pour conduire seul, 12 ans en passager avec un adulte.",
         "**Peut-on être deux sur un quad ?** Oui, nos quads doubles sont parfaits pour les couples ou parent-enfant.",
         "**Et si je n'ai jamais conduit ?** Aucun problème. 90% de nos clients sont débutants.",
-        "L'aventure vous appelle ? [Découvrez notre page quad](/fr/activities/quad-essaouira) ou [contactez-nous](/fr/contact).",
+        "L'aventure vous appelle ? [Découvrez notre page quad](/fr/activites/quad-essaouira) ou [contactez-nous](/fr/contact).",
       ],
       en: [
         "The roar of the engine, sand flying, adrenaline rising with each dune conquered. Quad biking in Essaouira isn't just a ride — it's a total immersion in a breathtaking landscape.",
@@ -384,10 +384,10 @@ const legacyBlogPosts: BlogPost[] = [
         "## The best time to go",
         "Morning offers soft light and less wind. Afternoon, colors are warmer but wind can pick up. Avoid the hottest hours in summer.",
         "## Frequently asked questions",
-        "**Minimum age?** 16 to drive alone, 6 as a passenger with an adult.",
+        "**Minimum age?** 16 to drive alone, 12 as a passenger with an adult.",
         "**Can two people share a quad?** Yes, our double quads are perfect for couples or parent-child.",
         "**What if I've never driven?** No problem. 90% of our clients are beginners.",
-        "Adventure calling? [Discover our quad page](/en/activities/quad-essaouira) or [contact us](/en/contact).",
+        "Adventure calling? [Discover our quad page](/en/activities/quad-biking-essaouira) or [contact us](/en/contact).",
       ],
     },
     seo: {
@@ -443,10 +443,10 @@ const legacyBlogPosts: BlogPost[] = [
         "Oubliez les balades touristiques bondées de Marrakech. Ici, c'est le désert qui rencontre l'océan. Les dunes dorées plongent vers les vagues, la lumière est incomparable, et nos guides berbères partagent des histoires transmises depuis des générations.",
         "Nos dromadaires sont élevés avec respect : alimentation quotidienne de qualité, repos suffisant, soins vétérinaires réguliers. Vous le sentirez dans leur calme et leur docilité.",
         "## Les formules disponibles",
-        "**Balade 1 heure** — L'essentiel. Plage, dunes, quelques photos mémorables. Parfait pour les familles avec jeunes enfants (dès 4 ans). [Voir les tarifs](/fr/prices)",
+        "**Balade 1 heure** — L'essentiel. Plage, dunes, quelques photos mémorables. Parfait pour les familles avec jeunes enfants (dès 4 ans). [Voir les tarifs](/fr/tarifs)",
         "**Balade 2 heures** — Notre recommandation. Vous avez le temps de vous immerger, de discuter avec le guide, de vivre le moment sans précipitation.",
         "**Demi-journée avec pause thé** — L'expérience complète. Balade étendue, pause thé à la menthe dans un campement berbère, retour au coucher du soleil.",
-        "**Journée avec pique-nique** — Pour les aventuriers. Exploration des dunes reculées, déjeuner traditionnel, immersion totale. [Réserver maintenant](/fr/booking)",
+        "**Journée avec pique-nique** — Pour les aventuriers. Exploration des dunes reculées, déjeuner traditionnel, immersion totale. [Réserver maintenant](/fr/reservation)",
         "## L'expérience au coucher du soleil",
         "C'est le moment magique. Nous partons environ 1h30 avant le sunset pour arriver au spot parfait. La lumière dorée transforme tout : le sable, l'océan, les silhouettes des dromadaires. Les photos sont naturellement cinématographiques.",
         "## Conseils pratiques",
@@ -456,7 +456,7 @@ const legacyBlogPosts: BlogPost[] = [
         "**Et les photos ?** Nos guides prennent des photos pour vous et les partagent gratuitement.",
         "## Ce qui rend notre expérience unique",
         "Nos guides ne sont pas des employés — ce sont des membres de familles berbères locales qui perpétuent une tradition. Ils partagent des histoires, des chants parfois, et une connexion authentique avec le désert atlantique.",
-        "Prêt pour l'aventure ? [Découvrez notre page dromadaire](/fr/activities/balade-dromadaire-essaouira) ou [contactez-nous sur WhatsApp](/fr/contact).",
+        "Prêt pour l'aventure ? [Découvrez notre page dromadaire](/fr/activites/balade-dromadaire-essaouira) ou [contactez-nous sur WhatsApp](/fr/contact).",
       ],
       en: [
         "The silhouette of a camel caravan against an Atlantic sunset. It's Morocco's iconic image, and in Essaouira, you can live it — not just photograph it.",
@@ -532,10 +532,10 @@ const legacyBlogPosts: BlogPost[] = [
         "## Pourquoi Essaouira est idéale pour les familles",
         "La médina est piétonne et sécurisée. Les plages sont vastes et peu profondes. Le climat est doux toute l'année (jamais trop chaud grâce aux alizés). Et surtout, les activités sont accessibles dès le plus jeune âge.",
         "## Les meilleures activités famille",
-        "**Balade à cheval (dès 6 ans)** — Nos chevaux sont calmes et habitués aux enfants. Les plus petits peuvent monter avec un parent. La balade au coucher du soleil crée des souvenirs pour la vie. [Découvrir](/fr/activities/balade-a-cheval-essaouira)",
-        "**Balade en dromadaire (dès 4 ans)** — L'activité préférée des enfants ! Le dromadaire avance doucement, c'est sécurisant et magique. Les guides adorent les enfants et racontent des histoires. [Découvrir](/fr/activities/balade-dromadaire-essaouira)",
-        "**Art-thérapie (dès 8 ans)** — Après l'aventure, le calme. Notre [atelier de coloriage](/fr/activities/art-experience-essaouira) face à l'océan est parfait pour se poser en famille. Chacun repart avec sa création.",
-        "**Quad en duo (dès 6 ans passager)** — Les enfants adorent être passagers sur nos quads doubles. Sensations garanties, en toute sécurité. [Voir les options](/fr/activities/quad-essaouira)",
+        "**Balade à cheval (dès 6 ans)** — Nos chevaux sont calmes et habitués aux enfants. Les plus petits peuvent monter avec un parent. La balade au coucher du soleil crée des souvenirs pour la vie. [Découvrir](/fr/activites/balade-a-cheval-essaouira)",
+        "**Balade en dromadaire (dès 4 ans)** — L'activité préférée des enfants ! Le dromadaire avance doucement, c'est sécurisant et magique. Les guides adorent les enfants et racontent des histoires. [Découvrir](/fr/activites/balade-dromadaire-essaouira)",
+        "**Art-thérapie (dès 8 ans)** — Après l'aventure, le calme. Notre [atelier de coloriage](/fr/activites/art-experience-essaouira) face à l'océan est parfait pour se poser en famille. Chacun repart avec sa création.",
+        "**Quad en duo (dès 12 ans passager)** — Les enfants adorent être passagers sur nos quads doubles. Sensations garanties, en toute sécurité. [Voir les options](/fr/activites/quad-essaouira)",
         "## Une journée type en famille à Essaouira",
         "**Matin** : Petit-déjeuner sur un toit-terrasse, puis exploration de la médina. Les enfants adorent les chats des remparts et les bateaux bleus du port.",
         "**Midi** : Déjeuner de poisson grillé au port. Frais, local, et les enfants peuvent choisir leur poisson.",
@@ -547,8 +547,8 @@ const legacyBlogPosts: BlogPost[] = [
         "**Hydratez** — Nous fournissons de l'eau, mais apportez des gourdes pour la journée.",
         "**Combinez les activités** — Nous proposons des formules famille sur mesure. [Contactez-nous](/fr/contact) pour un programme personnalisé.",
         "## Tarifs famille",
-        "Nous offrons des réductions pour les familles et les groupes. [Consultez nos tarifs](/fr/prices) ou demandez un devis personnalisé.",
-        "Prêt à créer des souvenirs en famille ? [Réservez maintenant](/fr/booking) ou [contactez-nous sur WhatsApp](/fr/contact).",
+        "Nous offrons des réductions pour les familles et les groupes. [Consultez nos tarifs](/fr/tarifs) ou demandez un devis personnalisé.",
+        "Prêt à créer des souvenirs en famille ? [Réservez maintenant](/fr/reservation) ou [contactez-nous sur WhatsApp](/fr/contact).",
       ],
       en: [
         "Essaouira is a dream destination for families. Far from the bustle of Marrakech, this fortified city offers a gentle pace, safe beaches, and activities suitable for all ages. Here's our guide for perfect family holidays.",
@@ -558,7 +558,7 @@ const legacyBlogPosts: BlogPost[] = [
         "**Horse riding (from 6 years)** — Our horses are calm and used to children. Smaller ones can ride with a parent. The sunset ride creates lifelong memories. [Discover](/en/activities/horse-riding-essaouira)",
         "**Camel ride (from 4 years)** — Children's favorite activity! The camel walks slowly, it's safe and magical. Guides love children and tell stories. [Discover](/en/activities/camel-ride-essaouira)",
         "**Art therapy (from 8 years)** — After adventure, calm. Our [coloring workshop](/en/activities/art-experience-essaouira) facing the ocean is perfect for family relaxation. Everyone leaves with their creation.",
-        "**Duo quad (from 6 years as passenger)** — Kids love being passengers on our double quads. Thrills guaranteed, in complete safety. [See options](/en/activities/quad-essaouira)",
+        "**Duo quad (from 12 years as passenger)** — Kids love being passengers on our double quads. Thrills guaranteed, in complete safety. [See options](/en/activities/quad-biking-essaouira)",
         "## A typical family day in Essaouira",
         "**Morning**: Rooftop breakfast, then medina exploration. Kids love the rampart cats and blue boats in the port.",
         "**Noon**: Grilled fish lunch at the port. Fresh, local, and children can choose their fish.",
@@ -627,9 +627,9 @@ const legacyBlogPosts: BlogPost[] = [
         "Contrairement à Marrakech, Essaouira offre une atmosphère intime et apaisante. Pas de sollicitations constantes, pas de foule oppressante. Juste le vent, la mer, et le temps qui s'étire.",
         "Les riads sont des havres de paix avec terrasses privées. Les restaurants offrent des vues imprenables. Et nos activités sont conçues pour créer des moments à deux.",
         "## Les expériences les plus romantiques",
-        "**Balade à cheval au coucher du soleil** — L'expérience ultime pour les couples. Galoper côte à côte sur une plage déserte, la lumière dorée, l'écume... C'est le genre de moment qu'on n'oublie jamais. [Réserver pour deux](/fr/booking)",
+        "**Balade à cheval au coucher du soleil** — L'expérience ultime pour les couples. Galoper côte à côte sur une plage déserte, la lumière dorée, l'écume... C'est le genre de moment qu'on n'oublie jamais. [Réserver pour deux](/fr/reservation)",
         "**Balade en dromadaire privée** — Plus lente, plus contemplative. Parfaite pour les couples qui préfèrent savourer l'instant. Nos guides peuvent vous laisser de l'intimité.",
-        "**Art-thérapie en duo** — Notre [atelier créatif](/fr/activities/art-experience-essaouira) face à l'océan est étonnamment romantique. Créer ensemble, en silence, avec le bruit des vagues...",
+        "**Art-thérapie en duo** — Notre [atelier créatif](/fr/activites/art-experience-essaouira) face à l'océan est étonnamment romantique. Créer ensemble, en silence, avec le bruit des vagues...",
         "**Quad en duo** — Pour les couples aventuriers. Partager l'adrénaline crée des liens. Et les paysages sont à couper le souffle.",
         "## Une journée romantique parfaite",
         "**Matin** : Grasse matinée dans votre riad, petit-déjeuner sur la terrasse privée.",
@@ -643,7 +643,7 @@ const legacyBlogPosts: BlogPost[] = [
         "**Réservez une balade privée** — L'intimité change tout.",
         "**Choisissez le coucher de soleil** — La lumière est incomparable.",
         "**Prévoyez une surprise** — Nous pouvons organiser des attentions spéciales (fleurs, champagne, photos).",
-        "Prêt à vivre Essaouira en amoureux ? [Réservez votre expérience](/fr/booking) ou [contactez-nous](/fr/contact) pour une formule sur mesure.",
+        "Prêt à vivre Essaouira en amoureux ? [Réservez votre expérience](/fr/reservation) ou [contactez-nous](/fr/contact) pour une formule sur mesure.",
       ],
       en: [
         "Some destinations seem made for lovers. Essaouira is one of them. The golden light, the slow pace, the Atlantic sunsets, the mysterious medina alleys... Everything invites romance.",
@@ -720,7 +720,7 @@ const legacyBlogPosts: BlogPost[] = [
       fr: [
         "Au-delà de la médina photogénique et des remparts célèbres, Essaouira cache des trésors que seuls les locaux connaissent. Après des années à explorer cette région, voici nos secrets les mieux gardés.",
         "## La grotte de Cap Sim",
-        "Accessible uniquement en quad ou à pied après une longue marche, cette grotte surplombe l'océan. À l'intérieur, des formations rocheuses sculptées par le temps. Dehors, une vue à 180° sur l'Atlantique. Nous y emmenons nos clients lors du [circuit quad 3 heures](/fr/activities/quad-essaouira).",
+        "Accessible uniquement en quad ou à pied après une longue marche, cette grotte surplombe l'océan. À l'intérieur, des formations rocheuses sculptées par le temps. Dehors, une vue à 180° sur l'Atlantique. Nous y emmenons nos clients lors du [circuit quad 3 heures](/fr/activites/quad-essaouira).",
         "## La source d'eau douce des dunes",
         "Au milieu des dunes de sable, une source d'eau douce jaillit. Les locaux y viennent depuis des générations. L'eau est fraîche, pure, et le contraste avec le désert environnant est saisissant.",
         "## Le village de Taguenza",
@@ -728,14 +728,14 @@ const legacyBlogPosts: BlogPost[] = [
         "## La plage de Moulay Bouzerktoun",
         "Plus sauvage que Sidi Kaouki, cette plage est un secret bien gardé des surfeurs locaux. Les vagues sont parfaites, la foule inexistante. Accessible en quad lors de nos circuits demi-journée.",
         "## La forêt d'arganiers de Diabat",
-        "Juste derrière les dunes, une forêt millénaire où les chèvres grimpent dans les arbres. Le matin, la lumière y est magique. Nous la traversons lors de nos [balades à cheval](/fr/activities/balade-a-cheval-essaouira).",
+        "Juste derrière les dunes, une forêt millénaire où les chèvres grimpent dans les arbres. Le matin, la lumière y est magique. Nous la traversons lors de nos [balades à cheval](/fr/activites/balade-a-cheval-essaouira).",
         "## Le marabout de Sidi Kaouki",
         "Un sanctuaire blanc perché sur une colline, face à l'océan. Les locaux y viennent pour méditer. Le coucher de soleil depuis ce point est l'un des plus beaux de la région.",
         "## Comment accéder à ces lieux",
         "La plupart de ces endroits ne sont pas accessibles en voiture. C'est ce qui les préserve. Nos excursions en quad, à cheval ou en dromadaire vous y emmènent naturellement.",
-        "**Circuit quad Cap Sim** — Grotte, source, dunes sauvages. [Réserver](/fr/booking)",
-        "**Balade cheval forêt** — Arganiers, plage secrète, village de pêcheurs. [Réserver](/fr/booking)",
-        "**Dromadaire demi-journée** — Dunes reculées, pause thé berbère. [Réserver](/fr/booking)",
+        "**Circuit quad Cap Sim** — Grotte, source, dunes sauvages. [Réserver](/fr/reservation)",
+        "**Balade cheval forêt** — Arganiers, plage secrète, village de pêcheurs. [Réserver](/fr/reservation)",
+        "**Dromadaire demi-journée** — Dunes reculées, pause thé berbère. [Réserver](/fr/reservation)",
         "## Nos conseils pour explorer",
         "**Partez tôt** — La lumière du matin révèle des couleurs uniques.",
         "**Faites confiance aux guides** — Ils connaissent des passages que même Google Maps ignore.",
@@ -745,7 +745,7 @@ const legacyBlogPosts: BlogPost[] = [
       en: [
         "Beyond the photogenic medina and famous ramparts, Essaouira hides treasures only locals know. After years exploring this region, here are our best-kept secrets.",
         "## The Cap Sim cave",
-        "Accessible only by quad or on foot after a long walk, this cave overlooks the ocean. Inside, rock formations sculpted by time. Outside, a 180° view of the Atlantic. We take our clients there during the [3-hour quad circuit](/en/activities/quad-essaouira).",
+        "Accessible only by quad or on foot after a long walk, this cave overlooks the ocean. Inside, rock formations sculpted by time. Outside, a 180° view of the Atlantic. We take our clients there during the [3-hour quad circuit](/en/activities/quad-biking-essaouira).",
         "## The freshwater spring in the dunes",
         "In the middle of sand dunes, a freshwater spring emerges. Locals have come here for generations. The water is fresh, pure, and the contrast with the surrounding desert is striking.",
         "## Taguenza village",
@@ -820,11 +820,11 @@ const legacyBlogPosts: BlogPost[] = [
         "## La plage principale d'Essaouira",
         "Juste devant la médina, c'est la plus accessible. Idéale pour une promenade, observer les kitesurfeurs, ou simplement regarder le coucher de soleil depuis les cafés du bord de mer. Mais pour les activités, nous préférons aller plus loin.",
         "## La plage de Diabat",
-        "Notre terrain de jeu favori. À 10 minutes au sud de la ville, cette plage sauvage est le point de départ de toutes nos aventures. C'est ici que nous organisons nos [balades à cheval](/fr/activities/balade-a-cheval-essaouira) et [en dromadaire](/fr/activities/balade-dromadaire-essaouira).",
+        "Notre terrain de jeu favori. À 10 minutes au sud de la ville, cette plage sauvage est le point de départ de toutes nos aventures. C'est ici que nous organisons nos [balades à cheval](/fr/activites/balade-a-cheval-essaouira) et [en dromadaire](/fr/activites/balade-dromadaire-essaouira).",
         "**Ce qui la rend spéciale** : des dunes dorées qui plongent vers l'océan, peu de monde, une lumière incomparable au coucher du soleil.",
         "**Activités** : cheval, dromadaire, quad, kitesurf, promenade.",
         "## Les dunes de Cap Sim",
-        "Plus au sud, les dunes deviennent plus hautes, plus sauvages. C'est le territoire du quad. Notre [circuit Cap Sim](/fr/activities/quad-essaouira) vous emmène au sommet pour des vues à 360°.",
+        "Plus au sud, les dunes deviennent plus hautes, plus sauvages. C'est le territoire du quad. Notre [circuit Cap Sim](/fr/activites/quad-essaouira) vous emmène au sommet pour des vues à 360°.",
         "**Ce qui la rend spéciale** : paysages lunaires, sensation de bout du monde, peu de touristes.",
         "**Activités** : quad, randonnée, photographie.",
         "## Sidi Kaouki",
@@ -846,7 +846,7 @@ const legacyBlogPosts: BlogPost[] = [
         "**La marée** — Vérifiez les horaires. Certaines zones sont meilleures à marée basse.",
         "**La protection** — Crème solaire, lunettes, chapeau. Le soleil et le vent combinés sont traîtres.",
         "**Le transfert** — Nous assurons le transport gratuit depuis votre hôtel pour toutes nos activités.",
-        "Prêt à explorer les plages d'Essaouira ? [Consultez nos activités](/fr/activities) ou [réservez directement](/fr/booking).",
+        "Prêt à explorer les plages d'Essaouira ? [Consultez nos activités](/fr/activites) ou [réservez directement](/fr/reservation).",
       ],
       en: [
         "Essaouira is blessed with kilometers of wild Atlantic coastline. Each beach has its personality, activities, and vibe. Here's our complete guide to choosing your playground.",
@@ -857,7 +857,7 @@ const legacyBlogPosts: BlogPost[] = [
         "**What makes it special**: golden dunes plunging toward the ocean, few people, incomparable sunset light.",
         "**Activities**: horse, camel, quad, kitesurf, walking.",
         "## Cap Sim dunes",
-        "Further south, dunes become higher, wilder. This is quad territory. Our [Cap Sim circuit](/en/activities/quad-essaouira) takes you to the summit for 360° views.",
+        "Further south, dunes become higher, wilder. This is quad territory. Our [Cap Sim circuit](/en/activities/quad-biking-essaouira) takes you to the summit for 360° views.",
         "**What makes it special**: lunar landscapes, end-of-the-world feeling, few tourists.",
         "**Activities**: quad, hiking, photography.",
         "## Sidi Kaouki",
@@ -950,4 +950,76 @@ export function sortBlogPostsByDate(posts: BlogPost[]): BlogPost[] {
   return [...posts].sort((a, b) =>
     a.publishedAt < b.publishedAt ? 1 : -1
   );
+}
+
+/** Activity id → keyword fragments used to match related blog posts. */
+const ACTIVITY_BLOG_KEYWORDS: Record<string, string[]> = {
+  "horse-riding": ["cheval", "horse", "équit", "equestrian", "sunset-ride"],
+  "quad-biking": ["quad", "atv"],
+  "camel-ride": ["dromadaire", "camel", "chameau"],
+  "art-experience": ["art", "coloriage", "coloring", "thérapie", "therapy"],
+};
+
+/** Blog posts that naturally relate to an activity (by slug/title keywords). */
+export function getBlogPostsForActivity(
+  activityId: string,
+  count = 3
+): BlogPost[] {
+  const keys = ACTIVITY_BLOG_KEYWORDS[activityId] ?? [];
+  if (keys.length === 0) return getRecentBlogPosts(count);
+
+  const scored = blogPosts.map((post) => {
+    const hay =
+      `${post.slug.fr} ${post.slug.en} ${post.title.fr} ${post.title.en}`.toLowerCase();
+    const score = keys.reduce(
+      (acc, k) => (hay.includes(k.toLowerCase()) ? acc + 1 : acc),
+      0
+    );
+    return { post, score };
+  });
+
+  const matched = scored
+    .filter((s) => s.score > 0)
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        (a.post.publishedAt < b.post.publishedAt ? 1 : -1)
+    )
+    .map((s) => s.post);
+
+  if (matched.length >= count) return matched.slice(0, count);
+  const recent = getRecentBlogPosts(count + matched.length).filter(
+    (p) => !matched.some((m) => m.slug.fr === p.slug.fr)
+  );
+  return [...matched, ...recent].slice(0, count);
+}
+
+/** Activities referenced in a blog post body. */
+export function getRelatedActivityIdsFromPost(post: BlogPost): string[] {
+  const body = [...post.body.fr, ...post.body.en].join(" ").toLowerCase();
+  const ids: string[] = [];
+  if (
+    body.includes("balade-a-cheval") ||
+    body.includes("horse-riding") ||
+    body.includes("cheval")
+  ) {
+    ids.push("horse-riding");
+  }
+  if (body.includes("quad")) ids.push("quad-biking");
+  if (
+    body.includes("dromadaire") ||
+    body.includes("camel") ||
+    body.includes("chameau")
+  ) {
+    ids.push("camel-ride");
+  }
+  if (
+    body.includes("art-experience") ||
+    body.includes("art-thérapie") ||
+    body.includes("art therapy") ||
+    body.includes("coloriage")
+  ) {
+    ids.push("art-experience");
+  }
+  return [...new Set(ids)];
 }

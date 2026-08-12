@@ -24,16 +24,24 @@ export async function generateMetadata({
     segment: "contact",
     title:
       locale === "fr"
-        ? "Contact | Essaouira Ride & Art Experience — Réservation & Info"
-        : "Contact | Essaouira Ride & Art Experience — Booking & Info",
+        ? "Contact | Activités Essaouira — Réservation & Infos"
+        : "Contact | Essaouira Activities — Booking & Info",
     description:
       locale === "fr"
-        ? "Contactez-nous pour réserver vos activités à Essaouira : cheval, quad, dromadaire. WhatsApp, téléphone ou email. Réponse rapide garantie."
-        : "Contact us to book your activities in Essaouira: horse riding, quad biking, camel rides. WhatsApp, phone or email. Fast response guaranteed.",
+        ? "Contactez-nous pour réserver vos activités à Essaouira : cheval, quad, dromadaire. WhatsApp, téléphone ou email. Basés à Diabat."
+        : "Contact us to book your activities in Essaouira: horse riding, quad biking, camel rides. WhatsApp, phone or email. Based in Diabat.",
     keywords:
       locale === "fr"
-        ? ["contact essaouira activités", "réservation essaouira", "whatsapp essaouira tours"]
-        : ["contact essaouira activities", "book essaouira", "whatsapp essaouira tours"],
+        ? [
+            "contact essaouira activités",
+            "réservation essaouira",
+            "whatsapp essaouira",
+          ]
+        : [
+            "contact essaouira activities",
+            "book essaouira",
+            "whatsapp essaouira tours",
+          ],
   });
 }
 

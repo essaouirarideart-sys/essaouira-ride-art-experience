@@ -65,7 +65,7 @@ export const en: Dictionary = {
       "Our team is available 7 days a week to craft your tailor-made experience.",
   },
   activities: {
-    listTitle: "Our activities in Essaouira",
+    listTitle: "Things to do in Essaouira",
     listSubtitle:
       "Horse, quad, camel, art: choose your way to feel Morocco's Atlantic coast.",
     duration: "Duration",
@@ -86,9 +86,9 @@ export const en: Dictionary = {
     },
   },
   prices: {
-    title: "Prices & packages",
+    title: "Essaouira activity prices",
     subtitle:
-      "Transparent packages, no hidden fees. Family and group discounts on request.",
+      "Clear rates for quad, horse riding and camel rides. Free hotel pick-up included. Book online or WhatsApp.",
     note: "Prices are per person. Discounts available from 4 participants. Combined packages on request.",
     popular: "Most popular",
   },

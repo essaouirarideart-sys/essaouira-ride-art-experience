@@ -89,13 +89,13 @@ export function HeroVideo({
         >
           {locale === "fr" ? (
             <>
-              Vivez les <span className="text-gold">meilleures activités</span>
-              <br className="hidden sm:block" /> à Essaouira
+              Activités à Essaouira :{" "}
+              <span className="text-gold">cheval, quad & dromadaire</span>
             </>
           ) : (
             <>
-              Experience the <span className="text-gold">best activities</span>
-              <br className="hidden sm:block" /> in Essaouira
+              Essaouira activities:{" "}
+              <span className="text-gold">horse, quad & camel</span>
             </>
           )}
         </motion.h1>
@@ -107,8 +107,8 @@ export function HeroVideo({
           className="hero-tagline mt-3 max-w-md text-ink/70 sm:mt-4 sm:max-w-lg"
         >
           {locale === "fr"
-            ? "Aventure · Coucher de soleil · Plage · Liberté"
-            : "Adventure · Sunset · Beach · Freedom"}
+            ? "Quad dès 30€ · Cheval plage dès 20€ · Dromadaire sunset dès 20€ · Transfert gratuit"
+            : "Quad from €30 · Beach horse from €20 · Sunset camel from €20 · Free pick-up"}
         </motion.p>
 
         {/* CTA Buttons */}

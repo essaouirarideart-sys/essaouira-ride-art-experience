@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: site.name,
     short_name: site.shortName,
     description:
-      "Horse riding, quad biking, camel rides & art experiences in Essaouira, Morocco.",
+      "Activités outdoor à Essaouira, Maroc — balade à cheval, quad, dromadaire et art experience.",
     start_url: "/fr",
     display: "standalone",
     background_color: "#0A0A0A",

@@ -31,16 +31,26 @@ export async function generateMetadata({
     segment: "about",
     title:
       locale === "fr"
-        ? "À Propos | Essaouira Ride & Art Experience — Guides Locaux"
-        : "About Us | Essaouira Ride & Art Experience — Local Guides",
+        ? "À Propos | Essaouira Ride & Art — Guides Locaux à Diabat"
+        : "About Us | Essaouira Ride & Art — Local Guides in Diabat",
     description:
       locale === "fr"
-        ? "Découvrez notre équipe de guides locaux passionnés à Essaouira. Depuis 2018, nous offrons les meilleures activités : cheval, quad, dromadaire et art."
-        : "Meet our passionate local guides in Essaouira. Since 2018, we offer the best activities: horse riding, quad biking, camel rides and art experiences.",
+        ? "Découvrez notre équipe de guides locaux passionnés à Essaouira et Diabat. Activités outdoor : cheval, quad, dromadaire et art experience."
+        : "Meet our passionate local guides in Essaouira and Diabat. Outdoor activities: horse riding, quad biking, camel rides and art experiences.",
     keywords:
       locale === "fr"
-        ? ["guide local essaouira", "activités essaouira", "essaouira maroc", "excursion essaouira"]
-        : ["local guide essaouira", "essaouira activities", "essaouira morocco", "essaouira tours"],
+        ? [
+            "guide local essaouira",
+            "activités essaouira",
+            "essaouira maroc",
+            "diabat essaouira",
+          ]
+        : [
+            "local guide essaouira",
+            "essaouira activities",
+            "essaouira morocco",
+            "diabat essaouira",
+          ],
   });
 }
 
@@ -61,8 +71,10 @@ export default async function AboutPage({
         <div className="absolute inset-0">
           <Image
             src={ABOUT_IMG}
-            alt={typedLocale === "fr" ? "Équipe Essaouira Ride & Art Experience" : "Essaouira Ride & Art Experience team"}
+            alt={typedLocale === "fr" ? "Équipe Essaouira Ride & Art Experience à Diabat" : "Essaouira Ride & Art Experience team in Diabat"}
             fill
+            sizes="100vw"
+            priority
             className="object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-bg-primary via-bg-primary/90 to-bg-primary" />
@@ -192,6 +204,13 @@ export default async function AboutPage({
                   : "Book now and discover Essaouira with our passionate local guides."}
               </p>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                <Link
+                  href={localizedPath(typedLocale, "activities")}
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-bg-card/40 px-6 py-4 text-sm font-semibold text-ink transition-all duration-300 hover:border-gold hover:text-gold"
+                >
+                  {typedLocale === "fr" ? "Voir les activités" : "View activities"}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
                 <Link
                   href={localizedPath(typedLocale, "booking")}
                   className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-8 py-4 text-sm font-bold uppercase tracking-widest2 text-bg-primary shadow-lg transition-all duration-300 hover:-translate-y-[2px] hover:shadow-gold"

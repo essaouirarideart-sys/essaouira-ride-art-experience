@@ -11,18 +11,22 @@ export const metadata: Metadata = {
   title: site.name,
   description:
     "Aventure, coucher de soleil & art à Essaouira — cheval, quad, dromadaire et art-thérapie.",
+  robots: { index: true, follow: true },
   openGraph: {
     title: site.name,
     description:
-      "Horse riding, quad biking, camel rides & art experiences in Essaouira, Morocco.",
+      "Activités à Essaouira : balade à cheval, quad, dromadaire et art experience sur la côte atlantique.",
     url: site.url,
     siteName: site.name,
+    locale: "fr_FR",
     type: "website",
     images: [{ url: ogImage, width: 1200, height: 630, alt: site.name, type: "image/jpeg" }],
   },
   twitter: {
     card: "summary_large_image",
     title: site.name,
+    description:
+      "Activités à Essaouira : balade à cheval, quad, dromadaire et art experience sur la côte atlantique.",
     images: [ogImage],
   },
 };

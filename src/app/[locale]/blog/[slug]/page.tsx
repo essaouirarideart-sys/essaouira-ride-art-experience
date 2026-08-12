@@ -3,14 +3,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   blogPosts,
   getBlogPostBySlug,
   getRelatedBlogPosts,
+  getRelatedActivityIdsFromPost,
 } from "@/data/blog";
+import { getActivityById } from "@/data/activities";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { BlogShareBar } from "@/components/blog/BlogShareBar";
@@ -24,6 +26,8 @@ import { localizedPath } from "@/lib/paths";
 import { formatDate } from "@/lib/utils";
 import { site } from "@/data/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { ActivityCard } from "@/components/ui/ActivityCard";
 
 export function generateStaticParams() {
   const params: Array<{ locale: string; slug: string }> = [];
@@ -49,7 +53,10 @@ export async function generateMetadata({
     segment: "blog",
     slug: post.slug[locale],
     slugByLocale: post.slug,
-    title: post.title[locale],
+    title:
+      locale === "fr"
+        ? `${post.title[locale]} | Guide Essaouira`
+        : `${post.title[locale]} | Essaouira Guide`,
     description: post.seo.description[locale],
     keywords: post.seo.keywords[locale],
     image: post.cover,
@@ -146,6 +153,11 @@ export default async function BlogPostPage({
   if (!post) notFound();
   const dict = getDictionary(typedLocale);
   const related = getRelatedBlogPosts(post.slug.fr, 3, post.category.fr);
+  const relatedActivityIds = getRelatedActivityIdsFromPost(post);
+  const relatedActivities = relatedActivityIds
+    .map((id) => getActivityById(id))
+    .filter((a): a is NonNullable<typeof a> => Boolean(a))
+    .slice(0, 3);
 
   const url = `${site.url}${localizedPath(typedLocale, "blog", post.slug[typedLocale])}`;
 
@@ -222,6 +234,16 @@ export default async function BlogPostPage({
         <Container>
           <Reveal>
             <div className="mx-auto max-w-3xl rounded-2xl border border-border bg-bg-card p-5 sm:rounded-3xl sm:p-12">
+              <Breadcrumbs
+                items={[
+                  { name: dict.nav.home, href: localizedPath(typedLocale) },
+                  {
+                    name: dict.nav.blog,
+                    href: localizedPath(typedLocale, "blog"),
+                  },
+                  { name: post.title[typedLocale] },
+                ]}
+              />
               <Link
                 href={localizedPath(typedLocale, "blog")}
                 className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest2 text-ink-muted hover:text-gold"
@@ -279,6 +301,34 @@ export default async function BlogPostPage({
           </Reveal>
         </Container>
       </article>
+
+      {/* RELATED ACTIVITIES */}
+      {relatedActivities.length > 0 && (
+        <section className="border-t border-border py-12 sm:py-20 lg:py-24">
+          <Container>
+            <Reveal>
+              <span className="eyebrow">{dict.nav.activities}</span>
+              <h2 className="heading-section mt-5 text-balance text-ink">
+                {typedLocale === "fr"
+                  ? "Activités liées à cet article"
+                  : "Activities related to this guide"}
+              </h2>
+            </Reveal>
+            <div className="mt-8 grid auto-rows-fr items-stretch gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+              {relatedActivities.map((activity, i) => (
+                <div key={activity.id} className="h-full">
+                  <ActivityCard
+                    activity={activity}
+                    locale={typedLocale}
+                    dict={dict}
+                    index={i}
+                  />
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* RELATED */}
       {related.length > 0 && (
@@ -343,6 +393,13 @@ export default async function BlogPostPage({
                   : "Book your activity in Essaouira and create unforgettable memories."}
               </p>
               <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row sm:justify-center sm:gap-4">
+                <Link
+                  href={localizedPath(typedLocale, "activities")}
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-bg-card/40 px-6 py-3.5 text-xs font-semibold uppercase tracking-widest2 text-ink transition-all duration-300 hover:border-gold hover:text-gold sm:px-8 sm:py-4 sm:text-sm"
+                >
+                  {typedLocale === "fr" ? "Voir les activités" : "View activities"}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4" />
+                </Link>
                 <Link
                   href={localizedPath(typedLocale, "booking")}
                   className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-6 py-3.5 text-xs font-bold uppercase tracking-widest2 text-bg-primary shadow-lg transition-all duration-300 hover:-translate-y-[2px] hover:shadow-gold sm:px-8 sm:py-4 sm:text-sm"

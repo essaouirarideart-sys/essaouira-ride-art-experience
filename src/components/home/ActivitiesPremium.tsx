@@ -27,8 +27,8 @@ export function ActivitiesPremium({ locale }: { locale: Locale }) {
           </span>
           <h2 className="heading-section mt-4 text-ink max-w-3xl mx-auto">
             {locale === "fr"
-              ? "Des aventures qui marquent une vie"
-              : "Adventures that last a lifetime"}
+              ? "Cheval, quad, dromadaire & art à Essaouira"
+              : "Horse, quad, camel & art in Essaouira"}
           </h2>
           <p className="mt-5 text-ink-muted max-w-xl mx-auto text-base">
             {locale === "fr"

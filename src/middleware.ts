@@ -7,7 +7,9 @@ const PUBLIC_FILE = /\.(.*)$/;
  * Middleware responsibilities:
  * 1. Redirect '/' to the default locale ('/fr').
  * 2. Detect a missing locale prefix and redirect to the negotiated locale.
- * 3. Rewrite FR public-facing localized URL segments
+ * 3. 301 FR paths that use EN folder segments to canonical FR public slugs
+ *    (e.g. '/fr/activities/...' → '/fr/activites/...') to avoid duplicate URLs.
+ * 4. Rewrite FR public-facing localized URL segments
  *    (e.g. '/fr/activites/...') to their canonical internal folder names
  *    ('/fr/activities/...') so a single page implementation serves both locales.
  */
@@ -46,6 +48,24 @@ export function middleware(req: NextRequest) {
     const negotiated = negotiateLocale(req);
     url.pathname = `/${negotiated}${pathname}`;
     return NextResponse.redirect(url);
+  }
+
+  // FR locale: 301 EN folder segments → canonical FR public segments
+  // e.g. /fr/activities → /fr/activites (prevents duplicate crawl paths)
+  if (maybeLocale === "fr" && parts.length >= 2) {
+    const pathSeg = parts[1];
+    const enMatch = Object.entries(segments).find(([, v]) => v.en === pathSeg);
+    if (enMatch) {
+      const [, segVal] = enMatch;
+      if (segVal.fr !== segVal.en && pathSeg === segVal.en) {
+        const url = req.nextUrl.clone();
+        const newParts = [...parts];
+        newParts[1] = segVal.fr;
+        url.pathname = "/" + newParts.join("/");
+        url.search = search;
+        return NextResponse.redirect(url, 301);
+      }
+    }
   }
 
   // Locale present → check if FR-localized segment needs rewriting to canonical EN folder.

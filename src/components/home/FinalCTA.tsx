@@ -56,6 +56,13 @@ export function FinalCTA({ locale }: { locale: Locale }) {
 
           <div className="mt-7 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4">
             <Link
+              href={localizedPath(locale, "activities")}
+              className="group inline-flex items-center gap-2 rounded-full border border-border bg-bg-card/40 px-7 py-4 text-xs font-bold uppercase tracking-widest2 text-ink transition-all duration-300 hover:border-gold hover:text-gold sm:px-10 sm:py-5 sm:text-sm sm:gap-3"
+            >
+              {locale === "fr" ? "Voir les activités" : "View activities"}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 sm:h-5 sm:w-5" />
+            </Link>
+            <Link
               href={localizedPath(locale, "booking")}
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-7 py-4 text-xs font-bold uppercase tracking-widest2 text-bg-primary shadow-lg transition-all duration-300 hover:-translate-y-[2px] hover:shadow-gold sm:px-10 sm:py-5 sm:text-sm sm:gap-3"
             >
