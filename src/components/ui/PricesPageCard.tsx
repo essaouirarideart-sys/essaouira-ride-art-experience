@@ -1,5 +1,3 @@
-"use client";
-
 import { Check, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +6,7 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { cn } from "@/lib/utils";
 import { localizedPath } from "@/lib/paths";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 interface Props {
   tier: PricingTier;
@@ -22,6 +21,15 @@ export function PricesPageCard({ tier, locale, dict, activitySlug }: Props) {
   const priceRange = lowestPrice === highestPrice 
     ? `${lowestPrice}€` 
     : `${lowestPrice}€ - ${highestPrice}€`;
+  const hasDoubleOption = tier.options.some((option) => option.type === "double");
+  const optionUnits = tier.options
+    .map((option) => option.unit?.[locale])
+    .filter((unit): unit is string => Boolean(unit));
+  const sharedUnit =
+    optionUnits.length === tier.options.length &&
+    new Set(optionUnits).size === 1
+      ? optionUnits[0]
+      : null;
 
   return (
     <div
@@ -35,7 +43,7 @@ export function PricesPageCard({ tier, locale, dict, activitySlug }: Props) {
       {/* Full-cover background image */}
       {tier.image && (
         <Image
-          src={tier.image}
+          src={optimizeCloudinaryUrl(tier.image, IMAGE_WIDTH.card)}
           alt={tier.name[locale]}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -74,7 +82,15 @@ export function PricesPageCard({ tier, locale, dict, activitySlug }: Props) {
           <span className="font-display text-3xl text-gold">
             {priceRange}
           </span>
-          <p className="mt-0.5 text-xs text-white/60">{dict.activities.perPerson}</p>
+          {hasDoubleOption ? (
+            <p className="mt-0.5 text-xs text-white/60">
+              {locale === "fr"
+                ? "Double = 1 quad pour 2 pers."
+                : "Double = 1 quad for 2 people"}
+            </p>
+          ) : sharedUnit ? (
+            <p className="mt-0.5 text-xs text-white/60">{sharedUnit}</p>
+          ) : null}
         </div>
 
         {/* Options Preview */}
@@ -85,7 +101,10 @@ export function PricesPageCard({ tier, locale, dict, activitySlug }: Props) {
               className="flex items-center justify-between text-sm"
             >
               <span className="text-white/70">{option.label[locale]}</span>
-              <span className="font-medium text-white">{option.price}€</span>
+              <span className="font-medium text-white">
+                {option.price}€
+                {option.unit ? ` ${option.unit[locale]}` : ""}
+              </span>
             </div>
           ))}
         </div>
@@ -104,7 +123,7 @@ export function PricesPageCard({ tier, locale, dict, activitySlug }: Props) {
 
         {/* Book Button */}
         <Link
-          href={`${localizedPath(locale, "activities", activitySlug)}#booking`}
+          href={`${localizedPath(locale, "activities", activitySlug)}#booking-form`}
           className={cn(
             "w-full inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300",
             tier.highlighted

@@ -10,6 +10,7 @@ import { getDictionary } from "@/i18n/getDictionary";
 import { buildMetadata } from "@/lib/seo";
 import { localizedPath } from "@/lib/paths";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 const ICONS = [Heart, ShieldCheck, Sparkles, Leaf, Award, Users] as const;
 
@@ -70,7 +71,7 @@ export default async function AboutPage({
       <section className="relative border-b border-border py-14 sm:py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={ABOUT_IMG}
+            src={optimizeCloudinaryUrl(ABOUT_IMG, IMAGE_WIDTH.pageHero)}
             alt={typedLocale === "fr" ? "Équipe Essaouira Ride & Art Experience à Diabat" : "Essaouira Ride & Art Experience team in Diabat"}
             fill
             sizes="100vw"
@@ -116,7 +117,7 @@ export default async function AboutPage({
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border">
                   <Image
-                    src={ABOUT_IMG_2}
+                    src={optimizeCloudinaryUrl(ABOUT_IMG_2, IMAGE_WIDTH.card)}
                     alt={typedLocale === "fr" ? "Coucher de soleil à Essaouira" : "Sunset in Essaouira"}
                     fill
                     sizes="(max-width: 1024px) 45vw, 25vw"
@@ -125,7 +126,7 @@ export default async function AboutPage({
                 </div>
                 <div className="relative aspect-[3/4] mt-8 overflow-hidden rounded-2xl border border-border">
                   <Image
-                    src={ABOUT_IMG_3}
+                    src={optimizeCloudinaryUrl(ABOUT_IMG_3, IMAGE_WIDTH.card)}
                     alt={typedLocale === "fr" ? "Balade à cheval" : "Horse riding"}
                     fill
                     sizes="(max-width: 1024px) 45vw, 25vw"

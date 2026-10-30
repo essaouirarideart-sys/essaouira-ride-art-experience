@@ -30,25 +30,25 @@ export async function generateMetadata({
     segment: "blog",
     title:
       locale === "fr"
-        ? "Blog Essaouira | Que Faire à Essaouira — Guides & Conseils"
-        : "Essaouira Blog | Things to Do — Tips & Activity Guides",
+        ? "Journal Essaouira | Guides locaux, conseils et récits"
+        : "Essaouira Journal | Local guides, tips and stories",
     description:
       locale === "fr"
-        ? "Guides locaux sur Essaouira : que faire, balade à cheval, quad, dromadaire, plages, couples et familles. Conseils pour réserver vos activités."
-        : "Local guides to Essaouira: things to do, horse riding, quad, camel rides, beaches, couples and families. Tips to book your activities.",
+        ? "Le journal d'Essaouira Ride & Art : conseils pratiques, récits de sorties et guides locaux depuis Diabat. Articles en français et en anglais."
+        : "The Essaouira Ride & Art journal: practical tips, outing stories and local guides from Diabat. Articles in French and English.",
     keywords:
       locale === "fr"
         ? [
             "blog essaouira",
-            "que faire à essaouira",
-            "guide essaouira",
-            "activités essaouira",
+            "journal essaouira",
+            "conseils essaouira",
+            "récits essaouira",
           ]
         : [
             "essaouira blog",
-            "things to do in essaouira",
-            "essaouira guide",
-            "essaouira activities",
+            "essaouira journal",
+            "essaouira travel tips",
+            "essaouira stories",
           ],
   });
 }
@@ -93,8 +93,8 @@ export default async function BlogPage({
             <span className="eyebrow">{dict.blog.title}</span>
             <h1 className="heading-display mt-5 max-w-3xl text-balance text-ink">
               {typedLocale === "fr"
-                ? "Guides & conseils pour votre séjour à Essaouira"
-                : "Guides & tips for your stay in Essaouira"}
+                ? "Le journal d'Essaouira Ride & Art"
+                : "The Essaouira Ride & Art journal"}
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
               {dict.blog.subtitle}

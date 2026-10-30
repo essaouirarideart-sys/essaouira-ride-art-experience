@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Star, Zap } from "lucide-react";
+import { ArrowUpRight, Clock } from "lucide-react";
 import type { Activity } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localizedPath } from "@/lib/paths";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 import { ActivityIcon } from "./ActivityIcon";
 
 interface Props {
@@ -12,9 +13,15 @@ interface Props {
   locale: Locale;
   dict: Dictionary;
   index?: number;
+  priority?: boolean;
 }
 
-export function ActivityCard({ activity, locale, dict, index = 0 }: Props) {
+export function ActivityCard({
+  activity,
+  locale,
+  dict,
+  priority = false,
+}: Props) {
   const href = localizedPath(locale, "activities", activity.slug[locale]);
   const lowestPrice = Math.min(
     ...activity.pricing.flatMap((t) => t.options.map((o) => o.price))
@@ -27,11 +34,11 @@ export function ActivityCard({ activity, locale, dict, index = 0 }: Props) {
     >
       <div className="relative aspect-[4/5] shrink-0 overflow-hidden sm:aspect-[4/5]">
         <Image
-          src={activity.heroImage}
+          src={optimizeCloudinaryUrl(activity.heroImage, IMAGE_WIDTH.card)}
           alt={activity.heroImageAlt[locale]}
           fill
-          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 30vw"
-          priority={index < 2}
+          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 25vw"
+          priority={priority}
           className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/40 to-transparent" />
@@ -57,18 +64,9 @@ export function ActivityCard({ activity, locale, dict, index = 0 }: Props) {
           </p>
 
           <div className="flex min-h-[1.25rem] flex-wrap items-center gap-2 text-xs sm:min-h-[1.5rem] sm:gap-3">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-3 w-3 fill-gold text-gold" />
-              ))}
-              <span className="ml-1 font-semibold text-ink">4.9</span>
-            </div>
-            <span className="text-ink/40">·</span>
-            <div className="flex items-center gap-1.5 text-gold">
-              <Zap className="h-3 w-3 animate-pulse" />
-              <span className="font-medium">
-                {locale === "fr" ? "Places limitées" : "Limited spots"}
-              </span>
+            <div className="flex items-center gap-1.5 text-ink">
+              <Clock className="h-3.5 w-3.5 text-gold" />
+              <span className="font-medium">{activity.duration[locale]}</span>
             </div>
           </div>
         </div>

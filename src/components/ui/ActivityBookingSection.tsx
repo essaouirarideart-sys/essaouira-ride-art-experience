@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type {
   Activity,
@@ -49,13 +48,7 @@ export function ActivityBookingSection({
       className="scroll-mt-24 border-t border-border py-10 sm:py-16 lg:py-20 sm:scroll-mt-28"
     >
       <div className="container-page">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-7 sm:mb-10"
-        >
+        <div className="reveal-up mb-7 sm:mb-10">
           <span className="eyebrow">
             {locale === "fr" ? "Tarifs & formules" : "Pricing & packages"}
           </span>
@@ -78,24 +71,14 @@ export function ActivityBookingSection({
               ? "Voir tous les tarifs activités Essaouira"
               : "See all Essaouira activity prices"}
           </Link>
-        </motion.div>
+        </div>
 
         <p className="mb-4 text-[11px] font-semibold uppercase tracking-widest2 text-ink-dim">
           {locale === "fr" ? "Balades & sorties" : "Rides & outings"}
         </p>
-        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {activity.pricing.map((tier, index) => (
-            <motion.div
-              key={tier.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.06,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-            >
+        <div className="reveal-stagger grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {activity.pricing.map((tier) => (
+            <div key={tier.id} className="reveal-up">
               <PricingCardNew
                 tier={tier}
                 locale={locale}
@@ -104,7 +87,7 @@ export function ActivityBookingSection({
                 onReserveWhatsApp={onReserveWhatsApp}
                 onReserveForm={onReserveForm}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -132,7 +115,7 @@ export function ActivityBookingSection({
           </div>
           <div className="flex items-center gap-2 text-sm text-ink">
             <Check className="h-4 w-4 text-gold" />
-            <span>{locale === "fr" ? "Confirmation rapide" : "Fast confirmation"}</span>
+            <span>{locale === "fr" ? "WhatsApp ou formulaire" : "WhatsApp or enquiry form"}</span>
           </div>
         </div>
       </div>

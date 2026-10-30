@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Send, Check, AlertCircle, Loader2, MessageCircle } from "lucide-react";
+import { Send, Check, AlertCircle, Loader2 } from "lucide-react";
 import type { Activity, PricingTier, PricingOption } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import { formatEur } from "@/lib/formatPrice";
@@ -114,13 +113,7 @@ export function InlineBookingForm({ activity, locale, prefilledData }: Props) {
       className="scroll-mt-20 border-y border-border bg-bg-card/40 py-12 sm:py-20 lg:py-24"
     >
       <div className="container-page">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-3xl"
-        >
+        <div className="reveal-up mx-auto max-w-3xl">
           <div className="text-center mb-7 sm:mb-10">
             <span className="eyebrow">
               {locale === "fr" ? "Réservation" : "Booking"}
@@ -139,11 +132,7 @@ export function InlineBookingForm({ activity, locale, prefilledData }: Props) {
 
           {/* Selected Package Display */}
           {prefilledData && (
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="mb-8 rounded-2xl border border-gold/30 bg-gold/5 p-6"
-            >
+            <div className="mb-8 rounded-2xl border border-gold/30 bg-gold/5 p-6">
               <h3 className="font-display text-lg text-gold mb-4">
                 {locale === "fr" ? "Forfait sélectionné" : "Selected Package"}
               </h3>
@@ -201,7 +190,7 @@ export function InlineBookingForm({ activity, locale, prefilledData }: Props) {
                   ? "Confirmer sur WhatsApp"
                   : "Confirm on WhatsApp"}
               </a>
-            </motion.div>
+            </div>
           )}
 
           {/* Booking Form */}
@@ -358,27 +347,19 @@ export function InlineBookingForm({ activity, locale, prefilledData }: Props) {
 
             {/* Success Message */}
             {status === "success" && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-center"
-              >
+              <div className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-center">
                 <Check className="h-6 w-6 text-green-500 mx-auto mb-2" />
                 <p className="text-sm font-semibold text-green-500">
                   {locale === "fr"
                     ? "Votre demande de réservation a été envoyée. Nous vous contacterons bientôt."
                     : "Your booking request has been sent. We will contact you soon."}
                 </p>
-              </motion.div>
+              </div>
             )}
 
             {/* Error Message */}
             {status === "error" && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center"
-              >
+              <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-center">
                 <AlertCircle className="h-6 w-6 text-red-500 mx-auto mb-2" />
                 <p className="text-sm font-semibold text-red-500">
                   {errorMessage ||
@@ -386,10 +367,10 @@ export function InlineBookingForm({ activity, locale, prefilledData }: Props) {
                       ? "Une erreur s'est produite. Veuillez réessayer."
                       : "An error occurred. Please try again.")}
                 </p>
-              </motion.div>
+              </div>
             )}
           </form>
-        </motion.div>
+        </div>
       </div>
 
       <style jsx>{`

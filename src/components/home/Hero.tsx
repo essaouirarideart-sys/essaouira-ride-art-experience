@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Star, Users, Award } from "lucide-react";
+import { ArrowRight, MessageCircle, Users, Award } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localizedPath } from "@/lib/paths";
@@ -108,23 +108,13 @@ export function Hero({
           transition={{ duration: 0.7, delay: 0.75 }}
           className="mt-8 flex flex-wrap items-center gap-6"
         >
-          <div className="flex items-center gap-2">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-              ))}
-            </div>
-            <span className="text-sm font-medium text-ink">
-              {locale === "fr" ? "4.9/5 · 2500+ avis" : "4.9/5 · 2500+ reviews"}
-            </span>
-          </div>
           <div className="flex items-center gap-2 text-sm font-medium text-ink">
             <Award className="h-4 w-4 text-gold" />
-            {locale === "fr" ? "Top expérience Essaouira" : "Top Essaouira Experience"}
+            {locale === "fr" ? "Transfert hôtel gratuit" : "Free hotel pick-up"}
           </div>
           <div className="flex items-center gap-2 text-sm font-medium text-ink">
             <Users className="h-4 w-4 text-gold" />
-            {locale === "fr" ? "Réservez à l'avance" : "Book in advance"}
+            {locale === "fr" ? "Guides locaux à Diabat" : "Local guides in Diabat"}
           </div>
         </motion.div>
 

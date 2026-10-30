@@ -91,7 +91,6 @@ export default async function PricesPage({
             "@type": "Offer",
             price: from,
             priceCurrency: "EUR",
-            availability: "https://schema.org/InStock",
           },
         },
       };
@@ -202,8 +201,8 @@ export default async function PricesPage({
               </h2>
               <p className="mt-3 text-sm text-ink-muted max-w-lg mx-auto">
                 {typedLocale === "fr"
-                  ? "Aucune carte requise à la réservation. Confirmation immédiate. Annulation flexible."
-                  : "No card required at booking. Instant confirmation. Flexible cancellation."}
+                  ? "Aucune carte requise à la réservation. L'équipe confirme selon l'activité. Disponible 7j/7."
+                  : "No card required at booking. The team confirms according to the activity. Available 7 days a week."}
               </p>
               <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row sm:justify-center sm:gap-4">
                 <Link

@@ -107,5 +107,3 @@ export const testimonials: Testimonial[] = [
     date: "2024-01",
   },
 ];
-
-export const happyClientsCount = 2500;

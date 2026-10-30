@@ -1,22 +1,29 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 import { defaultLocale } from "@/i18n/config";
 import { site, absoluteUrl } from "@/data/site";
 
 const ogImage = absoluteUrl(site.defaultOgImage);
+const defaultHome = `${site.url}/${defaultLocale}`;
 
-/** OG for `/` before redirect — crawlers that hit the root URL still see the brand image. */
+/**
+ * `/` is not a language homepage. Permanent redirect to `/fr`.
+ * noindex so the root is not a third indexable document if a crawler still renders it.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: site.name,
   description:
     "Aventure, coucher de soleil & art à Essaouira — cheval, quad, dromadaire et art-thérapie.",
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
+  alternates: {
+    canonical: defaultHome,
+  },
   openGraph: {
     title: site.name,
     description:
       "Activités à Essaouira : balade à cheval, quad, dromadaire et art experience sur la côte atlantique.",
-    url: site.url,
+    url: defaultHome,
     siteName: site.name,
     locale: "fr_FR",
     type: "website",
@@ -32,5 +39,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootPage() {
-  redirect(`/${defaultLocale}`);
+  permanentRedirect(`/${defaultLocale}`);
 }

@@ -164,8 +164,8 @@ export function BookingForm({ locale, dict, preselectedActivity }: Props) {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-ink-dim">
           {locale === "fr"
-            ? "Aucune carte requise. Confirmation par WhatsApp."
-            : "No card required. WhatsApp confirmation."}
+            ? "Aucune carte requise. Réponse par WhatsApp."
+            : "No card required. Reply via WhatsApp."}
         </p>
         <div className="flex gap-3">
           <a

@@ -15,8 +15,8 @@ export function UrgencyBadge({ locale, variant = "limited", className = "" }: Pr
     limited: {
       icon: Zap,
       text: {
-        fr: "Places limitées disponibles",
-        en: "Limited spots available",
+        fr: "Réserver une activité",
+        en: "Book your activity",
       },
       color: "text-gold",
       bg: "bg-gold/10",

@@ -15,13 +15,18 @@ export function ActivityVideoReel({ reel, locale }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const thumbnailUrl = `https://img.youtube.com/vi/${reel.youtubeId}/maxresdefault.jpg`;
+  const playLabel =
+    locale === "fr"
+      ? `Lire la vidéo : ${reel.title[locale]}`
+      : `Play video: ${reel.title[locale]}`;
 
   return (
     <>
-      {/* Thumbnail Card - Click to Play */}
-      <div
+      <button
+        type="button"
         onClick={() => setIsPlaying(true)}
-        className="group relative aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl border border-border bg-bg-card transition-all duration-500 hover:border-gold/50 hover:shadow-xl"
+        aria-label={playLabel}
+        className="group relative aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl border border-border bg-bg-card text-left transition-all duration-500 hover:border-gold/50 hover:shadow-xl"
       >
         {/* Thumbnail */}
         <div
@@ -39,13 +44,7 @@ export function ActivityVideoReel({ reel, locale }: Props) {
           </div>
         </div>
 
-        {/* Title */}
-        {/* <div className="absolute inset-x-0 bottom-0 p-4">
-          <p className="text-sm font-semibold text-white drop-shadow-lg">
-            {reel.title[locale]}
-          </p>
-        </div> */}
-      </div>
+      </button>
 
       {/* Video Modal */}
       <AnimatePresence>
@@ -59,7 +58,9 @@ export function ActivityVideoReel({ reel, locale }: Props) {
           >
             {/* Close Button */}
             <button
+              type="button"
               onClick={() => setIsPlaying(false)}
+              aria-label={locale === "fr" ? "Fermer la vidéo" : "Close video"}
               className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
             >
               <X className="h-6 w-6" />

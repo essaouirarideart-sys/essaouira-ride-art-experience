@@ -27,6 +27,7 @@ import { formatDate } from "@/lib/utils";
 import { site } from "@/data/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 import { ActivityCard } from "@/components/ui/ActivityCard";
 
 export function generateStaticParams() {
@@ -38,6 +39,9 @@ export function generateStaticParams() {
   }
   return params;
 }
+
+/** Unknown slugs 404 at the routing layer so the document 404 can render. */
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -217,7 +221,7 @@ export default async function BlogPostPage({
       <section className="relative -mt-16 sm:-mt-20">
         <div className="relative h-[40svh] min-h-[300px] overflow-hidden sm:h-[55svh] sm:min-h-[420px]">
           <Image
-            src={post.cover}
+            src={optimizeCloudinaryUrl(post.cover, IMAGE_WIDTH.pageHero)}
             alt={post.coverAlt[typedLocale]}
             fill
             sizes="100vw"
@@ -351,7 +355,7 @@ export default async function BlogPostPage({
                 >
                   <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl">
                     <Image
-                      src={p.cover}
+                      src={optimizeCloudinaryUrl(p.cover, IMAGE_WIDTH.thumb)}
                       alt={p.coverAlt[typedLocale]}
                       fill
                       sizes="112px"

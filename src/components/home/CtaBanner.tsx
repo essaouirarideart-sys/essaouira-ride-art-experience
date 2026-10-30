@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, MessageCircle, Zap, Star } from "lucide-react";
+import { ArrowRight, MessageCircle, Zap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import type { Locale } from "@/i18n/config";
@@ -39,7 +39,7 @@ export function CtaBanner({
                 <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 mb-4">
                   <Zap className="h-3.5 w-3.5 text-gold animate-pulse" />
                   <span className="text-xs font-bold uppercase tracking-wider text-gold">
-                    {locale === "fr" ? "Places limitées" : "Limited spots"}
+                    {locale === "fr" ? "Réserver une activité" : "Book your activity"}
                   </span>
                 </div>
                 <h2 className="heading-section max-w-xl text-balance text-ink">
@@ -49,15 +49,12 @@ export function CtaBanner({
                   {dict.home.ctaSubtitle}
                 </p>
                 <div className="mt-6 flex items-center gap-2 text-sm text-ink/90">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <span className="font-semibold">4.9/5</span>
+                  <span className="font-semibold">
+                    {locale === "fr" ? "Transfert hôtel gratuit" : "Free hotel pick-up"}
+                  </span>
                   <span className="text-ink/60">·</span>
                   <span className="font-medium">
-                    {locale === "fr" ? "2500+ clients satisfaits" : "2500+ happy clients"}
+                    {locale === "fr" ? "Guides locaux à Diabat" : "Local guides in Diabat"}
                   </span>
                 </div>
               </div>

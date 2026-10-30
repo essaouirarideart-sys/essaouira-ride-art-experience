@@ -27,8 +27,8 @@ export async function generateMetadata({
         : "Book Now | Essaouira Activities — Horse Riding, Quad, Camel",
     description:
       locale === "fr"
-        ? "Réservez vos activités à Essaouira en ligne : balade à cheval, quad, dromadaire, art. Confirmation rapide, transfert hôtel gratuit."
-        : "Book your Essaouira activities online: horse riding, quad biking, camel ride, art. Fast confirmation, free hotel pick-up.",
+        ? "Réservez vos activités à Essaouira en ligne : balade à cheval, quad, dromadaire, art. Transfert hôtel gratuit. L'équipe confirme selon l'activité."
+        : "Book your Essaouira activities online: horse riding, quad biking, camel ride, art. Free hotel pick-up. The team confirms according to the activity.",
     keywords:
       locale === "fr"
         ? [

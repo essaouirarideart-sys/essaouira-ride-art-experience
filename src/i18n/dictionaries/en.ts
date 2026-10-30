@@ -29,7 +29,7 @@ export const en: Dictionary = {
   },
   home: {
     heroEyebrow: "Diabat · Essaouira · Morocco",
-    heroTitle: "Experience Essaouira at the rhythm of wind and sunset.",
+    heroTitle: "Discover Essaouira through unforgettable outdoor experiences.",
     heroSubtitle:
       "Horse, quad, camel and art therapy. Premium experiences in the heart of the dunes, ocean and golden light of Essaouira.",
     heroPrimary: "Book an experience",
@@ -50,12 +50,12 @@ export const en: Dictionary = {
         text: "Intimate experiences to preserve emotion, safety and quality.",
       },
       {
-        title: "Golden hour guaranteed",
-        text: "Our outings are timed with the sunset for unforgettable images.",
+        title: "Essaouira's golden light",
+        text: "Wind, dunes and Atlantic light set the scene for every outing.",
       },
       {
         title: "Easy booking",
-        text: "WhatsApp, form or phone. Fast confirmation, no paperwork.",
+        text: "WhatsApp, form or phone. The team replies 7 days a week.",
       },
     ],
     testimonialsEyebrow: "They lived the experience",
@@ -65,9 +65,9 @@ export const en: Dictionary = {
       "Our team is available 7 days a week to craft your tailor-made experience.",
   },
   activities: {
-    listTitle: "Things to do in Essaouira",
+    listTitle: "Essaouira activities",
     listSubtitle:
-      "Horse, quad, camel, art: choose your way to feel Morocco's Atlantic coast.",
+      "Bookable catalog: horse riding, quad biking, camel rides and art. Choose your package on Morocco's Atlantic coast.",
     duration: "Duration",
     difficulty: "Level",
     minAge: "Minimum age",
@@ -89,7 +89,7 @@ export const en: Dictionary = {
     title: "Essaouira activity prices",
     subtitle:
       "Clear rates for quad, horse riding and camel rides. Free hotel pick-up included. Book online or WhatsApp.",
-    note: "Prices are per person. Discounts available from 4 participants. Combined packages on request.",
+    note: "Unless otherwise stated, prices are per person. For quad, the Double rate is one quad for two people, not a per-person price. Discounts available from 4 participants. Combined packages on request.",
     popular: "Most popular",
   },
   gallery: {
@@ -130,7 +130,7 @@ export const en: Dictionary = {
       },
       {
         title: "Excellence",
-        text: "Over 2,500 satisfied clients. Average rating of 4.9/5. We aim for excellence in every experience.",
+        text: "We aim for excellence in every experience, with a local team based in Diabat.",
       },
       {
         title: "Connection",
@@ -152,7 +152,7 @@ export const en: Dictionary = {
   booking: {
     title: "Booking",
     subtitle:
-      "Fill out the form or contact us directly via WhatsApp for an immediate response.",
+      "Fill out the form or contact us directly via WhatsApp. The team replies 7 days a week.",
     form: {
       name: "Your name",
       email: "Your email",
@@ -170,7 +170,7 @@ export const en: Dictionary = {
     },
     sideTitle: "Quick reply",
     sideText:
-      "For immediate confirmation, send us a WhatsApp message. Our team replies 7 days a week.",
+      "Send us a WhatsApp message or the form. Confirmation depends on the activity. Our team replies 7 days a week.",
   },
   blog: {
     title: "Travel journal",

@@ -29,6 +29,9 @@ export function generateStaticParams() {
   return params;
 }
 
+/** Unknown slugs 404 at the routing layer so the document 404 can render. */
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -96,8 +99,19 @@ export default async function ActivityPage({
         name: `${tier.name[typedLocale]} — ${option.label[typedLocale]} (${tier.duration[typedLocale]})`,
         price: option.price,
         url: `${activityPageUrl}#pricing`,
+        ...(option.unit ? { unitText: option.unit[typedLocale] } : {}),
       }))
     ),
+    ...(activity.id === "horse-riding" ||
+    activity.id === "camel-ride" ||
+    activity.id === "art-experience"
+      ? {
+          areaServed: [
+            { "@type": "City" as const, name: "Essaouira" },
+            { "@type": "Place" as const, name: "Diabat" },
+          ],
+        }
+      : {}),
   });
 
   const faqLd = faqJsonLd(

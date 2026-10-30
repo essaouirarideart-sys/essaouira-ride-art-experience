@@ -2,9 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, MessageCircle } from "lucide-react";
+import dynamic from "next/dynamic";
 import { Container } from "@/components/ui/Container";
-import { GalleryWithFilters } from "@/components/ui/GalleryWithFilters";
 import { Reveal } from "@/components/ui/Reveal";
+
+const GalleryWithFilters = dynamic(
+  () =>
+    import("@/components/ui/GalleryWithFilters").then((m) => ({
+      default: m.GalleryWithFilters,
+    })),
+  {
+    ssr: true,
+    loading: () => <div className="min-h-[80vh]" aria-hidden />,
+  }
+);
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { buildMetadata } from "@/lib/seo";

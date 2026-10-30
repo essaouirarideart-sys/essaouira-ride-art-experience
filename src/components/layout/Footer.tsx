@@ -17,12 +17,11 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         <div className="lg:col-span-1">
            <Link href={localizedPath(locale)} className="flex items-center gap-2 transition-opacity duration-300 hover:opacity-80">
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               alt="Essaouira Ride & Art Experience"
-              width={56}
-              height={56}
+              width={64}
+              height={64}
               className="h-16 w-16"
-              priority
             />
           </Link>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-muted">

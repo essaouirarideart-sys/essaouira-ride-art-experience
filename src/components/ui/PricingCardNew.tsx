@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Check, Sparkles, Zap, MessageCircle, FileText } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import type { PricingTier, PricingOption } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
@@ -48,12 +47,9 @@ export function PricingCardNew({
       : "Choose this package";
 
   return (
-    <motion.div
-      layout
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+    <div
       className={cn(
-        "relative flex h-full flex-col rounded-2xl border p-5 transition-[box-shadow,border-color] duration-500 sm:p-7",
+        "relative flex h-full flex-col rounded-2xl border p-5 transition-[box-shadow,border-color,transform] duration-500 hover:-translate-y-1 sm:p-7",
         tier.highlighted
           ? "border-gold/60 bg-gradient-to-b from-bg-elevated to-bg-card shadow-[0_0_48px_rgba(212,165,116,0.22)] ring-1 ring-gold/40"
           : "border-border bg-bg-card hover:border-gold/40 hover:shadow-[0_12px_40px_rgba(0,0,0,0.35)]",
@@ -95,13 +91,20 @@ export function PricingCardNew({
             <span className="text-sm font-medium text-ink">
               {option.label[locale]}
             </span>
-            <span
-              className={cn(
-                "font-display text-xl transition-colors",
-                selectedOption.type === option.type ? "text-gold" : "text-ink"
+            <span className="text-right">
+              <span
+                className={cn(
+                  "font-display text-xl transition-colors",
+                  selectedOption.type === option.type ? "text-gold" : "text-ink"
+                )}
+              >
+                {option.price}€
+              </span>
+              {option.unit && (
+                <span className="block text-[10px] text-ink-muted">
+                  {option.unit[locale]}
+                </span>
               )}
-            >
-              {option.price}€
             </span>
           </button>
         ))}
@@ -119,12 +122,6 @@ export function PricingCardNew({
       )}
 
       <div className="mt-5">
-        {tier.highlighted && (
-          <div className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-gold">
-            <Zap className="h-3.5 w-3.5 animate-pulse" />
-            {locale === "fr" ? "Places limitées" : "Limited spots"}
-          </div>
-        )}
         <button
           type="button"
           onClick={handleForm}
@@ -139,9 +136,12 @@ export function PricingCardNew({
           {primaryLabel}
         </button>
         <div className="mt-3 text-center text-xs text-ink-muted">
-          {selectedOption.price}€ · {tier.duration[locale]}
+          {selectedOption.price}€
+          {selectedOption.unit ? ` · ${selectedOption.unit[locale]}` : ""}
+          {" · "}
+          {tier.duration[locale]}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

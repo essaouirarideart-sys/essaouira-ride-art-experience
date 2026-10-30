@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   Camera,
   Sunrise,
@@ -23,6 +22,7 @@ import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { premiumPackageSelectionKey } from "@/lib/premiumBooking";
 import { formatEur } from "@/lib/formatPrice";
 import { cn } from "@/lib/utils";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 const ICONS: Record<
   PremiumPackageIcon,
@@ -54,7 +54,6 @@ function PremiumPackageCard({
   isSelected,
   onReserveWhatsApp,
   onReserveForm,
-  index,
 }: {
   pkg: PremiumPackage;
   group: PremiumPricingGroup;
@@ -63,23 +62,13 @@ function PremiumPackageCard({
   isSelected: boolean;
   onReserveWhatsApp: Props["onReserveWhatsApp"];
   onReserveForm: Props["onReserveForm"];
-  index: number;
 }) {
   const Icon = ICONS[pkg.icon];
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-24px" }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.08,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      whileHover={{ y: -6 }}
+    <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border transition-[box-shadow,border-color] duration-500",
+        "group relative flex flex-col overflow-hidden rounded-2xl border transition-[box-shadow,border-color,transform] duration-500 hover:-translate-y-1.5",
         pkg.highlighted
           ? "border-gold/50 shadow-[0_0_56px_rgba(212,165,116,0.18)]"
           : "border-white/10 hover:border-gold/35",
@@ -89,7 +78,7 @@ function PremiumPackageCard({
       {pkg.image && (
         <div className="absolute inset-0">
           <Image
-            src={pkg.image}
+            src={optimizeCloudinaryUrl(pkg.image, IMAGE_WIDTH.card)}
             alt=""
             fill
             sizes="(max-width: 640px) 100vw, 50vw"
@@ -163,7 +152,7 @@ function PremiumPackageCard({
           </button> */}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
@@ -174,7 +163,6 @@ function PremiumGroupBlock({
   selectedPackageKey,
   onReserveWhatsApp,
   onReserveForm,
-  groupIndex,
 }: {
   group: PremiumPricingGroup;
   locale: Locale;
@@ -182,26 +170,15 @@ function PremiumGroupBlock({
   selectedPackageKey: string | null;
   onReserveWhatsApp: Props["onReserveWhatsApp"];
   onReserveForm: Props["onReserveForm"];
-  groupIndex: number;
 }) {
   const GroupIcon = ICONS[group.icon];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{
-        duration: 0.55,
-        delay: groupIndex * 0.1,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className="relative overflow-hidden rounded-3xl border border-gold/20 bg-[#080808]"
-    >
+    <div className="reveal-up relative overflow-hidden rounded-3xl border border-gold/20 bg-[#080808]">
       {group.backgroundImage && (
         <div className="absolute inset-0">
           <Image
-            src={group.backgroundImage}
+            src={optimizeCloudinaryUrl(group.backgroundImage, IMAGE_WIDTH.pageHero)}
             alt=""
             fill
             sizes="100vw"
@@ -240,7 +217,7 @@ function PremiumGroupBlock({
                 : "lg:grid-cols-2"
           )}
         >
-          {group.packages.map((pkg, i) => (
+          {group.packages.map((pkg) => (
             <PremiumPackageCard
               key={pkg.id}
               pkg={pkg}
@@ -253,12 +230,11 @@ function PremiumGroupBlock({
               }
               onReserveWhatsApp={onReserveWhatsApp}
               onReserveForm={onReserveForm}
-              index={i}
             />
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -277,13 +253,7 @@ export function PremiumHorsePricingSection({
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-8 text-center sm:mb-12"
-      >
+      <div className="reveal-up mb-8 text-center sm:mb-12">
         <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest2 text-gold">
           <Crown className="h-3 w-3" />
           {locale === "fr" ? "Collection Premium" : "Premium Collection"}
@@ -294,10 +264,10 @@ export function PremiumHorsePricingSection({
         <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
           {category.intro[locale]}
         </p>
-      </motion.div>
+      </div>
 
       <div className="space-y-6 sm:space-y-8">
-        {category.groups.map((group, i) => (
+        {category.groups.map((group) => (
           <PremiumGroupBlock
             key={group.id}
             group={group}
@@ -306,7 +276,6 @@ export function PremiumHorsePricingSection({
             selectedPackageKey={selectedPackageKey}
             onReserveWhatsApp={onReserveWhatsApp}
             onReserveForm={onReserveForm}
-            groupIndex={i}
           />
         ))}
       </div>

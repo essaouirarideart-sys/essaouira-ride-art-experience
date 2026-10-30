@@ -27,28 +27,27 @@ export async function generateMetadata({
     segment: "activities",
     title:
       locale === "fr"
-        ? "Activités à Essaouira | Quad, Cheval, Dromadaire — Réservez"
-        : "Things to Do in Essaouira | Activities, Tours & Excursions",
+        ? "Activités à Essaouira | Quad, Cheval, Dromadaire & Art — Réserver"
+        : "Essaouira Activities | Horse, Quad, Camel & Art — Book",
     description:
       locale === "fr"
-        ? "Toutes les activités à Essaouira : quad (dès 30€), cheval sur la plage (dès 20€), dromadaire sunset (dès 20€). Guides Diabat, transfert gratuit."
-        : "All Essaouira activities: quad (from €30), beach horse riding (from €20), sunset camel (from €20). Diabat guides, free hotel pick-up. Book tours.",
+        ? "Catalogue des activités à réserver à Essaouira : quad, cheval, dromadaire et atelier art. Transfert hôtel gratuit. Choisissez votre formule."
+        : "Bookable Essaouira activities: horse riding, quad biking, camel rides and art workshop. Free hotel pick-up. Choose your package.",
     keywords:
       locale === "fr"
         ? [
             "activités essaouira",
             "activités à essaouira",
-            "que faire à essaouira",
-            "excursions essaouira",
-            "quad essaouira",
-            "cheval essaouira",
+            "réserver activité essaouira",
+            "catalogue activités essaouira",
+            "quad cheval dromadaire essaouira",
           ]
         : [
             "essaouira activities",
-            "things to do in essaouira",
+            "book essaouira activities",
             "essaouira tours",
-            "activities essaouira",
-            "best activities in essaouira",
+            "horse quad camel essaouira",
+            "essaouira activity catalog",
           ],
   });
 }
@@ -138,8 +137,8 @@ export default async function ActivitiesPage({
               </h2>
               <p className="mt-4 text-sm text-ink-muted">
                 {typedLocale === "fr"
-                  ? "Transfert hôtel gratuit · Aucune expérience requise · Guides locaux certifiés"
-                  : "Free hotel pick-up · No experience needed · Certified local guides"}
+                  ? "Transfert hôtel gratuit · Aucune expérience requise · Guides locaux à Diabat"
+                  : "Free hotel pick-up · No experience needed · Local guides in Diabat"}
               </p>
               <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Link

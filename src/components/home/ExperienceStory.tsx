@@ -1,9 +1,6 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
 import type { Locale } from "@/i18n/config";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 const IMAGES = [
   "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1778600153/21_alocv8.jpg",
@@ -12,25 +9,15 @@ const IMAGES = [
 ];
 
 export function ExperienceStory({ locale }: { locale: Locale }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden border-y border-border bg-bg-card/30 py-14 sm:py-24 lg:py-32"
-    >
+    <section className="relative overflow-hidden border-y border-border bg-bg-card/30 py-14 sm:py-24 lg:py-32">
       {/* Subtle background accent */}
       <div className="absolute inset-0 bg-gradient-radial-sunset opacity-30" />
 
       <div className="container-page relative">
         <div className="grid gap-10 sm:gap-16 lg:grid-cols-2 lg:items-center">
           {/* Text Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="reveal-up">
             <span className="eyebrow">
               {locale === "fr" ? "L'expérience" : "The experience"}
             </span>
@@ -71,19 +58,17 @@ export function ExperienceStory({ locale }: { locale: Locale }) {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Image Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative grid grid-cols-2 gap-3 sm:gap-4"
+          <div
+            className="reveal-up relative grid grid-cols-2 gap-3 sm:gap-4"
+            style={{ animationDelay: "0.15s" }}
           >
             {/* Large image */}
             <div className="col-span-2 relative aspect-[16/10] overflow-hidden rounded-2xl border border-border">
               <Image
-                src={IMAGES[0]}
+                src={optimizeCloudinaryUrl(IMAGES[0], IMAGE_WIDTH.pageHero)}
                 alt={
                   locale === "fr"
                     ? "Coucher de soleil sur la plage d'Essaouira"
@@ -99,7 +84,7 @@ export function ExperienceStory({ locale }: { locale: Locale }) {
             {/* Two smaller images */}
             <div className="relative aspect-square overflow-hidden rounded-2xl border border-border">
               <Image
-                src={IMAGES[1]}
+                src={optimizeCloudinaryUrl(IMAGES[1], IMAGE_WIDTH.card)}
                 alt={
                   locale === "fr"
                     ? "Aventure dans les dunes d'Essaouira"
@@ -114,7 +99,7 @@ export function ExperienceStory({ locale }: { locale: Locale }) {
             </div>
             <div className="relative aspect-square overflow-hidden rounded-2xl border border-border">
               <Image
-                src={IMAGES[2]}
+                src={optimizeCloudinaryUrl(IMAGES[2], IMAGE_WIDTH.card)}
                 alt={
                   locale === "fr"
                     ? "Océan Atlantique à Essaouira"
@@ -136,7 +121,7 @@ export function ExperienceStory({ locale }: { locale: Locale }) {
                   : "✨ Since 2018 in Essaouira"}
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

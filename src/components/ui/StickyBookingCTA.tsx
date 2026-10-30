@@ -37,7 +37,7 @@ export function StickyBookingCTA({ locale }: { locale: Locale }) {
             <div className="flex items-center justify-center gap-2 mb-3">
               <Zap className="h-3.5 w-3.5 text-gold animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-wider text-gold">
-                {locale === "fr" ? "Places limitées disponibles" : "Limited spots available"}
+                {locale === "fr" ? "Réserver une activité" : "Book your activity"}
               </span>
               <Zap className="h-3.5 w-3.5 text-gold animate-pulse" />
             </div>

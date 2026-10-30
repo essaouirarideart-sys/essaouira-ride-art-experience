@@ -27,7 +27,7 @@ export const fr = {
   },
   home: {
     heroEyebrow: "Diabat · Essaouira · Maroc",
-    heroTitle: "Vivez Essaouira au rythme du vent et du coucher de soleil.",
+    heroTitle: "Vivez Essaouira autrement, entre océan, dunes et aventures.",
     heroSubtitle:
       "Cheval, quad, dromadaire et art-thérapie. Des expériences premium au cœur des dunes, de l'océan et de la lumière dorée d'Essaouira.",
     heroPrimary: "Réserver une expérience",
@@ -48,12 +48,12 @@ export const fr = {
         text: "Des expériences intimistes pour préserver l'émotion, la sécurité et la qualité.",
       },
       {
-        title: "Lumière dorée garantie",
-        text: "Nos sorties sont chronométrées avec le coucher de soleil pour des images inoubliables.",
+        title: "Lumière dorée d'Essaouira",
+        text: "Le vent, les dunes et la lumière atlantique composent le décor de chaque sortie.",
       },
       {
         title: "Réservation simple",
-        text: "WhatsApp, formulaire ou téléphone. Confirmation rapide, sans paperasse.",
+        text: "WhatsApp, formulaire ou téléphone. L'équipe répond 7 jours sur 7.",
       },
     ],
     testimonialsEyebrow: "Ils ont vécu l'expérience",
@@ -65,7 +65,7 @@ export const fr = {
   activities: {
     listTitle: "Activités à Essaouira",
     listSubtitle:
-      "Cheval, quad, dromadaire, art : choisissez votre façon de ressentir la côte atlantique du Maroc.",
+      "Catalogue à réserver : cheval, quad, dromadaire et art. Choisissez votre formule sur la côte atlantique.",
     duration: "Durée",
     difficulty: "Niveau",
     minAge: "Âge minimum",
@@ -87,7 +87,7 @@ export const fr = {
     title: "Prix des activités à Essaouira",
     subtitle:
       "Tarifs clairs pour quad, cheval et dromadaire. Transfert hôtel gratuit inclus. Réservez en ligne ou WhatsApp.",
-    note: "Les prix sont indiqués par personne. Réductions disponibles à partir de 4 participants. Forfaits combinés sur demande.",
+    note: "Sauf mention contraire, les prix sont indiqués par personne. Pour le quad, le tarif Double correspond à un quad pour deux personnes, pas à un prix par personne. Réductions disponibles à partir de 4 participants. Forfaits combinés sur demande.",
     popular: "Plus populaire",
   },
   gallery: {
@@ -128,7 +128,7 @@ export const fr = {
       },
       {
         title: "Excellence",
-        text: "Plus de 2500 clients satisfaits. Note moyenne de 4.9/5. Nous visons l'excellence à chaque expérience.",
+        text: "Nous visons l'excellence à chaque expérience, avec une équipe locale basée à Diabat.",
       },
       {
         title: "Connexion",
@@ -150,7 +150,7 @@ export const fr = {
   booking: {
     title: "Réservation",
     subtitle:
-      "Remplissez le formulaire ou contactez-nous directement par WhatsApp pour une réponse immédiate.",
+      "Remplissez le formulaire ou contactez-nous directement par WhatsApp. L'équipe répond 7 jours sur 7.",
     form: {
       name: "Votre nom",
       email: "Votre email",
@@ -168,7 +168,7 @@ export const fr = {
     },
     sideTitle: "Réponse rapide",
     sideText:
-      "Pour une confirmation immédiate, envoyez-nous un message WhatsApp. Notre équipe répond 7 jours sur 7.",
+      "Envoyez-nous un message WhatsApp ou le formulaire. La confirmation dépend de l'activité. Notre équipe répond 7 jours sur 7.",
   },
   blog: {
     title: "Journal de voyage",

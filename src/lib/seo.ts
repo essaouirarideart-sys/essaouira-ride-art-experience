@@ -208,6 +208,13 @@ export function organizationJsonLd() {
   };
 }
 
+const DEFAULT_ACTIVITY_AREA_SERVED = [
+  { "@type": "City" as const, name: "Essaouira" },
+  { "@type": "Place" as const, name: "Diabat" },
+  { "@type": "Place" as const, name: "Cap Sim" },
+  { "@type": "Place" as const, name: "Sidi Kaouki" },
+];
+
 export function activityJsonLd(opts: {
   locale: Locale;
   name: string;
@@ -218,7 +225,9 @@ export function activityJsonLd(opts: {
   currency: string;
   duration?: string;
   /** All visible package offers (real prices only). */
-  offers?: Array<{ name: string; price: number; url?: string }>;
+  offers?: Array<{ name: string; price: number; url?: string; unitText?: string }>;
+  /** Override when the default Quad-oriented places do not apply. */
+  areaServed?: Array<{ "@type": "City" | "Place"; name: string }>;
 }) {
   const pageUrl = absoluteUrl(
     localizedPath(opts.locale, "activities", opts.slug)
@@ -230,15 +239,27 @@ export function activityJsonLd(opts: {
           name: o.name,
           price: o.price,
           priceCurrency: opts.currency,
-          availability: "https://schema.org/InStock",
           url: o.url ?? pageUrl,
+          ...(o.unitText
+            ? {
+                priceSpecification: {
+                  "@type": "UnitPriceSpecification" as const,
+                  price: o.price,
+                  priceCurrency: opts.currency,
+                  referenceQuantity: {
+                    "@type": "QuantitativeValue" as const,
+                    value: 1,
+                    unitText: o.unitText,
+                  },
+                },
+              }
+            : {}),
         }))
       : [
           {
             "@type": "Offer" as const,
             price: opts.priceFrom,
             priceCurrency: opts.currency,
-            availability: "https://schema.org/InStock",
             url: pageUrl,
           },
         ];
@@ -256,14 +277,10 @@ export function activityJsonLd(opts: {
     },
     url: pageUrl,
     provider: { "@id": `${site.url}/#organization` },
-    areaServed: [
-      { "@type": "City", name: "Essaouira" },
-      { "@type": "Place", name: "Diabat" },
-      { "@type": "Place", name: "Cap Sim" },
-      { "@type": "Place", name: "Sidi Kaouki" },
-    ],
+    areaServed: opts.areaServed ?? DEFAULT_ACTIVITY_AREA_SERVED,
     touristType: ["Adventure", "Family", "Couples"],
     offers: offerList.length === 1 ? offerList[0] : offerList,
+    ...(opts.duration ? { duration: opts.duration } : {}),
   };
 }
 
@@ -305,7 +322,6 @@ export function premiumPackagesJsonLd(opts: {
         name: pkg.name,
         price: pkg.priceEur,
         priceCurrency: "EUR",
-        availability: "https://schema.org/InStock",
         url: opts.pageUrl,
       },
     })),
@@ -393,7 +409,7 @@ export function activitiesListJsonLd(
     name:
       locale === "fr"
         ? "Activités à Essaouira"
-        : "Things to do in Essaouira",
+        : "Essaouira Activities",
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,

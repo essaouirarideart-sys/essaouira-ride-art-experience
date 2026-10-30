@@ -108,7 +108,7 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
                 <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-black ">
 
                 <Image
-    src="/logo.svg"
+    src="/logo.png"
     alt={AGENT_NAME}
     fill
     className="object-cover"

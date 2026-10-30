@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
 import { HeroVideo } from "@/components/home/HeroVideo";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { VideoReels } from "@/components/home/VideoReels";
@@ -9,10 +10,18 @@ import { WhyUs } from "@/components/home/WhyUs";
 import { ExperienceStory } from "@/components/home/ExperienceStory";
 import { PricingPreview } from "@/components/home/PricingPreview";
 import { GalleryPreview } from "@/components/home/GalleryPreview";
-import { Testimonials } from "@/components/home/Testimonials";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { StickyBookingCTA } from "@/components/ui/StickyBookingCTA";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+
+const Testimonials = dynamic(
+  () =>
+    import("@/components/home/Testimonials").then((m) => ({
+      default: m.Testimonials,
+    })),
+  {
+    ssr: true,
+    loading: () => <div className="min-h-[28rem]" aria-hidden />,
+  }
+);
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { site } from "@/data/site";
@@ -27,8 +36,8 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const homeTitle =
     locale === "fr"
-      ? "Activités Essaouira | Quad, Cheval, Dromadaire — Dès 20€"
-      : "Essaouira Activities | Horse, Quad, Camel Tours — From €20";
+      ? "Essaouira Ride & Art | Cheval, Quad, Dromadaire & Art à Diabat"
+      : "Essaouira Ride & Art | Horse, Quad, Camel & Art in Diabat";
 
   return buildMetadata({
     locale,
@@ -36,26 +45,23 @@ export async function generateMetadata({
     title: { absolute: homeTitle },
     description:
       locale === "fr"
-        ? "Que faire à Essaouira ? Quad dès 30€, cheval sur la plage dès 20€, dromadaire sunset dès 20€. Guides locaux à Diabat, transfert gratuit. Réservez vos tours."
-        : "Things to do in Essaouira: quad from €30, beach horse riding from €20, sunset camel from €20. Local guides in Diabat, free pick-up. Book Essaouira tours.",
+        ? "Essaouira Ride & Art Experience à Diabat : balades à cheval, quad, dromadaire et atelier art. Transfert hôtel gratuit. Réservez auprès de l'équipe locale."
+        : "Essaouira Ride & Art Experience in Diabat: horse riding, quad biking, camel rides and art workshop. Free hotel pick-up. Book with the local team.",
     keywords:
       locale === "fr"
         ? [
-            "activités essaouira",
-            "activités à essaouira",
-            "que faire à essaouira",
-            "excursions essaouira",
-            "quad essaouira",
-            "balade à cheval essaouira",
-            "dromadaire essaouira",
+            "essaouira ride art",
+            "essaouira ride & art",
+            "diabat essaouira",
+            "guides locaux essaouira",
+            "réserver activité essaouira",
           ]
         : [
-            "essaouira activities",
-            "activities essaouira",
-            "things to do in essaouira",
-            "essaouira tours",
-            "best activities in essaouira",
-            "outdoor activities essaouira",
+            "essaouira ride art",
+            "essaouira ride and art",
+            "diabat essaouira",
+            "local guides essaouira",
+            "book essaouira experience",
           ],
   });
 }
@@ -73,7 +79,7 @@ export default async function HomePage({
   return (
     <>
       {/* 1. Cinematic Hero with Video Background */}
-      <HeroVideo locale={typedLocale} dict={dict} />
+      <HeroVideo locale={typedLocale} />
 
       {/* 2. Trust Badges Strip */}
       <TrustBadges locale={typedLocale} />
@@ -104,10 +110,6 @@ export default async function HomePage({
 
       {/* 11. Final CTA */}
       <FinalCTA locale={typedLocale} />
-
-      {/* Persistent CTAs */}
-      {/* <StickyBookingCTA locale={typedLocale} /> */}
-      {/* <WhatsAppButton locale={typedLocale} /> */}
     </>
   );
 }

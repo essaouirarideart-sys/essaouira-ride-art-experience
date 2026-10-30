@@ -13,6 +13,7 @@ import { localizedPath } from "@/lib/paths";
 import { formatDate } from "@/lib/utils";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 interface Props {
   posts: BlogPost[];
@@ -51,7 +52,7 @@ export function BlogIndex({ posts, locale, dict, categories, featured }: Props) 
             >
               <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[360px]">
                 <Image
-                  src={featured.cover}
+                  src={optimizeCloudinaryUrl(featured.cover, IMAGE_WIDTH.featured)}
                   alt={featured.coverAlt[locale]}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

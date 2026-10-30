@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 export interface GalleryImage {
   src: string;
@@ -64,10 +65,11 @@ export function ImageGallery({
             )}
           >
             <Image
-              src={img.src}
+              src={optimizeCloudinaryUrl(img.src, IMAGE_WIDTH.gallery)}
               alt={img.alt}
               fill
               sizes="(max-width: 768px) 90vw, 33vw"
+              loading="lazy"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-bg-primary/0 transition-colors duration-500 group-hover:bg-bg-primary/20" />
@@ -130,12 +132,11 @@ export function ImageGallery({
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={images[active].src}
+                src={optimizeCloudinaryUrl(images[active].src, IMAGE_WIDTH.lightbox)}
                 alt={images[active].alt}
                 fill
                 sizes="92vw"
                 className="object-contain"
-                priority
               />
               <p className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-bg-card/80 px-4 py-1.5 text-xs text-ink-muted backdrop-blur">
                 {active + 1} / {images.length}

@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -15,32 +12,31 @@ import {
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import dynamic from "next/dynamic";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
-import { ImageGallery } from "@/components/ui/ImageGallery";
+
+const ImageGallery = dynamic(
+  () =>
+    import("@/components/ui/ImageGallery").then((m) => ({
+      default: m.ImageGallery,
+    })),
+  {
+    ssr: true,
+    loading: () => <div className="min-h-[24rem]" aria-hidden />,
+  }
+);
 import { ActivityCard } from "@/components/ui/ActivityCard";
 import { ActivityIcon } from "@/components/ui/ActivityIcon";
-import { ActivityBookingSection } from "@/components/ui/ActivityBookingSection";
-import { InlineBookingForm } from "@/components/ui/InlineBookingForm";
 import { ActivityVideoReel } from "@/components/ui/ActivityVideoReel";
-import { ActivityStickyActionBar } from "@/components/ui/ActivityStickyActionBar";
-import type { Activity, PricingTier, PricingOption } from "@/data/activities";
+import type { Activity } from "@/data/activities";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localizedPath } from "@/lib/paths";
-import { scrollToSection } from "@/lib/scroll";
-import {
-  buildPackageWhatsAppUrl,
-  buildWhatsAppUrl,
-  telLink,
-} from "@/lib/whatsapp";
-import { packageSelectionKey } from "@/components/ui/PricingCardNew";
-import {
-  premiumPackageSelectionKey,
-  premiumPackageToBookingSelection,
-} from "@/lib/premiumBooking";
-import type { PremiumPackage, PremiumPricingGroup } from "@/data/activities";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
+import { buildWhatsAppUrl, telLink } from "@/lib/whatsapp";
 import type { BlogPost } from "@/data/blog";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { ActivityBookingIsland } from "./ActivityBookingIsland";
 
 interface Props {
   activity: Activity;
@@ -59,98 +55,19 @@ export function ActivityPageClient({
   relatedPosts = [],
   galleryImages,
 }: Props) {
-  const [selectedPackage, setSelectedPackage] = useState<{
-    tier: PricingTier;
-    option: PricingOption;
-  } | null>(null);
-  const [selectedPackageKey, setSelectedPackageKey] = useState<string | null>(null);
-
   const waGeneric = buildWhatsAppUrl({
     locale,
     activityTitle: activity.title[locale],
   });
 
-  const selectPackage = (tier: PricingTier, option: PricingOption) => {
-    setSelectedPackage({ tier, option });
-    setSelectedPackageKey(packageSelectionKey(tier.id, option.type));
-  };
-
-  const handleReserveWhatsApp = (tier: PricingTier, option: PricingOption) => {
-    selectPackage(tier, option);
-    const url = buildPackageWhatsAppUrl({
-      locale,
-      activityTitle: activity.title[locale],
-      packageName: tier.name[locale],
-      duration: tier.duration[locale],
-      optionLabel: option.label[locale],
-      price: option.price,
-    });
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  const handleReserveForm = (tier: PricingTier, option: PricingOption) => {
-    selectPackage(tier, option);
-    requestAnimationFrame(() => scrollToSection("booking-form"));
-  };
-
-  const scrollToPricing = () => {
-    scrollToSection("pricing");
-  };
-
-  const handlePremiumReserveWhatsApp = (
-    group: PremiumPricingGroup,
-    pkg: PremiumPackage
-  ) => {
-    if (!activity.premiumPricing) return;
-    const { tier, option } = premiumPackageToBookingSelection(
-      group,
-      pkg,
-      activity.premiumPricing.title
-    );
-    setSelectedPackage({ tier, option });
-    setSelectedPackageKey(premiumPackageSelectionKey(group.id, pkg.id));
-    const url = buildPackageWhatsAppUrl({
-      locale,
-      activityTitle: activity.title[locale],
-      packageName: group.title[locale],
-      duration:
-        pkg.duration?.[locale] ?? activity.premiumPricing.title[locale],
-      optionLabel: pkg.name[locale],
-      price: pkg.priceEur,
-      categoryLabel: activity.premiumPricing.title[locale],
-    });
-    window.open(url, "_blank", "noopener,noreferrer");
-  };
-
-  const handlePremiumReserveForm = (
-    group: PremiumPricingGroup,
-    pkg: PremiumPackage
-  ) => {
-    if (!activity.premiumPricing) return;
-    const { tier, option } = premiumPackageToBookingSelection(
-      group,
-      pkg,
-      activity.premiumPricing.title
-    );
-    setSelectedPackage({ tier, option });
-    setSelectedPackageKey(premiumPackageSelectionKey(group.id, pkg.id));
-    requestAnimationFrame(() => scrollToSection("booking-form"));
-  };
-
   return (
     <>
-      <ActivityStickyActionBar
-        locale={locale}
-        dict={dict}
-        activityTitle={activity.title[locale]}
-        onReserve={scrollToPricing}
-      />
 
       {/* HERO */}
       <section className="relative -mt-16 min-h-[65svh] overflow-hidden sm:-mt-20 sm:min-h-[80svh]">
         <div className="absolute inset-0">
           <Image
-            src={activity.heroImage}
+            src={optimizeCloudinaryUrl(activity.heroImage, IMAGE_WIDTH.pageHero)}
             alt={activity.heroImageAlt[locale]}
             fill
             sizes="100vw"
@@ -200,23 +117,16 @@ export function ActivityPageClient({
 
           {/* Trust indicators */}
           <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-ink/90 sm:mt-6 sm:gap-4 sm:text-sm">
-            <div className="flex items-center gap-1.5">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="h-4 w-4 fill-gold text-gold" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <span className="font-semibold">4.9/5</span>
-            </div>
+            <span className="font-medium">
+              {activity.duration[locale]}
+            </span>
             <span className="text-ink/60">·</span>
             <span className="font-medium">
-              {locale === "fr" ? "2500+ clients satisfaits" : "2500+ happy clients"}
+              {locale === "fr" ? `Dès ${activity.minAge} ans` : `From age ${activity.minAge}`}
             </span>
             <span className="text-ink/60">·</span>
             <span className="font-medium text-gold">
-              {locale === "fr" ? "⚡ Réservez à l'avance" : "⚡ Book in advance"}
+              {locale === "fr" ? "Transfert hôtel gratuit" : "Free hotel pick-up"}
             </span>
           </div>
 
@@ -224,14 +134,13 @@ export function ActivityPageClient({
             id="activity-hero-ctas"
             className="mt-6 flex flex-wrap items-center gap-2 sm:mt-8 sm:gap-3"
           >
-            <button
-              type="button"
-              onClick={scrollToPricing}
+            <a
+              href="#pricing"
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-gold px-5 py-3 text-xs font-bold uppercase tracking-widest2 text-bg-primary shadow-lg transition-all duration-300 hover:-translate-y-[2px] hover:shadow-gold sm:px-8 sm:py-4 sm:text-sm"
             >
               {locale === "fr" ? "Réserver" : "Book Now"}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 sm:h-4 sm:w-4" />
-            </button>
+            </a>
             <a
               href={waGeneric}
               target="_blank"
@@ -498,27 +407,10 @@ export function ActivityPageClient({
         </section>
       )}
 
-      {/* BOOKING SECTION */}
-      <ActivityBookingSection
+      <ActivityBookingIsland
         activity={activity}
         locale={locale}
         dict={dict}
-        selectedPackageKey={selectedPackageKey}
-        onReserveWhatsApp={handleReserveWhatsApp}
-        onReserveForm={handleReserveForm}
-        onPremiumReserveWhatsApp={
-          activity.premiumPricing ? handlePremiumReserveWhatsApp : undefined
-        }
-        onPremiumReserveForm={
-          activity.premiumPricing ? handlePremiumReserveForm : undefined
-        }
-      />
-
-      {/* INLINE BOOKING FORM */}
-      <InlineBookingForm
-        activity={activity}
-        locale={locale}
-        prefilledData={selectedPackage}
       />
 
       {/* FAQ */}
@@ -589,7 +481,7 @@ export function ActivityPageClient({
                 >
                   <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl">
                     <Image
-                      src={p.cover}
+                      src={optimizeCloudinaryUrl(p.cover, IMAGE_WIDTH.thumb)}
                       alt={p.coverAlt[locale]}
                       fill
                       sizes="112px"

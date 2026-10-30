@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Flame, Sparkles } from "lucide-react";
 import type { BlogPost } from "@/data/blog";
 import type { Locale } from "@/i18n/config";
@@ -10,6 +7,7 @@ import type { Dictionary } from "@/i18n/dictionaries/fr";
 import { localizedPath } from "@/lib/paths";
 import { formatDate } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 interface Props {
   post: BlogPost;
@@ -23,17 +21,12 @@ export function BlogCard({ post, locale, dict, index = 0, featured }: Props) {
   const href = localizedPath(locale, "blog", post.slug[locale]);
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{
-        duration: 0.5,
-        delay: Math.min(index * 0.06, 0.3),
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      whileHover={{ y: -6 }}
-      className={cn("h-full", featured && "sm:col-span-2 lg:col-span-2")}
+    <article
+      className={cn(
+        "reveal-up h-full transition-transform duration-500 hover:-translate-y-1.5",
+        featured && "sm:col-span-2 lg:col-span-2"
+      )}
+      style={{ animationDelay: `${Math.min(index * 0.06, 0.3)}s` }}
     >
       <Link
         href={href}
@@ -50,7 +43,10 @@ export function BlogCard({ post, locale, dict, index = 0, featured }: Props) {
           )}
         >
           <Image
-            src={post.cover}
+            src={optimizeCloudinaryUrl(
+              post.cover,
+              featured ? IMAGE_WIDTH.featured : IMAGE_WIDTH.card
+            )}
             alt={post.coverAlt[locale]}
             fill
             sizes={
@@ -106,6 +102,6 @@ export function BlogCard({ post, locale, dict, index = 0, featured }: Props) {
           </span>
         </div>
       </Link>
-    </motion.article>
+    </article>
   );
 }

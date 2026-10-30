@@ -7,6 +7,7 @@ import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { galleryItems, galleryCategories, type GalleryItem } from "@/data/gallery";
 import type { Locale } from "@/i18n/config";
+import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 
 export function GalleryWithFilters({ locale }: { locale: Locale }) {
   const [activeCategory, setActiveCategory] = useState<GalleryItem["category"] | "all">("all");
@@ -86,10 +87,11 @@ export function GalleryWithFilters({ locale }: { locale: Locale }) {
               )}
             >
               <Image
-                src={img.src}
+                src={optimizeCloudinaryUrl(img.src, IMAGE_WIDTH.gallery)}
                 alt={img.alt[locale]}
                 fill
                 sizes="(max-width: 768px) 50vw, 25vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -162,12 +164,14 @@ export function GalleryWithFilters({ locale }: { locale: Locale }) {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={filteredImages[active].src}
+                src={optimizeCloudinaryUrl(
+                  filteredImages[active].src,
+                  IMAGE_WIDTH.lightbox
+                )}
                 alt={filteredImages[active].alt[locale]}
                 fill
                 sizes="92vw"
                 className="object-contain"
-                priority
               />
               <p className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-bg-card/80 px-4 py-1.5 text-xs text-ink-muted backdrop-blur">
                 {filteredImages[active].alt[locale]} · {active + 1} / {filteredImages.length}
