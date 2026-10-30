@@ -3,38 +3,77 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Truck, Clock } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import { localizedPath } from "@/lib/paths";
+import { activities } from "@/data/activities";
 import { IMAGE_WIDTH, optimizeCloudinaryUrl } from "@/lib/cloudinary";
 import {
   HeroPlaybackRoot,
   HeroIframe,
   HeroPlayButton,
 } from "./HeroPlayback";
+import {
+  HeroSlidesRoot,
+  HeroSlideshow,
+  HeroSlideChrome,
+  type HeroSlide,
+} from "./HeroSlideshow";
 
 const HERO_VIDEO_ID = "t2qTFxZn4Y4";
-const HERO_POSTER = optimizeCloudinaryUrl(
-  "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779122049/palma-quad-camel-sunset-tour-9_zwvmaf.jpg",
-  IMAGE_WIDTH.hero
-);
+const HERO_POSTER =
+  "https://res.cloudinary.com/drszajirv/image/upload/q_auto/f_auto/v1779122049/palma-quad-camel-sunset-tour-9_zwvmaf.jpg";
+
+function heroSlides(locale: Locale): HeroSlide[] {
+  const camel = activities.find((a) => a.id === "camel-ride");
+  const rest = activities.filter((a) => a.id !== "camel-ride");
+  const ordered = camel ? [camel, ...rest] : activities;
+
+  return ordered.map((activity, i) => {
+    const src = i === 0 ? HERO_POSTER : activity.heroImage;
+    return {
+      src: optimizeCloudinaryUrl(src, IMAGE_WIDTH.hero),
+      alt: i === 0
+        ? locale === "fr"
+          ? "Coucher de soleil sur les dunes près d'Essaouira"
+          : "Sunset over the dunes near Essaouira"
+        : activity.heroImageAlt[locale],
+      title: activity.title[locale],
+      shortTitle: activity.shortTitle[locale],
+      href: localizedPath(locale, "activities", activity.slug[locale]),
+      price: Math.min(
+        ...activity.pricing.flatMap((t) => t.options.map((o) => o.price))
+      ),
+    };
+  });
+}
 
 export function HeroVideo({ locale }: { locale: Locale }) {
   const hasVideo = HERO_VIDEO_ID.length > 0;
-  const posterAlt =
-    locale === "fr"
-      ? "Coucher de soleil sur les dunes près d'Essaouira"
-      : "Sunset over the dunes near Essaouira";
+  const slides = heroSlides(locale);
 
   return (
     <HeroPlaybackRoot>
+      <HeroSlidesRoot locale={locale} slides={slides}>
       <section className="relative h-[100svh] w-full max-w-full overflow-hidden">
         <div className="absolute inset-0 overflow-hidden bg-bg-primary">
-          <Image
-            src={HERO_POSTER}
-            alt={posterAlt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover motion-safe:animate-slow-zoom"
-          />
+          {slides[0] && (
+            <>
+              <link
+                rel="preload"
+                as="image"
+                fetchPriority="high"
+                href={`/_next/image?url=${encodeURIComponent(slides[0].src)}&w=1080&q=75`}
+              />
+              <Image
+                src={slides[0].src}
+                alt={slides[0].alt}
+                fill
+                loading="eager"
+                fetchPriority="high"
+                sizes="100vw"
+                className="object-cover motion-safe:animate-slow-zoom"
+              />
+            </>
+          )}
+          <HeroSlideshow />
           {hasVideo && <HeroIframe locale={locale} videoId={HERO_VIDEO_ID} />}
 
           <div className="absolute inset-0 bg-bg-primary/60" />
@@ -123,6 +162,7 @@ export function HeroVideo({ locale }: { locale: Locale }) {
           </div>
 
           {hasVideo && <HeroPlayButton locale={locale} />}
+          <HeroSlideChrome />
 
           <div className="absolute inset-x-0 bottom-6 hidden justify-center sm:flex">
             <div className="flex flex-col items-center gap-2 text-ink-dim">
@@ -134,6 +174,7 @@ export function HeroVideo({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+      </HeroSlidesRoot>
     </HeroPlaybackRoot>
   );
 }

@@ -14,7 +14,7 @@ const HeroPlaybackContext = createContext<{
   play: () => void;
 } | null>(null);
 
-function useHeroPlayback() {
+export function useHeroPlayback() {
   const ctx = useContext(HeroPlaybackContext);
   if (!ctx) {
     throw new Error("HeroPlayback components must be wrapped in HeroPlaybackRoot");
@@ -65,8 +65,7 @@ export function HeroPlayButton({ locale }: { locale: Locale }) {
   const { playing, play } = useHeroPlayback();
   if (playing) return null;
 
-  const playLabel =
-    locale === "fr" ? "Lire la vidéo d'accueil" : "Play the hero video";
+  const playLabel = locale === "fr" ? "Lire la vidéo" : "Play video";
 
   return (
     <button

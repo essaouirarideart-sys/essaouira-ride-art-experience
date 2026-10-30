@@ -21,7 +21,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               alt="Essaouira Ride & Art Experience"
               width={64}
               height={64}
-              className="h-16 w-16"
+              className="h-16 w-16 bg-transparent"
             />
           </Link>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-muted">
@@ -61,9 +61,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </div>
 
         <div>
-          <h4 className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
+          <p className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
             {dict.nav.activities}
-          </h4>
+          </p>
           <ul className="mt-5 space-y-3">
             {activities.map((a) => (
               <li key={a.id}>
@@ -79,9 +79,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </div>
 
         <div>
-          <h4 className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
+          <p className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
             {dict.footer.quickLinks}
-          </h4>
+          </p>
           <ul className="mt-5 space-y-3">
             {(
               [
@@ -106,9 +106,9 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </div>
 
         <div>
-          <h4 className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
+          <p className="text-[11px] font-semibold uppercase tracking-widest2 text-gold">
             {dict.footer.contact}
-          </h4>
+          </p>
           <ul className="mt-5 space-y-4">
             <li>
               <a

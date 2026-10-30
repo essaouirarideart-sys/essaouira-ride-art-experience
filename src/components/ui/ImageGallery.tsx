@@ -59,6 +59,7 @@ export function ImageGallery({
             key={i}
             type="button"
             onClick={() => setActive(i)}
+            aria-label={img.alt}
             className={cn(
               "group relative overflow-hidden rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-gold",
               i % 5 === 0 ? "col-span-2 aspect-[4/3]" : "aspect-square"

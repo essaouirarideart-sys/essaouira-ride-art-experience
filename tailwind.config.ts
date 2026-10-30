@@ -24,7 +24,7 @@ const config: Config = {
         ink: {
           DEFAULT: "#F5F0E8",
           muted: "#A39E94",
-          dim: "#6E6A62",
+          dim: "#8A857C",
         },
         border: {
           DEFAULT: "#2A2722",

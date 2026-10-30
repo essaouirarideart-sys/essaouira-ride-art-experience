@@ -7,8 +7,17 @@ export function HeaderScroll({ children }: { children: ReactNode }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let ticking = false;
+    const apply = () => {
+      ticking = false;
+      setScrolled(window.scrollY > 24);
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(apply);
+    };
+    apply();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

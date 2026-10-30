@@ -51,7 +51,7 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, duration: 0.3, type: "spring" }}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-white shadow-2xl transition-all duration-300 hover:bg-[#1ebe5b] hover:scale-105"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#107A6B] px-4 py-3 text-white shadow-2xl transition-all duration-300 hover:bg-[#0E6B5F] hover:scale-105"
         aria-label="WhatsApp"
       >
         {!isOpen && (
@@ -86,8 +86,10 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
                 {headerText}
               </span>
               <button
+                type="button"
                 onClick={() => setIsOpen(false)}
-                className="rounded-full p-1 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                aria-label={locale === "fr" ? "Réduire" : "Minimize"}
+                className="flex h-11 w-11 items-center justify-center rounded-full p-1 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
                   <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
@@ -132,7 +134,11 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
 
             {/* Input Area */}
             <div className="flex items-center gap-2 border-t border-gray-200 bg-[#F0F0F0] px-3 py-2">
-              <button className="p-2 text-gray-500 transition-colors hover:text-gray-700">
+              <button
+                type="button"
+                aria-label={locale === "fr" ? "Émojis" : "Emojis"}
+                className="flex h-11 w-11 items-center justify-center p-2 text-gray-500 transition-colors hover:text-gray-700"
+              >
                 <Smile className="h-5 w-5" />
               </button>
               <input
@@ -144,9 +150,11 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
                 className="flex-1 rounded-full border-0 bg-white px-4 py-2 text-sm text-gray-800 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#25D366]/50"
               />
               <button
+                type="button"
                 onClick={handleSend}
                 disabled={!message.trim()}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#25D366] text-white transition-all hover:bg-[#1ebe5b] disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label={locale === "fr" ? "Envoyer" : "Send"}
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[#107A6B] text-white transition-all hover:bg-[#0E6B5F] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Send className="h-5 w-5" />
               </button>
@@ -159,10 +167,12 @@ export function WhatsAppChatWidget({ locale }: { locale: Locale }) {
       <AnimatePresence>
         {isOpen && (
           <motion.button
+            type="button"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             onClick={() => setIsOpen(false)}
+            aria-label={locale === "fr" ? "Fermer WhatsApp" : "Close WhatsApp"}
             className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gray-600 text-white shadow-2xl transition-colors hover:bg-gray-700"
           >
             <X className="h-6 w-6" />

@@ -47,9 +47,9 @@ export function TrustBadges({ locale }: { locale: Locale }) {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 text-gold sm:h-12 sm:w-12">
                 <badge.icon className="h-4 w-4 sm:h-5 sm:w-5" />
               </div>
-              <h3 className="mt-2 text-[11px] font-semibold text-ink sm:mt-3 sm:text-sm">
+              <p className="mt-2 text-[11px] font-semibold text-ink sm:mt-3 sm:text-sm">
                 {badge.label[locale]}
-              </h3>
+              </p>
               <p className="mt-0.5 hidden text-xs text-ink-muted sm:block">
                 {badge.description[locale]}
               </p>

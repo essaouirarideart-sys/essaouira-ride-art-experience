@@ -70,7 +70,9 @@ export function VideoSection({ locale }: { locale: Locale }) {
           {/* Play button overlay */}
           {!isPlaying && (
             <button
+              type="button"
               onClick={handlePlay}
+              aria-label={locale === "fr" ? "Lire la vidéo" : "Play video"}
               className="absolute inset-0 flex items-center justify-center bg-bg-primary/40 transition-opacity duration-300 hover:bg-bg-primary/30"
             >
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-gold text-bg-primary shadow-gold transition-transform duration-300 hover:scale-110">
@@ -81,8 +83,18 @@ export function VideoSection({ locale }: { locale: Locale }) {
 
           {/* Mute toggle */}
           <button
+            type="button"
             onClick={toggleMute}
-            className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-bg-primary/80 text-ink backdrop-blur-sm transition-all duration-300 hover:bg-bg-primary hover:text-gold"
+            aria-label={
+              isMuted
+                ? locale === "fr"
+                  ? "Activer le son"
+                  : "Unmute"
+                : locale === "fr"
+                  ? "Couper le son"
+                  : "Mute"
+            }
+            className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-bg-primary/80 text-ink backdrop-blur-sm transition-all duration-300 hover:bg-bg-primary hover:text-gold"
           >
             {isMuted ? (
               <VolumeX className="h-5 w-5" />

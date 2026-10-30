@@ -31,7 +31,7 @@ export function LanguageSwitcher({
             key={l}
             href={href}
             className={cn(
-              "rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-widest2 transition-colors duration-300",
+              "inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-3 text-[11px] font-semibold uppercase tracking-widest2 transition-colors duration-300",
               active
                 ? "bg-gold text-bg-primary"
                 : "text-ink-muted hover:text-ink"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AppDocument } from "@/components/layout/AppDocument";
 import { LocaleNotFoundContent } from "@/components/layout/LocaleNotFoundContent";
 import { defaultLocale } from "@/i18n/config";
+import { fontClassName } from "@/lib/fonts";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
  */
 export default function NotFound() {
   return (
-    <AppDocument locale={defaultLocale}>
+    <AppDocument locale={defaultLocale} fontClassName={fontClassName}>
       <LocaleNotFoundContent />
     </AppDocument>
   );

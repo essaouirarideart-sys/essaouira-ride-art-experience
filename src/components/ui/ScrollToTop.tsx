@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronUp } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
@@ -12,19 +12,38 @@ const SHOW_AFTER_PX = 320;
 export function ScrollToTop({ locale }: { locale: Locale }) {
   const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0);
+  const maxScrollRef = useRef(1);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-      setVisible(scrollTop > SHOW_AFTER_PX);
-      setProgress(maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0);
+    const measure = () => {
+      maxScrollRef.current = Math.max(
+        1,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
     };
 
-    onScroll();
+    const apply = () => {
+      ticking.current = false;
+      const scrollTop = window.scrollY;
+      setVisible(scrollTop > SHOW_AFTER_PX);
+      setProgress(Math.min(scrollTop / maxScrollRef.current, 1));
+    };
+
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      requestAnimationFrame(apply);
+    };
+
+    measure();
+    apply();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", measure, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -46,34 +65,34 @@ export function ScrollToTop({ locale }: { locale: Locale }) {
           : "pointer-events-none translate-y-4 scale-90 opacity-0"
       )}
     >
-          <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-gold/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-gold/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full -rotate-90 p-0.5"
-            viewBox="0 0 48 48"
-            aria-hidden
-          >
-            <circle
-              cx="24"
-              cy="24"
-              r={RING_RADIUS}
-              fill="none"
-              stroke="rgba(255,255,255,0.06)"
-              strokeWidth="2"
-            />
-            <circle
-              cx="24"
-              cy="24"
-              r={RING_RADIUS}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              className="text-gold transition-[stroke-dashoffset] duration-150"
-              strokeDasharray={RING_CIRCUMFERENCE}
-              strokeDashoffset={RING_CIRCUMFERENCE * (1 - progress)}
-            />
-          </svg>
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full -rotate-90 p-0.5"
+        viewBox="0 0 48 48"
+        aria-hidden
+      >
+        <circle
+          cx="24"
+          cy="24"
+          r={RING_RADIUS}
+          fill="none"
+          stroke="rgba(255,255,255,0.06)"
+          strokeWidth="2"
+        />
+        <circle
+          cx="24"
+          cy="24"
+          r={RING_RADIUS}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          className="text-gold transition-[stroke-dashoffset] duration-150"
+          strokeDasharray={RING_CIRCUMFERENCE}
+          strokeDashoffset={RING_CIRCUMFERENCE * (1 - progress)}
+        />
+      </svg>
 
       <ChevronUp
         className="relative h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-6 sm:w-6"

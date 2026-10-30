@@ -169,7 +169,7 @@ export function BlogIndex({ posts, locale, dict, categories, featured }: Props) 
                 href={buildWhatsAppUrl({ locale })}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#128C7E]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#107A6B] px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0E6B5F]"
               >
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp

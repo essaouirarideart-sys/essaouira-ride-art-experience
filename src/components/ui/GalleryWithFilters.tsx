@@ -81,6 +81,7 @@ export function GalleryWithFilters({ locale }: { locale: Locale }) {
               transition={{ duration: 0.3 }}
               type="button"
               onClick={() => setActive(i)}
+              aria-label={img.alt[locale]}
               className={cn(
                 "group relative overflow-hidden rounded-xl border border-border focus:outline-none focus:ring-2 focus:ring-gold",
                 i % 7 === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"

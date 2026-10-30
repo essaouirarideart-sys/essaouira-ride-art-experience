@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -6,11 +7,27 @@ import { AppDocument } from "@/components/layout/AppDocument";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { siteJsonLdGraph } from "@/lib/seo";
+import { display, sans } from "@/lib/fonts";
 import { activities } from "@/data/activities";
 import { blogPosts } from "@/data/blog";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  return {
+    description:
+      locale === "fr"
+        ? "Essaouira Ride & Art Experience à Diabat : balades à cheval, quad, dromadaire et atelier art. Transfert hôtel gratuit. Réservez auprès de l'équipe locale."
+        : "Essaouira Ride & Art Experience in Diabat: horse riding, quad biking, camel rides and art workshop. Free hotel pick-up. Book with the local team.",
+  };
 }
 
 export default async function LocaleLayout({
@@ -28,7 +45,10 @@ export default async function LocaleLayout({
   const blogSlugs = blogPosts.map((p) => p.slug);
 
   return (
-    <AppDocument locale={typedLocale}>
+    <AppDocument
+      locale={typedLocale}
+      fontClassName={`${display.variable} ${sans.variable}`}
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

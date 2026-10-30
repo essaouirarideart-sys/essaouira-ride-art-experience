@@ -53,6 +53,7 @@ export function BlogShareBar({ url, title, locale }: Props) {
           <button
             type="button"
             onClick={share}
+            aria-label={copied ? copiedLabel : label}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/30 bg-bg-primary/80 text-gold shadow-lg backdrop-blur-md transition-all duration-300 hover:border-gold hover:shadow-gold"
             title={copied ? copiedLabel : label}
           >

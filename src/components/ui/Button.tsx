@@ -44,7 +44,7 @@ const variants: Record<Variant, string> = {
   ghost:
     "bg-transparent text-ink/80 hover:text-gold",
   whatsapp:
-    "bg-[#25D366] text-white hover:bg-[#1ebe5b] hover:-translate-y-[1px]",
+    "bg-[#107A6B] text-white hover:bg-[#0E6B5F] hover:-translate-y-[1px]",
 };
 
 const sizes: Record<Size, string> = {

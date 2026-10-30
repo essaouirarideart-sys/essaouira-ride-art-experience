@@ -1,40 +1,24 @@
 import Image from "next/image";
 import Script from "next/script";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import type { Locale } from "@/i18n/config";
-
-const display = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 const GOOGLE_ADS_ID = "AW-18172443907";
 const META_PIXEL_ID = "1463205738399992";
 
 export function AppDocument({
   locale,
+  fontClassName,
   children,
 }: {
   locale: Locale;
+  fontClassName: string;
   children: React.ReactNode;
 }) {
   return (
-    <html lang={locale} className={`${display.variable} ${sans.variable}`}>
-      {/* Resource hints live in <head>; Metadata API has no first-class preconnect. */}
-      {/* eslint-disable-next-line @next/next/no-head-element */}
-      <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://connect.facebook.net" />
-      </head>
+    <html lang={locale} className={fontClassName}>
+      {/* Hoisted by Next into <head>. A custom <head> blocks next/font preloads. */}
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="https://connect.facebook.net" />
       <body className="antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
@@ -62,6 +46,7 @@ export function AppDocument({
             fbq('track', 'PageView');
           `}
         </Script>
+        {children}
         <noscript>
           <Image
             src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
@@ -73,7 +58,6 @@ export function AppDocument({
             style={{ display: "none" }}
           />
         </noscript>
-        {children}
       </body>
     </html>
   );

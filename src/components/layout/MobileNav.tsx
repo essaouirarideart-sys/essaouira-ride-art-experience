@@ -42,7 +42,7 @@ export function MobileNav({
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-ink transition-colors duration-300 hover:border-gold hover:text-gold lg:hidden"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-colors duration-300 hover:border-gold hover:text-gold lg:hidden"
       >
         {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
       </button>

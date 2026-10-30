@@ -44,7 +44,7 @@ export function Header({
             alt="Essaouira Ride & Art Experience"
             width={56}
             height={56}
-            className="h-14 w-14"
+            className="h-14 w-14 bg-transparent"
           />
         </Link>
 

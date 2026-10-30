@@ -37,16 +37,20 @@ export function Testimonials({
             </div>
             <div className="hidden sm:flex items-center gap-2">
               <button
+                type="button"
                 onClick={prev}
                 disabled={activeIndex === 0}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-ink transition-all duration-300 hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed"
+                aria-label={locale === "fr" ? "Avis précédent" : "Previous review"}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-all duration-300 hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-30"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
+                type="button"
                 onClick={next}
                 disabled={activeIndex === maxIndex}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-ink transition-all duration-300 hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed"
+                aria-label={locale === "fr" ? "Avis suivant" : "Next review"}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink transition-all duration-300 hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-30"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -87,11 +91,21 @@ export function Testimonials({
           {testimonials.slice(0, maxIndex + 1).map((_, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => setActiveIndex(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === activeIndex ? "w-6 bg-gold" : "w-2 bg-border"
-              }`}
-            />
+              aria-label={
+                locale === "fr"
+                  ? `Afficher les avis ${i + 1}`
+                  : `Show reviews ${i + 1}`
+              }
+              className="flex h-11 w-11 items-center justify-center"
+            >
+              <span
+                className={`block h-2 rounded-full transition-all duration-300 ${
+                  i === activeIndex ? "w-6 bg-gold" : "w-2 bg-border"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </Container>
